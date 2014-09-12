@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09A36F5A19C365BF003D5872 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5919C365BF003D5872 /* Foundation.framework */; };
+		09A36F5C19C365BF003D5872 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5B19C365BF003D5872 /* CoreGraphics.framework */; };
+		09A36F5E19C365BF003D5872 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5D19C365BF003D5872 /* UIKit.framework */; };
+		09A36F6419C365BF003D5872 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F6219C365BF003D5872 /* InfoPlist.strings */; };
+		09A36F6619C365BF003D5872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F6519C365BF003D5872 /* main.m */; };
+		09A36F6A19C365BF003D5872 /* WLBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F6919C365BF003D5872 /* WLBAppDelegate.m */; };
+		09A36F6D19C365BF003D5872 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F6B19C365BF003D5872 /* Main_iPhone.storyboard */; };
+		09A36F7019C365BF003D5872 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F6E19C365BF003D5872 /* Main_iPad.storyboard */; };
+		09A36F7319C365BF003D5872 /* WLBFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F7219C365BF003D5872 /* WLBFirstViewController.m */; };
+		09A36F7619C365BF003D5872 /* WLBSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F7519C365BF003D5872 /* WLBSecondViewController.m */; };
+		09A36F7819C365BF003D5872 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F7719C365BF003D5872 /* Images.xcassets */; };
+		09A36F7F19C365C0003D5872 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F7E19C365C0003D5872 /* XCTest.framework */; };
+		09A36F8019C365C0003D5872 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5919C365BF003D5872 /* Foundation.framework */; };
+		09A36F8119C365C0003D5872 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5D19C365BF003D5872 /* UIKit.framework */; };
+		09A36F8919C365C0003D5872 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F8719C365C0003D5872 /* InfoPlist.strings */; };
+		09A36F8B19C365C0003D5872 /* Wellbeing_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		09A36F8219C365C0003D5872 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09A36F4E19C365BF003D5872 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09A36F5519C365BF003D5872;
+			remoteInfo = "Wellbeing App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09A36F5619C365BF003D5872 /* Wellbeing App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wellbeing App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09A36F5919C365BF003D5872 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		09A36F5B19C365BF003D5872 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		09A36F5D19C365BF003D5872 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		09A36F6119C365BF003D5872 /* Wellbeing App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wellbeing App-Info.plist"; sourceTree = "<group>"; };
+		09A36F6319C365BF003D5872 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		09A36F6519C365BF003D5872 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		09A36F6719C365BF003D5872 /* Wellbeing App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wellbeing App-Prefix.pch"; sourceTree = "<group>"; };
+		09A36F6819C365BF003D5872 /* WLBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WLBAppDelegate.h; sourceTree = "<group>"; };
+		09A36F6919C365BF003D5872 /* WLBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WLBAppDelegate.m; sourceTree = "<group>"; };
+		09A36F6C19C365BF003D5872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		09A36F6F19C365BF003D5872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		09A36F7119C365BF003D5872 /* WLBFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WLBFirstViewController.h; sourceTree = "<group>"; };
+		09A36F7219C365BF003D5872 /* WLBFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WLBFirstViewController.m; sourceTree = "<group>"; };
+		09A36F7419C365BF003D5872 /* WLBSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WLBSecondViewController.h; sourceTree = "<group>"; };
+		09A36F7519C365BF003D5872 /* WLBSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WLBSecondViewController.m; sourceTree = "<group>"; };
+		09A36F7719C365BF003D5872 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		09A36F7D19C365C0003D5872 /* Wellbeing AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wellbeing AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09A36F7E19C365C0003D5872 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		09A36F8619C365C0003D5872 /* Wellbeing AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wellbeing AppTests-Info.plist"; sourceTree = "<group>"; };
+		09A36F8819C365C0003D5872 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wellbeing_AppTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09A36F5319C365BF003D5872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A36F5C19C365BF003D5872 /* CoreGraphics.framework in Frameworks */,
+				09A36F5E19C365BF003D5872 /* UIKit.framework in Frameworks */,
+				09A36F5A19C365BF003D5872 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09A36F7A19C365C0003D5872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A36F7F19C365C0003D5872 /* XCTest.framework in Frameworks */,
+				09A36F8119C365C0003D5872 /* UIKit.framework in Frameworks */,
+				09A36F8019C365C0003D5872 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09A36F4D19C365BF003D5872 = {
+			isa = PBXGroup;
+			children = (
+				09A36F5F19C365BF003D5872 /* Wellbeing App */,
+				09A36F8419C365C0003D5872 /* Wellbeing AppTests */,
+				09A36F5819C365BF003D5872 /* Frameworks */,
+				09A36F5719C365BF003D5872 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		09A36F5719C365BF003D5872 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09A36F5619C365BF003D5872 /* Wellbeing App.app */,
+				09A36F7D19C365C0003D5872 /* Wellbeing AppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09A36F5819C365BF003D5872 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09A36F5919C365BF003D5872 /* Foundation.framework */,
+				09A36F5B19C365BF003D5872 /* CoreGraphics.framework */,
+				09A36F5D19C365BF003D5872 /* UIKit.framework */,
+				09A36F7E19C365C0003D5872 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		09A36F5F19C365BF003D5872 /* Wellbeing App */ = {
+			isa = PBXGroup;
+			children = (
+				09A36F6819C365BF003D5872 /* WLBAppDelegate.h */,
+				09A36F6919C365BF003D5872 /* WLBAppDelegate.m */,
+				09A36F6B19C365BF003D5872 /* Main_iPhone.storyboard */,
+				09A36F6E19C365BF003D5872 /* Main_iPad.storyboard */,
+				09A36F7119C365BF003D5872 /* WLBFirstViewController.h */,
+				09A36F7219C365BF003D5872 /* WLBFirstViewController.m */,
+				09A36F7419C365BF003D5872 /* WLBSecondViewController.h */,
+				09A36F7519C365BF003D5872 /* WLBSecondViewController.m */,
+				09A36F7719C365BF003D5872 /* Images.xcassets */,
+				09A36F6019C365BF003D5872 /* Supporting Files */,
+			);
+			path = "Wellbeing App";
+			sourceTree = "<group>";
+		};
+		09A36F6019C365BF003D5872 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				09A36F6119C365BF003D5872 /* Wellbeing App-Info.plist */,
+				09A36F6219C365BF003D5872 /* InfoPlist.strings */,
+				09A36F6519C365BF003D5872 /* main.m */,
+				09A36F6719C365BF003D5872 /* Wellbeing App-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		09A36F8419C365C0003D5872 /* Wellbeing AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */,
+				09A36F8519C365C0003D5872 /* Supporting Files */,
+			);
+			path = "Wellbeing AppTests";
+			sourceTree = "<group>";
+		};
+		09A36F8519C365C0003D5872 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				09A36F8619C365C0003D5872 /* Wellbeing AppTests-Info.plist */,
+				09A36F8719C365C0003D5872 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		09A36F5519C365BF003D5872 /* Wellbeing App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09A36F8E19C365C0003D5872 /* Build configuration list for PBXNativeTarget "Wellbeing App" */;
+			buildPhases = (
+				09A36F5219C365BF003D5872 /* Sources */,
+				09A36F5319C365BF003D5872 /* Frameworks */,
+				09A36F5419C365BF003D5872 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wellbeing App";
+			productName = "Wellbeing App";
+			productReference = 09A36F5619C365BF003D5872 /* Wellbeing App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		09A36F7C19C365C0003D5872 /* Wellbeing AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09A36F9119C365C0003D5872 /* Build configuration list for PBXNativeTarget "Wellbeing AppTests" */;
+			buildPhases = (
+				09A36F7919C365C0003D5872 /* Sources */,
+				09A36F7A19C365C0003D5872 /* Frameworks */,
+				09A36F7B19C365C0003D5872 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09A36F8319C365C0003D5872 /* PBXTargetDependency */,
+			);
+			name = "Wellbeing AppTests";
+			productName = "Wellbeing AppTests";
+			productReference = 09A36F7D19C365C0003D5872 /* Wellbeing AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09A36F4E19C365BF003D5872 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = WLB;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Student Association";
+				TargetAttributes = {
+					09A36F7C19C365C0003D5872 = {
+						TestTargetID = 09A36F5519C365BF003D5872;
+					};
+				};
+			};
+			buildConfigurationList = 09A36F5119C365BF003D5872 /* Build configuration list for PBXProject "Wellbeing App" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 09A36F4D19C365BF003D5872;
+			productRefGroup = 09A36F5719C365BF003D5872 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				09A36F5519C365BF003D5872 /* Wellbeing App */,
+				09A36F7C19C365C0003D5872 /* Wellbeing AppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		09A36F5419C365BF003D5872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A36F7019C365BF003D5872 /* Main_iPad.storyboard in Resources */,
+				09A36F7819C365BF003D5872 /* Images.xcassets in Resources */,
+				09A36F6D19C365BF003D5872 /* Main_iPhone.storyboard in Resources */,
+				09A36F6419C365BF003D5872 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09A36F7B19C365C0003D5872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A36F8919C365C0003D5872 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09A36F5219C365BF003D5872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A36F7619C365BF003D5872 /* WLBSecondViewController.m in Sources */,
+				09A36F7319C365BF003D5872 /* WLBFirstViewController.m in Sources */,
+				09A36F6A19C365BF003D5872 /* WLBAppDelegate.m in Sources */,
+				09A36F6619C365BF003D5872 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09A36F7919C365C0003D5872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A36F8B19C365C0003D5872 /* Wellbeing_AppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		09A36F8319C365C0003D5872 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09A36F5519C365BF003D5872 /* Wellbeing App */;
+			targetProxy = 09A36F8219C365C0003D5872 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		09A36F6219C365BF003D5872 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09A36F6319C365BF003D5872 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		09A36F6B19C365BF003D5872 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09A36F6C19C365BF003D5872 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		09A36F6E19C365BF003D5872 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09A36F6F19C365BF003D5872 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		09A36F8719C365C0003D5872 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09A36F8819C365C0003D5872 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		09A36F8C19C365C0003D5872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		09A36F8D19C365C0003D5872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		09A36F8F19C365C0003D5872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Wellbeing App/Wellbeing App-Prefix.pch";
+				INFOPLIST_FILE = "Wellbeing App/Wellbeing App-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		09A36F9019C365C0003D5872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Wellbeing App/Wellbeing App-Prefix.pch";
+				INFOPLIST_FILE = "Wellbeing App/Wellbeing App-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		09A36F9219C365C0003D5872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Wellbeing App.app/Wellbeing App";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Wellbeing App/Wellbeing App-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Wellbeing AppTests/Wellbeing AppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		09A36F9319C365C0003D5872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Wellbeing App.app/Wellbeing App";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Wellbeing App/Wellbeing App-Prefix.pch";
+				INFOPLIST_FILE = "Wellbeing AppTests/Wellbeing AppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09A36F5119C365BF003D5872 /* Build configuration list for PBXProject "Wellbeing App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09A36F8C19C365C0003D5872 /* Debug */,
+				09A36F8D19C365C0003D5872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09A36F8E19C365C0003D5872 /* Build configuration list for PBXNativeTarget "Wellbeing App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09A36F8F19C365C0003D5872 /* Debug */,
+				09A36F9019C365C0003D5872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		09A36F9119C365C0003D5872 /* Build configuration list for PBXNativeTarget "Wellbeing AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09A36F9219C365C0003D5872 /* Debug */,
+				09A36F9319C365C0003D5872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 09A36F4E19C365BF003D5872 /* Project object */;
+}
