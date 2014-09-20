@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		093F9E8119C382B700DC969E /* WLBTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093F9E8019C382B700DC969E /* WLBTrackingViewController.m */; };
+		093F9E8319C383D400DC969E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093F9E8219C383D400DC969E /* MapKit.framework */; };
+		093F9E8619C3C3D600DC969E /* WLBCoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093F9E8519C3C3D600DC969E /* WLBCoreLocationController.m */; };
+		093F9E8819C3C4C000DC969E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093F9E8719C3C4C000DC969E /* CoreLocation.framework */; };
+		093F9E9119C8080700DC969E /* WLBNumbersDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093F9E9019C8080700DC969E /* WLBNumbersDetailViewController.m */; };
+		093F9E9A19C80AE700DC969E /* WLBNumbersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093F9E9919C80AE700DC969E /* WLBNumbersTableViewController.m */; };
 		09A36F5A19C365BF003D5872 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5919C365BF003D5872 /* Foundation.framework */; };
 		09A36F5C19C365BF003D5872 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5B19C365BF003D5872 /* CoreGraphics.framework */; };
 		09A36F5E19C365BF003D5872 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5D19C365BF003D5872 /* UIKit.framework */; };
@@ -36,6 +42,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		093F9E7F19C382B700DC969E /* WLBTrackingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLBTrackingViewController.h; sourceTree = "<group>"; };
+		093F9E8019C382B700DC969E /* WLBTrackingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLBTrackingViewController.m; sourceTree = "<group>"; };
+		093F9E8219C383D400DC969E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		093F9E8419C3C3D600DC969E /* WLBCoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WLBCoreLocationController.h; path = ../WLBCoreLocationController.h; sourceTree = "<group>"; };
+		093F9E8519C3C3D600DC969E /* WLBCoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WLBCoreLocationController.m; path = ../WLBCoreLocationController.m; sourceTree = "<group>"; };
+		093F9E8719C3C4C000DC969E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		093F9E8F19C8080700DC969E /* WLBNumbersDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLBNumbersDetailViewController.h; sourceTree = "<group>"; };
+		093F9E9019C8080700DC969E /* WLBNumbersDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLBNumbersDetailViewController.m; sourceTree = "<group>"; };
+		093F9E9819C80AE700DC969E /* WLBNumbersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WLBNumbersTableViewController.h; path = ../WLBNumbersTableViewController.h; sourceTree = "<group>"; };
+		093F9E9919C80AE700DC969E /* WLBNumbersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WLBNumbersTableViewController.m; path = ../WLBNumbersTableViewController.m; sourceTree = "<group>"; };
 		09A36F5619C365BF003D5872 /* Wellbeing App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wellbeing App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A36F5919C365BF003D5872 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		09A36F5B19C365BF003D5872 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				093F9E8819C3C4C000DC969E /* CoreLocation.framework in Frameworks */,
+				093F9E8319C383D400DC969E /* MapKit.framework in Frameworks */,
 				09A36F5C19C365BF003D5872 /* CoreGraphics.framework in Frameworks */,
 				09A36F5E19C365BF003D5872 /* UIKit.framework in Frameworks */,
 				09A36F5A19C365BF003D5872 /* Foundation.framework in Frameworks */,
@@ -106,6 +124,8 @@
 		09A36F5819C365BF003D5872 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				093F9E8719C3C4C000DC969E /* CoreLocation.framework */,
+				093F9E8219C383D400DC969E /* MapKit.framework */,
 				09A36F5919C365BF003D5872 /* Foundation.framework */,
 				09A36F5B19C365BF003D5872 /* CoreGraphics.framework */,
 				09A36F5D19C365BF003D5872 /* UIKit.framework */,
@@ -117,9 +137,17 @@
 		09A36F5F19C365BF003D5872 /* Wellbeing App */ = {
 			isa = PBXGroup;
 			children = (
+				093F9E9819C80AE700DC969E /* WLBNumbersTableViewController.h */,
+				093F9E9919C80AE700DC969E /* WLBNumbersTableViewController.m */,
+				093F9E8419C3C3D600DC969E /* WLBCoreLocationController.h */,
+				093F9E8519C3C3D600DC969E /* WLBCoreLocationController.m */,
 				09A36F6819C365BF003D5872 /* WLBAppDelegate.h */,
 				09A36F6919C365BF003D5872 /* WLBAppDelegate.m */,
 				09A36F6B19C365BF003D5872 /* Main_iPhone.storyboard */,
+				093F9E8F19C8080700DC969E /* WLBNumbersDetailViewController.h */,
+				093F9E9019C8080700DC969E /* WLBNumbersDetailViewController.m */,
+				093F9E7F19C382B700DC969E /* WLBTrackingViewController.h */,
+				093F9E8019C382B700DC969E /* WLBTrackingViewController.m */,
 				09A36F6E19C365BF003D5872 /* Main_iPad.storyboard */,
 				09A36F7119C365BF003D5872 /* WLBFirstViewController.h */,
 				09A36F7219C365BF003D5872 /* WLBFirstViewController.m */,
@@ -261,8 +289,12 @@
 			files = (
 				09A36F7619C365BF003D5872 /* WLBSecondViewController.m in Sources */,
 				09A36F7319C365BF003D5872 /* WLBFirstViewController.m in Sources */,
+				093F9E9A19C80AE700DC969E /* WLBNumbersTableViewController.m in Sources */,
+				093F9E8119C382B700DC969E /* WLBTrackingViewController.m in Sources */,
 				09A36F6A19C365BF003D5872 /* WLBAppDelegate.m in Sources */,
+				093F9E9119C8080700DC969E /* WLBNumbersDetailViewController.m in Sources */,
 				09A36F6619C365BF003D5872 /* main.m in Sources */,
+				093F9E8619C3C3D600DC969E /* WLBCoreLocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +509,7 @@
 				09A36F9019C365C0003D5872 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09A36F9119C365C0003D5872 /* Build configuration list for PBXNativeTarget "Wellbeing AppTests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +518,7 @@
 				09A36F9319C365C0003D5872 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
