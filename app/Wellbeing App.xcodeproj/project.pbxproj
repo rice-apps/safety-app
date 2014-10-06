@@ -29,6 +29,7 @@
 		09A36F8119C365C0003D5872 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5D19C365BF003D5872 /* UIKit.framework */; };
 		09A36F8919C365C0003D5872 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F8719C365C0003D5872 /* InfoPlist.strings */; };
 		09A36F8B19C365C0003D5872 /* Wellbeing_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */; };
+		09E0310819E2FE57004D9149 /* WLBNightEscortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E0310719E2FE57004D9149 /* WLBNightEscortViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		09A36F8619C365C0003D5872 /* Wellbeing AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wellbeing AppTests-Info.plist"; sourceTree = "<group>"; };
 		09A36F8819C365C0003D5872 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wellbeing_AppTests.m; sourceTree = "<group>"; };
+		09E0310619E2FE57004D9149 /* WLBNightEscortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLBNightEscortViewController.h; sourceTree = "<group>"; };
+		09E0310719E2FE57004D9149 /* WLBNightEscortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLBNightEscortViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 		09A36F5F19C365BF003D5872 /* Wellbeing App */ = {
 			isa = PBXGroup;
 			children = (
+				09E0310619E2FE57004D9149 /* WLBNightEscortViewController.h */,
+				09E0310719E2FE57004D9149 /* WLBNightEscortViewController.m */,
 				093F9E9819C80AE700DC969E /* WLBNumbersTableViewController.h */,
 				093F9E9919C80AE700DC969E /* WLBNumbersTableViewController.m */,
 				093F9E8419C3C3D600DC969E /* WLBCoreLocationController.h */,
@@ -287,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E0310819E2FE57004D9149 /* WLBNightEscortViewController.m in Sources */,
 				09A36F7619C365BF003D5872 /* WLBSecondViewController.m in Sources */,
 				09A36F7319C365BF003D5872 /* WLBFirstViewController.m in Sources */,
 				093F9E9A19C80AE700DC969E /* WLBNumbersTableViewController.m in Sources */,

@@ -37,6 +37,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // numbers = [NSArray arrayWithInit:[Request @"http://wellbeing.riceapps.org/getNumbers"]
+    // {results: ["number 1" : "18374926459", number 2: as28238074]}
     numbers = [NSArray arrayWithObjects:@"RUPD/REMS", @"Student Wellbeing Office", @"Student Judicial Programs", @"Rice Counseling Center", @"Student Health Services", @"Russell Barnes Title IX Coordinator", @"Dr. Donald Ostdiek Deputy Title IX Coordinator (for students)", @"Stacy Mosely Deputy Title IX Coordinator (for athletics)", nil];
     organizations = [NSArray arrayWithObjects:@"7133486000", @"7133483311", @"7133484786", nil];
 
