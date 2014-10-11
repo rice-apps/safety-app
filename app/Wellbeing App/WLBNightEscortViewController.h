@@ -13,6 +13,7 @@
 @interface WLBNightEscortViewController : UIViewController
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) WLBCoreLocationController *locationController;
+@property (nonatomic, retain) MKPointAnnotation *busMarker;
 
 
 @end

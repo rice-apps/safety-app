@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wellbeing App/WLBNightEscortViewController.m"
-            timestampString = "434310502.816639"
+            timestampString = "434315495.117329"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "-pollForBusLocation:"
             landmarkType = "5">
          </BreakpointContent>

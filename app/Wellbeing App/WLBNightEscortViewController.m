@@ -27,6 +27,7 @@
     
     self.locationController = [[WLBCoreLocationController alloc] init];
     self.locationController.delegate = self;
+    [self.locationController.locationManager requestAlwaysAuthorization];
     [self.locationController.locationManager startUpdatingLocation];
     
     // begin timer for getting bus location
@@ -43,23 +44,34 @@
     NSData *busJSON = [NSURLConnection sendSynchronousRequest:getBusRequest returningResponse:nil error:nil];
     NSArray *busLocations = [NSJSONSerialization JSONObjectWithData:busJSON options:NSJSONReadingMutableLeaves error:nil][@"d"];
     
-    [self updateBusLocation:busLocations];
+    [self extractBusLocation:busLocations];
 }
 
-- (void)updateBusLocation:(NSArray*)busLocations {
+- (void)extractBusLocation:(NSArray*)busLocations {
     // iterate through all buses to find Night Escort
     NSDictionary *nightBus = nil;
     for (int i = 0; i < busLocations.count; i++) {
-        if ([busLocations[i][@"Name"]  isEqual: @"Night Escort"]) {
+        if ([busLocations[i][@"Name"]  isEqual: @"Inner Loop"]) {
             nightBus = busLocations[i];
             break;
         }
     }
     if (nightBus == nil) {
+        // show something on screen to let people know
         NSLog(@"No night bus currently found");
         return;
     }
-    NSLog(nightBus[@"Longitude"]);
+    
+    CLLocationCoordinate2D busCoordinates;
+    busCoordinates.longitude = (CLLocationDegrees)[[nightBus objectForKey:@"Longitude"] doubleValue];
+    busCoordinates.latitude = (CLLocationDegrees)[[nightBus objectForKey:@"Latitude"] doubleValue];
+    [self updateBusMarker:busCoordinates];
+}
+
+- (void)updateBusMarker:(CLLocationCoordinate2D)busCoordinates {
+    self.busMarker.coordinate = busCoordinates;
+    self.busMarker.title = @"Night Escort";
+    [self.mapView addAnnotation:self.busMarker];
 }
 
 - (void)didReceiveMemoryWarning {
