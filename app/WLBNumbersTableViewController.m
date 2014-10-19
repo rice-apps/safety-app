@@ -46,7 +46,7 @@
     [NSURLConnection sendAsynchronousRequest:requestNumbers queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         if (error) {
-            //do something with error
+            NSLog("")//do something with error
         } else {
             NSDictionary *jsonObject=[NSJSONSerialization
                                       JSONObjectWithData:data

@@ -41,7 +41,7 @@ def get_numbers():
 	cursor = db.cursor()
 	select_statement = "SELECT * FROM important_numbers"
 	cursor.execute(select_statement)
-	result = cursor.fetchall()
+	result = {"result":cursor.fetchall()}
 	return jsonify(result)
 
 if __name__ == "__main__":
