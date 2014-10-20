@@ -38,7 +38,7 @@ def close_db(error):
 def get_numbers():
 
 	db = get_db()
-	cursor = db.cursor()
+	cursor = db.cursor(MySQLdb.cursors.DictCursor)
 	select_statement = "SELECT * FROM important_numbers"
 	cursor.execute(select_statement)
 	result = {"result":cursor.fetchall()}

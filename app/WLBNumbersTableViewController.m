@@ -38,33 +38,48 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    NSURLRequest *requestNumbers = [NSURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"/api/numbers"]
-                                                        cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                        timeoutInterval:60.0];
 
+    NSURLRequest *requestNumbers = [NSURLRequest
+                                    requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:5000/api/numbers"]
+                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                    timeoutInterval:60.0];
+    NSLog(@"1");
     [NSURLConnection sendAsynchronousRequest:requestNumbers queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
+        numbers = [NSMutableArray arrayWithObjects:nil];
+        organizations = [NSMutableArray arrayWithObjects:nil];
+        
         if (error) {
-            NSLog("")//do something with error
+            //do something with error
         } else {
             NSDictionary *jsonObject=[NSJSONSerialization
                                       JSONObjectWithData:data
                                       options:NSJSONReadingMutableLeaves
                                       error:nil];
-            NSArray *obtainedNumbers = jsonObject[@"results"];
+            NSArray *obtainedNumbers = jsonObject[@"result"];
             for (NSDictionary *entry in obtainedNumbers) {
-                for (id key in entry) {
-                    [numbers addObject:entry[key]];
-                    [organizations addObject:key];
-                }
+                [organizations addObject:[NSString stringWithFormat:@"%@",entry[@"number"]]];
+                [numbers addObject:[NSString stringWithFormat:@"%@",entry[@"name"]]];
+                
             }
+            NSLog(@"%@",numbers);
+            NSLog(@"%@",organizations);
+
         }
     }];
     
-    //numbers = [NSArray arrayWithObjects:@"RUPD/REMS", @"Student Wellbeing Office", @"Student Judicial Programs", @"Rice Counseling Center", @"Student Health Services", @"Russell Barnes Title IX Coordinator", @"Dr. Donald Ostdiek Deputy Title IX Coordinator (for students)", @"Stacy Mosely Deputy Title IX Coordinator (for athletics)", nil];
-   // organizations = [NSArray arrayWithObjects:@"7133486000", @"7133483311", @"7133484786", nil];
-
+//    //numbers = [NSMutableArray arrayWithObjects:@"RUPD/REMS", @"Student Wellbeing Office", @"Student Judicial Programs", @"Rice Counseling Center", @"Student Health Services", @"Russell Barnes Title IX Coordinator", @"Dr. Donald Ostdiek Deputy Title IX Coordinator (for students)", @"Stacy Mosely Deputy Title IX Coordinator (for athletics)", nil];
+//    //organizations = [NSMutableArray arrayWithObjects:@"7133486000", @"7133483311", @"7133484786", nil];
+//    numbers = [NSMutableArray arrayWithObjects:nil];
+//    [numbers addObject:@"aaa"];
+//    organizations = [NSMutableArray arrayWithObjects:nil];
+//    NSNumber *i = @1234;
+//    [organizations addObject:[NSString stringWithFormat:@"%@",i]];
+    
+    NSLog(@"%@",numbers);
+    NSLog(@"%@",organizations);
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
