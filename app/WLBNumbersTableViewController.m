@@ -45,10 +45,6 @@
         //something bad happened
     }
 
-    NSLog(@"%@",numbers);
-    NSLog(@"%@",organizations);
-    
-    
 }
 
 
@@ -87,9 +83,7 @@
         [numbers addObject:[NSString stringWithFormat:@"%@",entry[@"name"]]];
             
     }
-    NSLog(@"%@",numbers);
-    NSLog(@"%@",organizations);
-
+    [self.tableView reloadData];
 }
 
 
