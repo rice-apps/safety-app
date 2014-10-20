@@ -15,8 +15,9 @@
 
 @implementation WLBNumbersTableViewController
 {
-    NSArray *numbers;
-    NSArray *organizations;
+    NSMutableArray *numbers;
+    NSMutableArray *organizations;
+    NSMutableData *_receivedData;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -32,15 +33,64 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    numbers = [NSArray arrayWithObjects:@"RUPD/REMS", @"Student Wellbeing Office", @"Student Judicial Programs", @"Rice Counseling Center", @"Student Health Services", @"Russell Barnes Title IX Coordinator", @"Dr. Donald Ostdiek Deputy Title IX Coordinator (for students)", @"Stacy Mosely Deputy Title IX Coordinator (for athletics)", nil];
-    organizations = [NSArray arrayWithObjects:@"7133486000", @"7133483311", @"7133484786", nil];
+    NSURLRequest *theRequest=[NSURLRequest
+                              requestWithURL:[NSURL URLWithString:
+                                              @"http://127.0.0.1:5000/api/numbers"]
+                              cachePolicy:NSURLRequestUseProtocolCachePolicy
+                              timeoutInterval:60.0];
+    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    if (con) {
+        _receivedData=[NSMutableData data];
+    } else {
+        //something bad happened
+    }
 
 }
+
+
+-(void)connection:(NSConnection*)conn didReceiveResponse:(NSURLResponse *)response
+{
+    if (_receivedData == NULL) {
+        _receivedData = [[NSMutableData alloc] init];
+    }
+    [_receivedData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [_receivedData appendData:data];
+}
+
+
+- (void)connection:(NSURLConnection *)connection
+  didFailWithError:(NSError *)error {
+    NSLog(@"Connection failed! Error - %@ %@",
+          [error localizedDescription],
+          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
+    numbers = [NSMutableArray arrayWithObjects:nil];
+    organizations = [NSMutableArray arrayWithObjects:nil];
+    
+    NSDictionary *jsonObject=[NSJSONSerialization
+                                JSONObjectWithData:_receivedData
+                                options:NSJSONReadingMutableLeaves
+                                error:nil];
+    NSArray *obtainedNumbers = jsonObject[@"result"];
+    for (NSDictionary *entry in obtainedNumbers) {
+        [organizations addObject:[NSString stringWithFormat:@"%@",entry[@"number"]]];
+        [numbers addObject:[NSString stringWithFormat:@"%@",entry[@"name"]]];
+            
+    }
+    [self.tableView reloadData];
+}
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
