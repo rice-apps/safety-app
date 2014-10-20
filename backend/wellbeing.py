@@ -1,6 +1,5 @@
 import MySQLdb
-from flask import Flask, request, session, g, redirect, url_for, \
-	 abort, render_template, flash, jsonify
+from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify
 
 USERNAME = 'username'
 PASSWORD = 'password'
@@ -8,22 +7,26 @@ PASSWORD = 'password'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+
 #connect to database
 def connect_db():
-	#mysql.server start
-	db = MySQLdb.connect(host="localhost", user="root", passwd='root')
-	cursor = db.cursor()
-	cursor.execute('USE wellbeing')
-	return db
+    #mysql.server start
+    db = MySQLdb.connect(host="localhost", user="root", passwd='root')
+    cursor = db.cursor()
+    cursor.execute('USE wellbeing')
+    return db
+
 
 def get_db():
-	if not hasattr(g, 'my_db'):
-		g.my_db = connect_db()
-	return g.my_db
+    if not hasattr(g, 'my_db'):
+        g.my_db = connect_db()
+    return g.my_db
+
+
 # create the database
 def init_db():
-	with app.app_context():
-		db = get_db()
+    with app.app_context():
+        db = get_db()
 
 		with app.open_resource('wellbeing_schema.sql', mode = 'r') as f:
 			db.cursor().execute(f.read())
