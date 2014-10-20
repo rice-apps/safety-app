@@ -17,6 +17,7 @@
 {
     NSMutableArray *numbers;
     NSMutableArray *organizations;
+    NSMutableData *_receivedData;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -32,55 +33,70 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    NSURLRequest *theRequest=[NSURLRequest
+                              requestWithURL:[NSURL URLWithString:
+                                              @"http://127.0.0.1:5000/api/numbers"]
+                              cachePolicy:NSURLRequestUseProtocolCachePolicy
+                              timeoutInterval:60.0];
+    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    if (con) {
+        _receivedData=[NSMutableData data];
+    } else {
+        //something bad happened
+    }
 
-    NSURLRequest *requestNumbers = [NSURLRequest
-                                    requestWithURL:[NSURL URLWithString:@"http://127.0.0.1:5000/api/numbers"]
-                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                    timeoutInterval:60.0];
-    NSLog(@"1");
-    [NSURLConnection sendAsynchronousRequest:requestNumbers queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        numbers = [NSMutableArray arrayWithObjects:nil];
-        organizations = [NSMutableArray arrayWithObjects:nil];
-        
-        if (error) {
-            //do something with error
-        } else {
-            NSDictionary *jsonObject=[NSJSONSerialization
-                                      JSONObjectWithData:data
-                                      options:NSJSONReadingMutableLeaves
-                                      error:nil];
-            NSArray *obtainedNumbers = jsonObject[@"result"];
-            for (NSDictionary *entry in obtainedNumbers) {
-                [organizations addObject:[NSString stringWithFormat:@"%@",entry[@"number"]]];
-                [numbers addObject:[NSString stringWithFormat:@"%@",entry[@"name"]]];
-                
-            }
-            NSLog(@"%@",numbers);
-            NSLog(@"%@",organizations);
-
-        }
-    }];
-    
-//    //numbers = [NSMutableArray arrayWithObjects:@"RUPD/REMS", @"Student Wellbeing Office", @"Student Judicial Programs", @"Rice Counseling Center", @"Student Health Services", @"Russell Barnes Title IX Coordinator", @"Dr. Donald Ostdiek Deputy Title IX Coordinator (for students)", @"Stacy Mosely Deputy Title IX Coordinator (for athletics)", nil];
-//    //organizations = [NSMutableArray arrayWithObjects:@"7133486000", @"7133483311", @"7133484786", nil];
-//    numbers = [NSMutableArray arrayWithObjects:nil];
-//    [numbers addObject:@"aaa"];
-//    organizations = [NSMutableArray arrayWithObjects:nil];
-//    NSNumber *i = @1234;
-//    [organizations addObject:[NSString stringWithFormat:@"%@",i]];
-    
     NSLog(@"%@",numbers);
     NSLog(@"%@",organizations);
     
     
 }
+
+
+-(void)connection:(NSConnection*)conn didReceiveResponse:(NSURLResponse *)response
+{
+    if (_receivedData == NULL) {
+        _receivedData = [[NSMutableData alloc] init];
+    }
+    [_receivedData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [_receivedData appendData:data];
+}
+
+
+- (void)connection:(NSURLConnection *)connection
+  didFailWithError:(NSError *)error {
+    NSLog(@"Connection failed! Error - %@ %@",
+          [error localizedDescription],
+          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
+    numbers = [NSMutableArray arrayWithObjects:nil];
+    organizations = [NSMutableArray arrayWithObjects:nil];
+    
+    NSDictionary *jsonObject=[NSJSONSerialization
+                                JSONObjectWithData:_receivedData
+                                options:NSJSONReadingMutableLeaves
+                                error:nil];
+    NSArray *obtainedNumbers = jsonObject[@"result"];
+    for (NSDictionary *entry in obtainedNumbers) {
+        [organizations addObject:[NSString stringWithFormat:@"%@",entry[@"number"]]];
+        [numbers addObject:[NSString stringWithFormat:@"%@",entry[@"name"]]];
+            
+    }
+    NSLog(@"%@",numbers);
+    NSLog(@"%@",organizations);
+
+}
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
