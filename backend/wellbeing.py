@@ -8,7 +8,6 @@ app.config.from_object(__name__)
 
 #connect to database
 def connect_db():
-    #mysql.server start
     db = MySQLdb.connect(host="localhost", user="root", passwd='root')
     cursor = db.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('USE wellbeing')
