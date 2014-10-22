@@ -5,16 +5,30 @@ from flask import Flask, request, session, g, redirect, url_for, abort, render_t
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+
 #connect to database
-db = MySQLdb.connect("localhost", "root", "root", "wellbeing")
-cursor = db.cursor(MySQLdb.cursors.DictCursor)
+def connect_db():
+    #mysql.server start
+    db = MySQLdb.connect(host="localhost", user="root", passwd='root')
+    cursor = db.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('USE wellbeing')
+    return db
+
+
+def get_db():
+    if not hasattr(g, 'my_db'):
+        g.my_db = connect_db()
+        return g.my_db
 
 
 # create the database
 def init_db():
     with app.app_context():
-        with app.open_resource('wellbeing_schema.sql', mode='r') as f:
-            cursor.execute(f.read())
+        db = get_db()
+
+        with app.open_resource('numbers.sql', mode='r') as f:
+            db.cursor().execute(f.read())
+
         db.commit()
 
 
@@ -23,9 +37,13 @@ def close_db(error):
     if hasattr(g, 'my_db'):
         g.my_db.close()
 
+
 @app.route("/api/numbers")
 def get_numbers():
-    select_statement = """SELECT * FROM important_numbers"""
+
+    db = get_db()
+    cursor = db.cursor(MySQLdb.cursors.DictCursor)
+    select_statement = "SELECT * FROM important_numbers"
     cursor.execute(select_statement)
     result = {"result": cursor.fetchall()}
     return jsonify(result)
@@ -33,4 +51,3 @@ def get_numbers():
 if __name__ == "__main__":
     init_db()
     app.run()
-
