@@ -169,6 +169,10 @@
                     <tabBarItem key="tabBarItem" title="Drink Safe" id="RTx-7P-FZs"/>
                     <connections>
                         <outlet property="GenderPicker" destination="Qfq-lI-TTW" id="htL-gx-H2A"/>
+                        <outlet property="age" destination="ygm-K0-Byt" id="yZx-Fl-2On"/>
+                        <outlet property="drinksAlreadyHad" destination="7fO-vL-wla" id="mHk-uG-nNZ"/>
+                        <outlet property="drinksCanStillHave" destination="ug4-vA-0pb" id="K6e-TG-edW"/>
+                        <outlet property="weight" destination="40W-o1-jle" id="yi2-1R-laT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vda-Zt-wfk" userLabel="First Responder" sceneMemberID="firstResponder"/>

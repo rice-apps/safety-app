@@ -33,7 +33,17 @@
     
     NSString *select = [_genderArray objectAtIndex:[_GenderPicker selectedRowInComponent:0]];
     genderSelected = select;
-    NSLog(genderSelected);
+    
+    NSInteger weight = [self.weight.text intValue];
+    
+    NSInteger age = [self.age.text intValue];
+    
+    NSInteger drinksHad = [self.drinksAlreadyHad.text intValue];
+
+    NSString *textToShow = [NSString stringWithFormat:@"%ld",weight + age + drinksHad];
+    
+    self.drinksCanStillHave.text = textToShow;
+
 }
 
 
