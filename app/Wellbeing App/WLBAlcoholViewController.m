@@ -10,18 +10,46 @@
 
 @interface WLBAlcoholViewController ()
 
+@property (strong,nonatomic) NSArray *genderArray;
 @end
 
-@implementation WLBAlcoholViewController
+@implementation WLBAlcoholViewController {
+    NSString *genderSelected;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSArray *array = [[NSArray alloc] initWithObjects:@"Male",@"Female",nil];
+    self.genderArray = array;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)buttonPressed:(id)sender {
+    
+    NSString *select = [_genderArray objectAtIndex:[_GenderPicker selectedRowInComponent:0]];
+    genderSelected = select;
+    NSLog(genderSelected);
+}
+
+
+
+- (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [_genderArray count];
+}
+
+#pragma mark picker delegate
+
+- (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [_genderArray objectAtIndex:row];
 }
 
 /*

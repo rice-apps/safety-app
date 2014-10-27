@@ -139,6 +139,10 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
+                                <connections>
+                                    <outlet property="dataSource" destination="THB-zn-nlF" id="LFb-w5-iVW"/>
+                                    <outlet property="delegate" destination="THB-zn-nlF" id="2JV-6H-cBM"/>
+                                </connections>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ug4-vA-0pb">
                                 <rect key="frame" x="215" y="373" width="42" height="21"/>
@@ -146,6 +150,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00n-Zg-ROC">
+                                <rect key="frame" x="108" y="442" width="104" height="30"/>
+                                <state key="normal" title="Calculate Now!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="THB-zn-nlF" eventType="touchUpInside" id="cfL-w2-qbV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
@@ -154,6 +167,9 @@
                         </accessibility>
                     </view>
                     <tabBarItem key="tabBarItem" title="Drink Safe" id="RTx-7P-FZs"/>
+                    <connections>
+                        <outlet property="GenderPicker" destination="Qfq-lI-TTW" id="htL-gx-H2A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vda-Zt-wfk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

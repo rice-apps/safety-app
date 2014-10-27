@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WLBAlcoholViewController : UIViewController
+@interface WLBAlcoholViewController : UIViewController <UIPickerViewDelegate,UIPickerViewDataSource>
+
+
+@property (weak, nonatomic) IBOutlet UIPickerView *GenderPicker;
+
+- (IBAction)buttonPressed:(id)sender;
 
 @end
