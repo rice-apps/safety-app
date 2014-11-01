@@ -31,11 +31,12 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(riceLocation, 2000, 2000);
     MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
     [self.mapView setRegion:adjustedRegion animated:YES];
-    self.mapView.showsUserLocation = YES;
     
     self.locationController = [[WLBCoreLocationController alloc] init];
     self.locationController.delegate = self;
     [self.locationController.locationManager startUpdatingLocation];
+    
+
 }
 
 - (void)update:(CLLocation *)location {
