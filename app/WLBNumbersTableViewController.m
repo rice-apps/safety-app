@@ -79,18 +79,12 @@
                                 error:nil];
     NSArray *obtainedNumbers = jsonObject[@"result"];
     for (NSDictionary *entry in obtainedNumbers) {
-        [organizations addObject:[NSString stringWithFormat:@"%@",entry[@"number"]]];
-        [numbers addObject:[NSString stringWithFormat:@"%@",entry[@"name"]]];
+        [numbers addObject:[NSString stringWithFormat:@"%@",entry[@"number"]]];
+        [organizations addObject:[NSString stringWithFormat:@"%@",entry[@"name"]]];
             
     }
     [self.tableView reloadData];
 }
-
-
-
-
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -123,8 +117,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:numberTableIdentifier];
     }
     
-    cell.textLabel.text = [numbers objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [organizations objectAtIndex:indexPath.row];
+    cell.textLabel.text = [organizations objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [numbers objectAtIndex:indexPath.row];
     return cell;
 }
 
