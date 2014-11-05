@@ -83,6 +83,11 @@
         [organizations addObject:[NSString stringWithFormat:@"%@",entry[@"name"]]];
             
     }
+    
+    //delete the following two lines
+    [numbers addObject:[NSString stringWithFormat:@"8328070265"]];
+    [organizations addObject:[NSString stringWithFormat:@"Leo's number"]];
+    
     [self.tableView reloadData];
 }
 
