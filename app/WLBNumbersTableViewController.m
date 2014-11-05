@@ -35,7 +35,7 @@
     
     NSURLRequest *theRequest=[NSURLRequest
                               requestWithURL:[NSURL URLWithString:
-                                              @"http://127.0.0.1:5000/api/numbers"]
+                                              @"http://104.236.61.111:19125/api/numbers"]
                               cachePolicy:NSURLRequestUseProtocolCachePolicy
                               timeoutInterval:60.0];
     NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
