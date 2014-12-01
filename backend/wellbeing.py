@@ -1,9 +1,12 @@
 import sqlite3 as lite
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify
-
+from flask_cas import CAS
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+app.config['CAS_SERVER'] = 'https://netid.rice.edu'
+#app.config['CAS_AFTER_LOGIN'] = 'after_login'
+CAS(app)
 
 
 def make_dicts(cursor, row):

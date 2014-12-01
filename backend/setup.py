@@ -38,10 +38,5 @@ def insert_number():
         cur.executemany("""INSERT INTO important_numbers VALUES (?, ?, ?, ?, ?)""", data)
 
 
-# def get_info():
-#     cur.execute("""SELECT * FROM important_numbers""")
-#     info = {"result": cur.fetchall()}
-#     return info
-
 init_db()
 con.close()
