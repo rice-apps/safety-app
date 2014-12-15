@@ -17,18 +17,21 @@ con.row_factory = make_dicts
 cur = con.cursor()
 
 
+#get the database
 def get_db():
     if not hasattr(g, 'sqlite_db'):
         g.sqlite_db = con
     return g.sqlite_db
 
 
+#close the database if there is an error
 @app.teardown_appcontext
 def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
 
+#return a dictionary of numbers and information about wellbeing resources 
 @app.route("/api/numbers")
 def get_numbers():
     cur.execute("""SELECT * FROM important_numbers""")
