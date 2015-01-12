@@ -17,22 +17,59 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.mapView.delegate = self;
     
     // center on user
     CLLocationCoordinate2D riceLocation = CLLocationCoordinate2DMake(29.7169, -95.4028);
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(riceLocation, 2000, 2000);
     MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
     [self.mapView setRegion:adjustedRegion animated:YES];
-    self.mapView.showsUserLocation = YES;
     
     self.locationController = [[WLBCoreLocationController alloc] init];
     self.locationController.delegate = self;
     [self.locationController.locationManager requestAlwaysAuthorization];
     [self.locationController.locationManager startUpdatingLocation];
     
+    self.busMarker.title = @"Night Escort";
+    
+#warning TODO: popup message and stop timer? if no coordinates. or keep track of times when bus is available
+    
     // begin timer for getting bus location
     NSTimer *busTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0 target:self selector:@selector(pollForBusLocation:) userInfo:nil repeats:YES];
     [busTimer fire];
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    NSLog(@"hi");
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+    {
+        return nil;
+    }
+    else
+    {
+        static NSString * const identifier = @"MyCustomAnnotation";
+        
+        MKAnnotationView* annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        
+        if (annotationView)
+        {
+            annotationView.annotation = annotation;
+        }
+        else
+        {
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation
+                                                          reuseIdentifier:identifier];
+        }
+        
+        annotationView.canShowCallout = NO;
+        
+        return annotationView;
+    }
+    return nil;
 }
 
 - (void)pollForBusLocation:(NSTimer*)busTimer {
@@ -48,16 +85,17 @@
 }
 
 - (void)extractBusLocation:(NSArray*)busLocations {
+#warning TODO: change to return coordinates or NIL
     // iterate through all buses to find Night Escort
     NSDictionary *nightBus = nil;
     for (int i = 0; i < busLocations.count; i++) {
-        if ([busLocations[i][@"Name"]  isEqual: @"Inner Loop"]) {
+        if ([busLocations[i][@"Name"]  isEqual: @"Night Escort Service"]) {
             nightBus = busLocations[i];
             break;
         }
     }
     if (nightBus == nil) {
-        // show something on screen to let people know
+#warning TODO: show something on screen to let people know
         NSLog(@"No night bus currently found");
         return;
     }
@@ -65,13 +103,10 @@
     CLLocationCoordinate2D busCoordinates;
     busCoordinates.longitude = (CLLocationDegrees)[[nightBus objectForKey:@"Longitude"] doubleValue];
     busCoordinates.latitude = (CLLocationDegrees)[[nightBus objectForKey:@"Latitude"] doubleValue];
-    [self updateBusMarker:busCoordinates];
-}
-
-- (void)updateBusMarker:(CLLocationCoordinate2D)busCoordinates {
+    NSLog(@"bye");
     self.busMarker.coordinate = busCoordinates;
-    self.busMarker.title = @"Night Escort";
     [self.mapView addAnnotation:self.busMarker];
+
 }
 
 - (void)didReceiveMemoryWarning {

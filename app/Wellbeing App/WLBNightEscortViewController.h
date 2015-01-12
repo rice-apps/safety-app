@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "WLBCoreLocationController.h"
 
-@interface WLBNightEscortViewController : UIViewController
+@interface WLBNightEscortViewController : UIViewController <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) WLBCoreLocationController *locationController;
 @property (nonatomic, retain) MKPointAnnotation *busMarker;
