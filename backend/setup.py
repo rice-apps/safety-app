@@ -29,6 +29,17 @@ def init_db():
         con.commit()
 
 
+def init_tracking():
+    with con:
+        cur.execute("""DROP TABLE IF EXISTS tracking""")
+        cur.execute("""CREATE TABLE tracking(
+                    UUID TEXT,
+                    longitude REAL,
+                    latitude REAL,
+                    time TEXT);""")
+        con.commit()
+
+
 #insert the numbers of wellbeing resources into the database
 def insert_number():
     data = [("RUPD/EMS", "(713)348-6000", 1, 1, "Immediate medical attention or in danger. For emergency."),
@@ -50,4 +61,5 @@ def insert_number():
 
 
 init_db()
+init_tracking()
 con.close()

@@ -1,4 +1,5 @@
 import sqlite3 as lite
+import uuid
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify
 from flask_cas import CAS
 
@@ -41,11 +42,37 @@ def get_numbers():
     return jsonify(result)
 
 
+def add_location(first_time, id, longitude_in, latitude_in, time):
+    with con:
+        if first_time:
+            cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (id, longitude_in, latitude_in, time))
+        else:
+            cur.execute("""UPDATE tracking
+                           SET longitude=?, latitude=?
+                           WHERE UUID=?;""", (longitude_in, latitude_in, id))
+        con.commit()
+
+@app.route("/api/location")
+def get_location():
+    cur.execute("""SELECT * FROM tracking""")
+    result = {"result": cur.fetchall()}
+    return jsonify(result)
+
+
 @app.route('/after_login', methods=['GET'])
 def after_login():
     net_id = session.get(app.config['CAS_USERNAME_SESSION_KEY'], None)
     return redirect('/api/numbers')
 
 
+@app.route("/api/del_location")
+def delete_location(id):
+    with con:
+        cur.execute("""DELETE FROM tracking
+                       WHERE UUID=?;""", (id,))
+        con.commit()
+
+
 if __name__ == "__main__":
+
     app.run()
