@@ -21,8 +21,6 @@
 		09A36F6A19C365BF003D5872 /* WLBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F6919C365BF003D5872 /* WLBAppDelegate.m */; };
 		09A36F6D19C365BF003D5872 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F6B19C365BF003D5872 /* Main_iPhone.storyboard */; };
 		09A36F7019C365BF003D5872 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F6E19C365BF003D5872 /* Main_iPad.storyboard */; };
-		09A36F7319C365BF003D5872 /* WLBFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F7219C365BF003D5872 /* WLBFirstViewController.m */; };
-		09A36F7619C365BF003D5872 /* WLBSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F7519C365BF003D5872 /* WLBSecondViewController.m */; };
 		09A36F7819C365BF003D5872 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F7719C365BF003D5872 /* Images.xcassets */; };
 		09A36F7F19C365C0003D5872 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F7E19C365C0003D5872 /* XCTest.framework */; };
 		09A36F8019C365C0003D5872 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5919C365BF003D5872 /* Foundation.framework */; };
@@ -65,10 +63,6 @@
 		09A36F6919C365BF003D5872 /* WLBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WLBAppDelegate.m; sourceTree = "<group>"; };
 		09A36F6C19C365BF003D5872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		09A36F6F19C365BF003D5872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		09A36F7119C365BF003D5872 /* WLBFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WLBFirstViewController.h; sourceTree = "<group>"; };
-		09A36F7219C365BF003D5872 /* WLBFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WLBFirstViewController.m; sourceTree = "<group>"; };
-		09A36F7419C365BF003D5872 /* WLBSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WLBSecondViewController.h; sourceTree = "<group>"; };
-		09A36F7519C365BF003D5872 /* WLBSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WLBSecondViewController.m; sourceTree = "<group>"; };
 		09A36F7719C365BF003D5872 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		09A36F7D19C365C0003D5872 /* Wellbeing AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wellbeing AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A36F7E19C365C0003D5872 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -154,10 +148,6 @@
 				093F9E7F19C382B700DC969E /* WLBTrackingViewController.h */,
 				093F9E8019C382B700DC969E /* WLBTrackingViewController.m */,
 				09A36F6E19C365BF003D5872 /* Main_iPad.storyboard */,
-				09A36F7119C365BF003D5872 /* WLBFirstViewController.h */,
-				09A36F7219C365BF003D5872 /* WLBFirstViewController.m */,
-				09A36F7419C365BF003D5872 /* WLBSecondViewController.h */,
-				09A36F7519C365BF003D5872 /* WLBSecondViewController.m */,
 				09A36F7719C365BF003D5872 /* Images.xcassets */,
 				09A36F6019C365BF003D5872 /* Supporting Files */,
 			);
@@ -293,8 +283,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				09E0310819E2FE57004D9149 /* WLBNightEscortViewController.m in Sources */,
-				09A36F7619C365BF003D5872 /* WLBSecondViewController.m in Sources */,
-				09A36F7319C365BF003D5872 /* WLBFirstViewController.m in Sources */,
 				093F9E9A19C80AE700DC969E /* WLBNumbersTableViewController.m in Sources */,
 				093F9E8119C382B700DC969E /* WLBTrackingViewController.m in Sources */,
 				09A36F6A19C365BF003D5872 /* WLBAppDelegate.m in Sources */,
