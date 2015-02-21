@@ -28,6 +28,7 @@
 		09A36F8919C365C0003D5872 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F8719C365C0003D5872 /* InfoPlist.strings */; };
 		09A36F8B19C365C0003D5872 /* Wellbeing_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */; };
 		09E0310819E2FE57004D9149 /* WLBNightEscortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E0310719E2FE57004D9149 /* WLBNightEscortViewController.m */; };
+		191AB1701A9925ED00351D50 /* WLBBlueButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191AB16F1A9925ED00351D50 /* WLBBlueButtonViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wellbeing_AppTests.m; sourceTree = "<group>"; };
 		09E0310619E2FE57004D9149 /* WLBNightEscortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLBNightEscortViewController.h; sourceTree = "<group>"; };
 		09E0310719E2FE57004D9149 /* WLBNightEscortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLBNightEscortViewController.m; sourceTree = "<group>"; };
+		191AB16F1A9925ED00351D50 /* WLBBlueButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLBBlueButtonViewController.m; sourceTree = "<group>"; };
+		191AB1711A99264900351D50 /* WLBBlueButtonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WLBBlueButtonViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,8 @@
 				09A36F6919C365BF003D5872 /* WLBAppDelegate.m */,
 				09A36F6B19C365BF003D5872 /* Main_iPhone.storyboard */,
 				093F9E8F19C8080700DC969E /* WLBNumbersDetailViewController.h */,
+				191AB16F1A9925ED00351D50 /* WLBBlueButtonViewController.m */,
+				191AB1711A99264900351D50 /* WLBBlueButtonViewController.h */,
 				093F9E9019C8080700DC969E /* WLBNumbersDetailViewController.m */,
 				093F9E7F19C382B700DC969E /* WLBTrackingViewController.h */,
 				093F9E8019C382B700DC969E /* WLBTrackingViewController.m */,
@@ -282,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				191AB1701A9925ED00351D50 /* WLBBlueButtonViewController.m in Sources */,
 				09E0310819E2FE57004D9149 /* WLBNightEscortViewController.m in Sources */,
 				093F9E9A19C80AE700DC969E /* WLBNumbersTableViewController.m in Sources */,
 				093F9E8119C382B700DC969E /* WLBTrackingViewController.m in Sources */,
