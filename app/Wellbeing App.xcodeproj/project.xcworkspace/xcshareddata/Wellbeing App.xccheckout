@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BF6E3543-7EAD-4ABF-835E-7C34961BE980</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Wellbeing App</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D2AE347A3352C96D83BDA84225DF1AD743F7085C</key>
+		<string>https://github.com/rice-apps/wellbeing-app.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>app/Wellbeing App.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D2AE347A3352C96D83BDA84225DF1AD743F7085C</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/rice-apps/wellbeing-app.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D2AE347A3352C96D83BDA84225DF1AD743F7085C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D2AE347A3352C96D83BDA84225DF1AD743F7085C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Wellbeing%20App</string>
+		</dict>
+	</array>
+</dict>
+</plist>
