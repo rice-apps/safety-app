@@ -24,7 +24,7 @@ def init_db():
                     number TEXT,
                     onCampus INTEGER,
                     allDay INTEGER,
-                    description BLOB);""")
+                    description TEXT);""")
         insert_number()
         con.commit()
 

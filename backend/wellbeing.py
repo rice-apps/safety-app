@@ -1,5 +1,4 @@
 import sqlite3 as lite
-import uuid
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify
 from flask_cas import CAS
 
@@ -42,37 +41,35 @@ def get_numbers():
     return jsonify(result)
 
 
-def add_location(first_time, id, longitude_in, latitude_in, time):
-    with con:
-        if first_time:
-            cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (id, longitude_in, latitude_in, time))
-        else:
-            cur.execute("""UPDATE tracking
+@app.route("/api/location", methods=['POST', 'GET', 'DELETE'])
+def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None, time=None):
+    # Get the location in the database
+    if request.method == 'GET':
+        cur.execute("""SELECT * FROM tracking""")
+        result = {"result": cur.fetchall()}
+        return jsonify(result)
+    # Add location into the database
+    if request.method == 'POST':
+        with con:
+            if first_time:
+                cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (phone_id, longitude_in, latitude_in, time))
+            else:
+                cur.execute("""UPDATE tracking
                            SET longitude=?, latitude=?
-                           WHERE UUID=?;""", (longitude_in, latitude_in, id))
+                           WHERE UUID=?;""", (longitude_in, latitude_in, phone_id))
+            con.commit()
+    if request.method == 'DELETE':
+        with con:
+            cur.execute("""DELETE FROM tracking
+                       WHERE UUID=?;""", (phone_id,))
         con.commit()
-
-@app.route("/api/location")
-def get_location():
-    cur.execute("""SELECT * FROM tracking""")
-    result = {"result": cur.fetchall()}
-    return jsonify(result)
 
 
 @app.route('/after_login', methods=['GET'])
 def after_login():
     net_id = session.get(app.config['CAS_USERNAME_SESSION_KEY'], None)
-    return redirect('/api/numbers')
-
-
-@app.route("/api/del_location")
-def delete_location(id):
-    with con:
-        cur.execute("""DELETE FROM tracking
-                       WHERE UUID=?;""", (id,))
-        con.commit()
+    return net_id
 
 
 if __name__ == "__main__":
-
     app.run()

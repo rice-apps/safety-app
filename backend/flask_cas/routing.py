@@ -32,7 +32,7 @@ def login():
         current_app.config['CAS_SERVER'],
         current_app.config['CAS_LOGIN_ROUTE'],
         flask.url_for('.login', _external=True))
-
+    print flask.request.args
     if 'ticket' in flask.request.args:
         flask.session[cas_token_session_key] = flask.request.args['ticket']
 
@@ -45,7 +45,6 @@ def login():
             del flask.session[cas_token_session_key]
 
     current_app.logger.debug('Redirecting to: {}'.format(redirect_url))
-    #redirect_url = '/after_login'
 
     return flask.redirect(redirect_url)
 

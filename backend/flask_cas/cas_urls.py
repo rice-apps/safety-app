@@ -105,7 +105,8 @@ def create_cas_validate_url(cas_url, cas_route, service, ticket,
     ...     'http://localhost:5000/login',
     ...     'ST-58274-x839euFek492ou832Eena7ee-cas'
     ... )
-    'http://sso.pdx.edu/cas/validate?service=http%3A%2F%2Flocalhost%3A5000%2Flogin&ticket=ST-58274-x839euFek492ou832Eena7ee-cas'
+    'http://sso.pdx.edu/cas/validate?service=
+    http%3A%2F%2Flocalhost%3A5000%2Flogin&ticket=ST-58274-x839euFek492ou832Eena7ee-cas'
     """
     return create_url(
         cas_url,
