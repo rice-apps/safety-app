@@ -58,11 +58,12 @@ def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None
                            SET longitude=?, latitude=?
                            WHERE UUID=?;""", (longitude_in, latitude_in, phone_id))
             con.commit()
+    # Delete location according to phone id
     if request.method == 'DELETE':
         with con:
             cur.execute("""DELETE FROM tracking
                        WHERE UUID=?;""", (phone_id,))
-        con.commit()
+            con.commit()
 
 
 @app.route('/after_login', methods=['GET'])
