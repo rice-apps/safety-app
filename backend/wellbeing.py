@@ -5,7 +5,7 @@ from flask_cas import CAS
 app = Flask(__name__)
 app.config.from_object('config')
 app.config['CAS_SERVER'] = 'https://netid.rice.edu'
-app.config['CAS_AFTER_LOGIN'] = 'after_login'
+app.config['CAS_AFTER_LOGIN'] = 'afterlogin'
 app.config['APP_URL'] = 'localhost:5000'
 app.config.setdefault('CAS_USERNAME_SESSION_KEY', 'CAS_USERNAME')
 CAS(app)
