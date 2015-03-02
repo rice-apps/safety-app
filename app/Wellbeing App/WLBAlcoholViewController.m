@@ -10,18 +10,16 @@
 
 @interface WLBAlcoholViewController ()
 
-@property (strong,nonatomic) NSArray *genderArray;
 @end
 
 @implementation WLBAlcoholViewController {
-    NSString *genderSelected;
+    double bodyWater;
+    double totalAlcohol;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSArray *array = [[NSArray alloc] initWithObjects:@"Male",@"Female",nil];
-    self.genderArray = array;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,37 +27,49 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)buttonPressed:(id)sender {
-    
-    NSString *select = [_genderArray objectAtIndex:[_GenderPicker selectedRowInComponent:0]];
-    genderSelected = select;
-    
-    NSInteger weight = [self.weight.text intValue];
-    
-    NSInteger age = [self.age.text intValue];
-    
-    NSInteger drinksHad = [self.drinksAlreadyHad.text intValue];
-
-    NSString *textToShow = [NSString stringWithFormat:@"%ld",weight + age + drinksHad];
-    
-    self.drinksCanStillHave.text = textToShow;
-
+- (IBAction)clear:(id)sender {
+    totalAlcohol = 0;
 }
 
-
-
-- (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
+- (IBAction)addShot:(id)sender {
+    // Source: http://celtickane.com/projects/blood-alcohol-content-bac-calculator/
+    // Open console and type "CalcBAC"
+    
+    // Get inputs
+    double weightKg = [self.weight.text intValue] * 0.453592;
+    double percentWater = self.sex.selectedSegmentIndex == 0 ? 0.58 : 0.49;
+    double elapsedTime = [self.time.text doubleValue];
+    bodyWater = weightKg * percentWater * 1000;
+    
+    // Update alcohol info
+    int alcType = (int)self.alcType.selectedSegmentIndex;
+    double alcPercent;
+    switch (alcType) {
+        case 0: // beer
+            alcPercent = 4.5;
+            break;
+        case 1: // wine
+            alcPercent = 12.5;
+            break;
+        case 2: // liquor
+            alcPercent = 40;
+            break;
+        default:
+            break;
+    }
+    totalAlcohol += alcPercent * [self.shotsTaken.text intValue];
+    
+    // Calculate BAC
+    double bac = totalAlcohol / bodyWater * 23.36 * 0.806 * 100;
+    // g/oz EtOH, water in blood
+    bac -= 0.2 * elapsedTime; // average metabolism
+    bac = bac > 0 ? bac : 0;
+    
+    [self updateInformation:bac];
 }
 
-- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [_genderArray count];
-}
-
-#pragma mark picker delegate
-
-- (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [_genderArray objectAtIndex:row];
+-(void)updateInformation:(double)bac {
+    self.shotsLeft.text = [NSString stringWithFormat:@"%01f", bac];
 }
 
 /*
@@ -71,5 +81,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 @end
