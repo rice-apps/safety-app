@@ -15,8 +15,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *time;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *alcType;
 @property (weak, nonatomic) IBOutlet UITextField *shotsTaken;
+- (IBAction)updateSelf:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UILabel *shotsLeft;
+@property (weak, nonatomic) IBOutlet UILabel *bac;
+@property (weak, nonatomic) IBOutlet UILabel *hDrive;
+@property (weak, nonatomic) IBOutlet UILabel *hSober;
 - (IBAction)addShot:(id)sender;
 - (IBAction)clear:(id)sender;
 

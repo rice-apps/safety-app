@@ -29,47 +29,62 @@
 
 - (IBAction)clear:(id)sender {
     totalAlcohol = 0;
+    [self updateBAC];
+}
+
+- (IBAction)updateSelf:(id)sender {
+    // Get inputs
+    double weightKg = [self.weight.text intValue] * 0.453592;
+    double percentWater = self.sex.selectedSegmentIndex == 0 ? 0.58 : 0.49;
+    bodyWater = weightKg * percentWater * 1000;
+    
+    [self updateBAC];
 }
 
 - (IBAction)addShot:(id)sender {
     // Source: http://celtickane.com/projects/blood-alcohol-content-bac-calculator/
     // Open console and type "CalcBAC"
     
-    // Get inputs
-    double weightKg = [self.weight.text intValue] * 0.453592;
-    double percentWater = self.sex.selectedSegmentIndex == 0 ? 0.58 : 0.49;
-    double elapsedTime = [self.time.text doubleValue];
-    bodyWater = weightKg * percentWater * 1000;
-    
     // Update alcohol info
     int alcType = (int)self.alcType.selectedSegmentIndex;
-    double alcPercent;
+    double alcPercent, alcAmount;
     switch (alcType) {
         case 0: // beer
             alcPercent = 4.5;
+            alcAmount = 12;
             break;
         case 1: // wine
             alcPercent = 12.5;
+            alcAmount = 5;
             break;
         case 2: // liquor
             alcPercent = 40;
+            alcAmount = 1.5;
             break;
         default:
             break;
     }
-    totalAlcohol += alcPercent * [self.shotsTaken.text intValue];
+    totalAlcohol += 0.01 * alcPercent * alcAmount * [self.shotsTaken.text intValue];
     
-    // Calculate BAC
-    double bac = totalAlcohol / bodyWater * 23.36 * 0.806 * 100;
-    // g/oz EtOH, water in blood
-    bac -= 0.2 * elapsedTime; // average metabolism
-    bac = bac > 0 ? bac : 0;
-    
-    [self updateInformation:bac];
+    [self updateBAC];
 }
 
--(void)updateInformation:(double)bac {
-    self.shotsLeft.text = [NSString stringWithFormat:@"%01f", bac];
+-(void)updateBAC {
+    // Calculate BAC
+    double metabolism = 0.017;
+    double elapsedTime = [self.time.text doubleValue];
+    double bac = totalAlcohol / bodyWater * 23.36 * 0.806 * 100;
+    // g/oz EtOH, water in blood
+    bac -= metabolism * elapsedTime; // average metabolism
+    bac = bac >= 0 || bac < 1 ? bac : 0;
+    double hDrive = (bac - 0.08) / metabolism;
+    if (hDrive < 0)
+        hDrive = 0;
+    double hSober = bac / metabolism;
+    
+    self.bac.text = [NSString stringWithFormat:@"%.3f", bac];
+    self.hDrive.text = [NSString stringWithFormat:@"%.1f", hDrive];
+    self.hSober.text = [NSString stringWithFormat:@"%.1f", hSober];
 }
 
 /*
