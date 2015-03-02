@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		093F9E8119C382B700DC969E /* WLBTrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093F9E8019C382B700DC969E /* WLBTrackingViewController.m */; };
 		093F9E8319C383D400DC969E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093F9E8219C383D400DC969E /* MapKit.framework */; };
 		093F9E8619C3C3D600DC969E /* WLBCoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093F9E8519C3C3D600DC969E /* WLBCoreLocationController.m */; };
 		093F9E8819C3C4C000DC969E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093F9E8719C3C4C000DC969E /* CoreLocation.framework */; };
@@ -29,6 +28,7 @@
 		09A36F8119C365C0003D5872 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5D19C365BF003D5872 /* UIKit.framework */; };
 		09A36F8919C365C0003D5872 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F8719C365C0003D5872 /* InfoPlist.strings */; };
 		09A36F8B19C365C0003D5872 /* Wellbeing_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */; };
+		7303A9A719FE182C002A8523 /* WLBAlcoholViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7303A9A619FE182C002A8523 /* WLBAlcoholViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		093F9E7F19C382B700DC969E /* WLBTrackingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLBTrackingViewController.h; sourceTree = "<group>"; };
-		093F9E8019C382B700DC969E /* WLBTrackingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLBTrackingViewController.m; sourceTree = "<group>"; };
 		093F9E8219C383D400DC969E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		093F9E8419C3C3D600DC969E /* WLBCoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WLBCoreLocationController.h; path = ../WLBCoreLocationController.h; sourceTree = "<group>"; };
 		093F9E8519C3C3D600DC969E /* WLBCoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WLBCoreLocationController.m; path = ../WLBCoreLocationController.m; sourceTree = "<group>"; };
@@ -74,6 +72,8 @@
 		09A36F8619C365C0003D5872 /* Wellbeing AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wellbeing AppTests-Info.plist"; sourceTree = "<group>"; };
 		09A36F8819C365C0003D5872 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wellbeing_AppTests.m; sourceTree = "<group>"; };
+		7303A9A519FE182C002A8523 /* WLBAlcoholViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLBAlcoholViewController.h; sourceTree = "<group>"; };
+		7303A9A619FE182C002A8523 /* WLBAlcoholViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLBAlcoholViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,9 +146,9 @@
 				09A36F6B19C365BF003D5872 /* Main_iPhone.storyboard */,
 				093F9E8F19C8080700DC969E /* WLBNumbersDetailViewController.h */,
 				093F9E9019C8080700DC969E /* WLBNumbersDetailViewController.m */,
-				093F9E7F19C382B700DC969E /* WLBTrackingViewController.h */,
-				093F9E8019C382B700DC969E /* WLBTrackingViewController.m */,
 				09A36F6E19C365BF003D5872 /* Main_iPad.storyboard */,
+				7303A9A519FE182C002A8523 /* WLBAlcoholViewController.h */,
+				7303A9A619FE182C002A8523 /* WLBAlcoholViewController.m */,
 				09A36F7119C365BF003D5872 /* WLBFirstViewController.h */,
 				09A36F7219C365BF003D5872 /* WLBFirstViewController.m */,
 				09A36F7419C365BF003D5872 /* WLBSecondViewController.h */,
@@ -290,10 +290,10 @@
 				09A36F7619C365BF003D5872 /* WLBSecondViewController.m in Sources */,
 				09A36F7319C365BF003D5872 /* WLBFirstViewController.m in Sources */,
 				093F9E9A19C80AE700DC969E /* WLBNumbersTableViewController.m in Sources */,
-				093F9E8119C382B700DC969E /* WLBTrackingViewController.m in Sources */,
 				09A36F6A19C365BF003D5872 /* WLBAppDelegate.m in Sources */,
 				093F9E9119C8080700DC969E /* WLBNumbersDetailViewController.m in Sources */,
 				09A36F6619C365BF003D5872 /* main.m in Sources */,
+				7303A9A719FE182C002A8523 /* WLBAlcoholViewController.m in Sources */,
 				093F9E8619C3C3D600DC969E /* WLBCoreLocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
