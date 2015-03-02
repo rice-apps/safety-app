@@ -35,14 +35,14 @@
     
     NSURLRequest *theRequest=[NSURLRequest
                               requestWithURL:[NSURL URLWithString:
-                                              @"http://riceapps.org:19125/api/numbers"]
+                                              @"http://127.0.0.1:5000/api/numbers"]
                               cachePolicy:NSURLRequestUseProtocolCachePolicy
                               timeoutInterval:60.0];
     NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
     if (con) {
         _receivedData=[NSMutableData data];
     } else {
-        NSLog(@"No data received from backend");
+        //something bad happened
     }
 
 }
@@ -79,17 +79,18 @@
                                 error:nil];
     NSArray *obtainedNumbers = jsonObject[@"result"];
     for (NSDictionary *entry in obtainedNumbers) {
-        [numbers addObject:[NSString stringWithFormat:@"%@",entry[@"number"]]];
-        [organizations addObject:[NSString stringWithFormat:@"%@",entry[@"name"]]];
+        [organizations addObject:[NSString stringWithFormat:@"%@",entry[@"number"]]];
+        [numbers addObject:[NSString stringWithFormat:@"%@",entry[@"name"]]];
             
     }
-    
-    //delete the following two lines
-    [numbers addObject:[NSString stringWithFormat:@"8328070265"]];
-    [organizations addObject:[NSString stringWithFormat:@"Leo's number"]];
-    
     [self.tableView reloadData];
 }
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -122,10 +123,48 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:numberTableIdentifier];
     }
     
-    cell.textLabel.text = [organizations objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [numbers objectAtIndex:indexPath.row];
+    cell.textLabel.text = [numbers objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [organizations objectAtIndex:indexPath.row];
     return cell;
 }
+
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+*/
+
+/*
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }   
+}
+*/
+
+/*
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+}
+*/
+
+/*
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+*/
 
 
 #pragma mark - Navigation

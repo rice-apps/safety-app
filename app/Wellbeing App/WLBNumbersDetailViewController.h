@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *organization;
 @property (weak, nonatomic) IBOutlet UILabel *number;
 @property (strong, nonatomic) NSArray *numberDetail;
+- (IBAction)callNumber:(id)sender;
 @end
