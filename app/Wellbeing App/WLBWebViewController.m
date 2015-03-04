@@ -8,7 +8,7 @@
 
 #import "WLBWebViewController.h"
 
-@interface WLBWebViewController ()
+@interface WLBWebViewController () <UIWebViewDelegate>
 
 @end
 
@@ -16,12 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.webView.delegate = self;
+    [self loadRequestFromString:@"http://localhost:19125/login"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    [self loadRequestFromString:@"http://10.115.78.45:19125/login"];
 }
 
 - (void)loadRequestFromString:(NSString*)urlString
@@ -29,6 +29,14 @@
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:urlRequest];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    if ([[request.URL absoluteString] isEqual: @"http://localhost:19125/after_login"]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return NO;
+    }
+    return YES;
 }
 
 /*
