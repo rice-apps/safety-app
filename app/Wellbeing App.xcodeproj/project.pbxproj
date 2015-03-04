@@ -28,6 +28,7 @@
 		09A36F8119C365C0003D5872 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F5D19C365BF003D5872 /* UIKit.framework */; };
 		09A36F8919C365C0003D5872 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F8719C365C0003D5872 /* InfoPlist.strings */; };
 		09A36F8B19C365C0003D5872 /* Wellbeing_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */; };
+		09B9B6031AA7590A00EC6D69 /* WLBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B9B6021AA7590A00EC6D69 /* WLBWebViewController.m */; };
 		7303A9A719FE182C002A8523 /* WLBAlcoholViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7303A9A619FE182C002A8523 /* WLBAlcoholViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,8 @@
 		09A36F8619C365C0003D5872 /* Wellbeing AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wellbeing AppTests-Info.plist"; sourceTree = "<group>"; };
 		09A36F8819C365C0003D5872 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09A36F8A19C365C0003D5872 /* Wellbeing_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wellbeing_AppTests.m; sourceTree = "<group>"; };
+		09B9B6011AA7590A00EC6D69 /* WLBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLBWebViewController.h; sourceTree = "<group>"; };
+		09B9B6021AA7590A00EC6D69 /* WLBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLBWebViewController.m; sourceTree = "<group>"; };
 		7303A9A519FE182C002A8523 /* WLBAlcoholViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLBAlcoholViewController.h; sourceTree = "<group>"; };
 		7303A9A619FE182C002A8523 /* WLBAlcoholViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLBAlcoholViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +147,8 @@
 				09A36F6819C365BF003D5872 /* WLBAppDelegate.h */,
 				09A36F6919C365BF003D5872 /* WLBAppDelegate.m */,
 				09A36F6B19C365BF003D5872 /* Main_iPhone.storyboard */,
+				09B9B6011AA7590A00EC6D69 /* WLBWebViewController.h */,
+				09B9B6021AA7590A00EC6D69 /* WLBWebViewController.m */,
 				093F9E8F19C8080700DC969E /* WLBNumbersDetailViewController.h */,
 				093F9E9019C8080700DC969E /* WLBNumbersDetailViewController.m */,
 				09A36F6E19C365BF003D5872 /* Main_iPad.storyboard */,
@@ -295,6 +300,7 @@
 				09A36F6619C365BF003D5872 /* main.m in Sources */,
 				7303A9A719FE182C002A8523 /* WLBAlcoholViewController.m in Sources */,
 				093F9E8619C3C3D600DC969E /* WLBCoreLocationController.m in Sources */,
+				09B9B6031AA7590A00EC6D69 /* WLBWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
