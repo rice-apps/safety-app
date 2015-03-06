@@ -33,6 +33,22 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)callButtonPush:(id)sender {
-    NSLog(@"Button Tapped!");
+    NSLog(@"RUPD successfully requested.");
+    
+    
+    // I got the alert format from StackOverflow,
+    // and I tried to fix it to match our needs more, but I'm not sure where to declare buttonIndex or how to manipulate it in the alert window to correspond to the user's action. 
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Request sent" message:@"If you did not mean to press the button, you can click cancel. Otherwise, RUPD will be called and they will come to your location to assist you." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+    [alert show];
+    - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+        if (buttonIndex == 0){
+            //Cancel action
+            
+        }
+    // Put user's location on the map. The user
+    // should not have access to the map, unless
+    // they are logged in under RUPD's name.
+}
+@end
 }
 @end
