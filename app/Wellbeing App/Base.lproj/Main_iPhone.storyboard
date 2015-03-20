@@ -49,7 +49,7 @@
                         <segue destination="QUy-BD-bpt" kind="relationship" relationship="viewControllers" id="M8t-EP-wfW"/>
                         <segue destination="Unm-Jy-27r" kind="relationship" relationship="viewControllers" id="eb4-Pm-mOT"/>
                         <segue destination="ASZ-fB-ex6" kind="relationship" relationship="viewControllers" id="es5-mI-KT4"/>
-                        <segue destination="Uby-f5-DJl" kind="relationship" relationship="viewControllers" id="cEC-D9-XRj"/>
+                        <segue destination="Sbt-Md-dS5" kind="relationship" relationship="viewControllers" id="oyk-2f-Zis"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
@@ -155,7 +155,7 @@
                                 </state>
                                 <connections>
                                     <action selector="callButtonPush:" destination="Sbt-Md-dS5" eventType="touchUpInside" id="0at-ih-Kw3"/>
-                                    <segue destination="asw-Dl-H3n" kind="push" id="xdR-45-D2r"/>
+                                    <segue destination="asw-Dl-H3n" kind="modal" id="xdR-45-D2r"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="By pushing this button, RUPD will track your location and come find you!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="218" translatesAutoresizingMaskIntoConstraints="NO" id="KHe-QL-lyE">
@@ -174,32 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mfs-Mz-Kbm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="320" y="2422"/>
-        </scene>
-        <!--Emergency-->
-        <scene sceneID="FHu-hp-BBk">
-            <objects>
-                <navigationController storyboardIdentifier="Emergency" title="Emergency" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uby-f5-DJl" userLabel="Emergency" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Gd0-Y1-IKr" userLabel="Emergency"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="t98-VP-2VN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <attributedString key="userComments">
-                        <fragment content="Emergency">
-                            <attributes>
-                                <font key="NSFont" metaFont="smallSystem"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
-                    <connections>
-                        <segue destination="Sbt-Md-dS5" kind="push" id="kIc-sm-4Iq"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5ga-1w-2Ev" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-167" y="2422"/>
+            <point key="canvasLocation" x="-167" y="2242"/>
         </scene>
         <!--RUPD View-->
         <scene sceneID="Eb4-8W-uJU">
@@ -230,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sm6-sI-qPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796" y="2027"/>
+            <point key="canvasLocation" x="292" y="2242"/>
         </scene>
         <!--Important Numbers-->
         <scene sceneID="zYy-TE-2po">
