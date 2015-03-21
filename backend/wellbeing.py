@@ -42,7 +42,8 @@ def get_numbers():
     return jsonify(result)
 
 
-@app.route("/api/location", methods=['POST', 'GET', 'DELETE'])
+
+@app.route("/api/escort", methods=['POST', 'GET', 'DELETE'])
 def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None, time=None):
     # Get the location in the database
     if request.method == 'GET':
@@ -69,9 +70,8 @@ def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None
 
 @app.route('/after_login', methods=['GET'])
 def after_login():
-    net_id = session.get(app.config['CAS_USERNAME_SESSION_KEY'], None)
-    return "<html>" + str(net_id) + "</html>"
-
+    cas_token_session_key = app.config['CAS_TOKEN_SESSION_KEY']
+    return session[cas_token_session_key]
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=19125)
