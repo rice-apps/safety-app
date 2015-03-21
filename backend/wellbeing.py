@@ -5,7 +5,7 @@ from flask_cas import CAS
 app = Flask(__name__)
 app.config.from_object('config')
 app.config['CAS_SERVER'] = 'https://netid.rice.edu'
-app.config['CAS_AFTER_LOGIN'] = 'afterlogin'
+app.config['CAS_AFTER_LOGIN'] = 'after_login'
 app.config['APP_URL'] = 'localhost:5000'
 app.config.setdefault('CAS_USERNAME_SESSION_KEY', 'CAS_USERNAME')
 CAS(app)
@@ -41,7 +41,8 @@ def get_numbers():
     return jsonify(result)
 
 
-@app.route("/api/location", methods=['POST', 'GET', 'DELETE'])
+
+@app.route("/api/escort", methods=['POST', 'GET', 'DELETE'])
 def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None, time=None):
     # Get the location in the database
     if request.method == 'GET':
@@ -68,9 +69,8 @@ def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None
 
 @app.route('/after_login', methods=['GET'])
 def after_login():
-    net_id = session.get(app.config['CAS_USERNAME_SESSION_KEY'], None)
-    return net_id
-
+    cas_token_session_key = app.config['CAS_TOKEN_SESSION_KEY']
+    return session[cas_token_session_key]
 
 if __name__ == "__main__":
-    app.run()
+    app.run("0.0.0.0", port=19125)
