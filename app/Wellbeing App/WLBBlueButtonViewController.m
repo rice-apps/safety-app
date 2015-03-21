@@ -7,6 +7,7 @@
 //
 
 #import "WLBBlueButtonViewController.h"
+@import MapKit;
 
 @interface WLBBlueButtonViewController ()
 
@@ -24,35 +25,55 @@
 }
 - (void)viewDidLoad
 {
+    // if logged in user is a policeman, make button hidden, map visible.
+    //if policeman visible, hide button, load all users who have emergency on map.
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+@import CoreLocation;
+
+-(CLLocationCoordinate2D) getLocation{
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    [locationManager startUpdatingLocation];
+    CLLocation *location = [locationManager location];
+    CLLocationCoordinate2D coordinate = [location coordinate];
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+
+    [map addAnnotation: annotation];
+    
+    return map;
+}
+
 - (IBAction)callButtonPush:(id)sender {
     NSLog(@"RUPD successfully requested.");
     
-    
-    // I got the alert format from StackOverflow,
-    // and I tried to fix it to match our needs more, but I'm not sure where to declare buttonIndex or how to manipulate it in the alert window to correspond to the user's action.
-    
     NSURL *url = [NSURL URLWithString:@"telprompt://713-367-7602"];
     [[UIApplication  sharedApplication] openURL:url];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Request sent" message:@"If you did not mean to press the button, you can click cancel. Otherwise, RUPD will be called and they will come to your location to assist you." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
-//    [alert show];
-//}
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//    if (buttonIndex == 0){
-//        //Cancel action
-//            
-//    }
-//
-//    // Put user's location on the map. The user
-//    // should not have access to the map, unless
-//    // they are logged in under RUPD's name.
-//
+    
+    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+   
+    //Making a post request of Latitude and Longitude.
+    NSString *post = [NSString stringWithFormat:@"Latitude=%@&Longitude=%@",@"latitude",@"longitude"];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSString *postLength = [NSString stringWithFormat:@"%d",[postData length]];
+    
+    
+    
+    
+    
+
 }
 @end

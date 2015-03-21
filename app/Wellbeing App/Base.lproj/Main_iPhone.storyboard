@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Second-->
+        <!--Night Escort-->
         <scene sceneID="ot8-2e-RuS">
             <objects>
-                <viewController title="Second" id="QUy-BD-bpt" customClass="WLBNightEscortViewController" sceneMemberID="viewController">
+                <viewController title="Night Escort" id="QUy-BD-bpt" customClass="WLBNightEscortViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FgS-U6-xeU"/>
                         <viewControllerLayoutGuide type="bottom" id="stI-4g-hlJ"/>
@@ -155,7 +155,6 @@
                                 </state>
                                 <connections>
                                     <action selector="callButtonPush:" destination="Sbt-Md-dS5" eventType="touchUpInside" id="0at-ih-Kw3"/>
-                                    <segue destination="asw-Dl-H3n" kind="modal" id="xdR-45-D2r"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="By pushing this button, RUPD will track your location and come find you!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="218" translatesAutoresizingMaskIntoConstraints="NO" id="KHe-QL-lyE">
@@ -163,6 +162,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E5c-5W-ofL">
+                                <rect key="frame" x="-8" y="-5" width="333" height="532"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -174,38 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mfs-Mz-Kbm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-167" y="2242"/>
-        </scene>
-        <!--RUPD View-->
-        <scene sceneID="Eb4-8W-uJU">
-            <objects>
-                <viewController title="RUPD View" id="asw-Dl-H3n" customClass="MapViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Egr-2b-wgT"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ma0-wh-VxU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="FmV-dj-HvK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4fM-i8-wPJ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <gestureRecognizers/>
-                            </mapView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ccU-z8-AZe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Map" id="rnc-SF-zMg"/>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Title" id="nzP-1A-jT7"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sm6-sI-qPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="292" y="2242"/>
+            <point key="canvasLocation" x="-167" y="2248"/>
         </scene>
         <!--Important Numbers-->
         <scene sceneID="zYy-TE-2po">
