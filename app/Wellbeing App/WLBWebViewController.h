@@ -11,4 +11,6 @@
 @interface WLBWebViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+extern NSString *CAS_LOGIN_TOKEN;
+
 @end

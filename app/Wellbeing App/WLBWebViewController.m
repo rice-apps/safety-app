@@ -33,6 +33,13 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if ([[request.URL absoluteString] isEqual: @"http://localhost:19125/after_login"]) {
+        // Send a synchronous request
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:19125/after_login"]];
+        NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest
+                                              returningResponse:nil
+                                                          error:nil];
+        NSString *CAS_LOGIN_TOKEN = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(CAS_LOGIN_TOKEN);
         [self dismissViewControllerAnimated:YES completion:nil];
         return NO;
     }
