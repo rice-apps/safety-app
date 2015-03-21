@@ -50,6 +50,7 @@
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
 
+    // Find out how to implement the map.
     [map addAnnotation: annotation];
     
     return map;
@@ -61,14 +62,15 @@
     NSURL *url = [NSURL URLWithString:@"telprompt://713-367-7602"];
     [[UIApplication  sharedApplication] openURL:url];
     
+    //Phone User ID
     NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
    
-    //Making a post request of Latitude and Longitude.
-    NSString *post = [NSString stringWithFormat:@"Latitude=%@&Longitude=%@",@"latitude",@"longitude"];
+    //Making a post request of coordinate and user ID.
+    NSString *post = [NSString stringWithFormat:@"Coordinate=%@&User ID=%@",@"coordinate",@"uniqueIdentifier"];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
-    NSString *postLength = [NSString stringWithFormat:@"%d",[postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     
     
     
