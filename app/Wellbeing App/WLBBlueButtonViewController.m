@@ -40,42 +40,51 @@
 @import CoreLocation;
 
 -(CLLocationCoordinate2D) getLocation{
+
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+
     locationManager.distanceFilter = kCLDistanceFilterNone;
     [locationManager startUpdatingLocation];
     CLLocation *location = [locationManager location];
     CLLocationCoordinate2D coordinate = [location coordinate];
+
+    
+    return coordinate;
+}
+
+- (void)addAnnotation:(CLLocationCoordinate2D)coordinate{
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-
-    // Find out how to implement the map.
+    
+    MKMapView *map = [[MKMapView alloc]init];
+    
     [map addAnnotation: annotation];
     
-    return map;
 }
 
 - (IBAction)callButtonPush:(id)sender {
     NSLog(@"RUPD successfully requested.");
     
+    CLLocationCoordinate2D coordinate = [self getLocation];
+    
+    NSString *coord=[[NSString alloc] initWithFormat:@" coordinate%f ", coordinate];
+    
+    NSLog(coord);
+    
     NSURL *url = [NSURL URLWithString:@"telprompt://713-367-7602"];
     [[UIApplication  sharedApplication] openURL:url];
-    
+
     //Phone User ID
     NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-   
+
     //Making a post request of coordinate and user ID.
     NSString *post = [NSString stringWithFormat:@"Coordinate=%@&User ID=%@",@"coordinate",@"uniqueIdentifier"];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
-    
-    
-    
-    
-    
 
 }
 @end

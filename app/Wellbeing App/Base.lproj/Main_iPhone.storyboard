@@ -155,6 +155,7 @@
                                 </state>
                                 <connections>
                                     <action selector="callButtonPush:" destination="Sbt-Md-dS5" eventType="touchUpInside" id="0at-ih-Kw3"/>
+                                    <action selector="getLocation:" destination="Sbt-Md-dS5" eventType="touchUpInside" id="RIh-JX-6fm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="By pushing this button, RUPD will track your location and come find you!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="218" translatesAutoresizingMaskIntoConstraints="NO" id="KHe-QL-lyE">
@@ -162,8 +163,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E5c-5W-ofL">
-                                <rect key="frame" x="-8" y="-5" width="333" height="532"/>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E5c-5W-ofL">
+                                <rect key="frame" x="-6" y="-5" width="333" height="532"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
