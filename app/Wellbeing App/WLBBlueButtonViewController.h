@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface WLBBlueButtonViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 - (IBAction)callButtonPush:(id)sender;
- 
+
 @end

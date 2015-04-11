@@ -28,6 +28,9 @@
     // if logged in user is a policeman, make button hidden, map visible.
     //if policeman visible, hide button, load all users who have emergency on map.
     [super viewDidLoad];
+    if (self){
+        
+    }
     // Do any additional setup after loading the view.
 }
 
@@ -49,7 +52,6 @@
     [locationManager startUpdatingLocation];
     CLLocation *location = [locationManager location];
     CLLocationCoordinate2D coordinate = [location coordinate];
-
     
     return coordinate;
 }
@@ -57,9 +59,9 @@
 - (void)addAnnotation:(CLLocationCoordinate2D)coordinate{
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    
+    annotation.coordinate = CLLocationCoordinate2DMake(29.7169, -95.4028);
+    annotation.title = @"Your Location";
     MKMapView *map = [[MKMapView alloc]init];
-    
     [map addAnnotation: annotation];
     
 }
@@ -68,6 +70,7 @@
     NSLog(@"RUPD successfully requested.");
     
     CLLocationCoordinate2D coordinate = [self getLocation];
+    [self addAnnotation:coordinate];
     
     NSString *coord=[[NSString alloc] initWithFormat:@" coordinate%f ", coordinate];
     

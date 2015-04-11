@@ -163,7 +163,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E5c-5W-ofL">
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E5c-5W-ofL">
                                 <rect key="frame" x="-6" y="-5" width="333" height="532"/>
                             </mapView>
                         </subviews>
@@ -173,6 +173,7 @@
                     <navigationItem key="navigationItem" id="MCb-Al-cfE"/>
                     <connections>
                         <outlet property="callButton" destination="XTm-If-hEs" id="Uvl-N4-Ayg"/>
+                        <outlet property="mapView" destination="E5c-5W-ofL" id="RSf-gi-YHS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mfs-Mz-Kbm" userLabel="First Responder" sceneMemberID="firstResponder"/>
