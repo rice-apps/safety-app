@@ -66,28 +66,50 @@
     
 }
 
+-(void)postRequest{
+    
+    //Phone User ID
+    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    
+    //Making a post request of coordinate and user ID.
+    NSString *post = [NSString stringWithFormat:@"Coordinate=%@&Unique ID=%@",@"coordinate",@"uniqueIdentifier"];
+    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.abcde.com/xyz/login.aspx"]]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    NSLog(@"%@", request);
+    NSLog(@"%@", conn);
+}
+
 - (IBAction)callButtonPush:(id)sender {
     NSLog(@"RUPD successfully requested.");
     
     CLLocationCoordinate2D coordinate = [self getLocation];
     [self addAnnotation:coordinate];
     
-    NSString *coord=[[NSString alloc] initWithFormat:@" coordinate%f ", coordinate];
+    NSString *coord=[[NSString alloc] initWithFormat:@" coordinate%f%f ", coordinate.latitude,coordinate.longitude];
     
     NSLog(coord);
     
     NSURL *url = [NSURL URLWithString:@"telprompt://713-367-7602"];
-    [[UIApplication  sharedApplication] openURL:url];
-
-    //Phone User ID
-    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-
-    //Making a post request of coordinate and user ID.
-    NSString *post = [NSString stringWithFormat:@"Coordinate=%@&User ID=%@",@"coordinate",@"uniqueIdentifier"];
+    [[UIApplication sharedApplication] openURL:url];
     
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    [self postRequest];
     
-    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
-
 }
 @end
