@@ -7,5 +7,6 @@ CREATE TABLE tracking_blue_button(
   longitude REAL,
   latitude REAL,
   time TEXT,
-  resolved INT
+  resolved INT,
+  PRIMARY KEY (net_id, request_id)
 );

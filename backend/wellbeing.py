@@ -41,7 +41,32 @@ def get_numbers():
     return jsonify(result)
 
 
-@app.route("/api/location", methods=['POST', 'GET', 'DELETE'])
+@app.route("/api/escort_location", methods=['POST', 'GET', 'DELETE'])
+def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None, time=None):
+    # Get the location in the database
+    if request.method == 'GET':
+        cur.execute("""SELECT * FROM tracking""")
+        result = {"result": cur.fetchall()}
+        return jsonify(result)
+    # Add location into the database
+    if request.method == 'POST':
+        with con:
+            if first_time:
+                cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (phone_id, longitude_in, latitude_in, time))
+            else:
+                cur.execute("""UPDATE tracking
+                           SET longitude=?, latitude=?
+                           WHERE UUID=?;""", (longitude_in, latitude_in, phone_id))
+            con.commit()
+    # Delete location according to phone id
+    if request.method == 'DELETE':
+        with con:
+            cur.execute("""DELETE FROM tracking
+                       WHERE UUID=?;""", (phone_id,))
+            con.commit()
+
+
+@app.route("/api/blue_button_location", methods=['POST', 'GET', 'DELETE'])
 def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None, time=None):
     # Get the location in the database
     if request.method == 'GET':
