@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS tracking;
+DROP TABLE IF EXISTS tracking_blue_button;
 
 CREATE TABLE tracking_blue_button(
 	UUID TEXT,
