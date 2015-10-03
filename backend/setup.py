@@ -22,7 +22,9 @@ def init_db():
     with con:
         with app.open_resource('numbers.sql', mode='r') as f:
             cur.executescript(f.read())
-        with app.open_resource('tracking.sql', mode='r') as f:
+        with app.open_resource('tracking_blue_button.sql', mode='r') as f:
+            cur.executescript(f.read())
+        with app.open_resource('tracking_escort.sql', mode='r') as f:
             cur.executescript(f.read())
         insert_number()
         con.commit()
