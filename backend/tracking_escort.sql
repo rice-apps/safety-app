@@ -7,6 +7,6 @@ CREATE TABLE tracking_escort(
   longitude REAL,
   latitude REAL,
   time TEXT,
-  resolved BOOLEAN,
-  PRIMARY KEY (net_id, request_id)
+  resolved int,
+  PRIMARY KEY (netID, requestID)
 );
