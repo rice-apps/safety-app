@@ -43,7 +43,9 @@ def get_numbers():
 def escort_location():
     # Get the location in the database
     if request.method == 'GET':
+        print "Hit /api/escort_location"
         cur.execute("""SELECT * FROM tracking_escort""")
+        print "escort_location step 2"
         result = {"result": cur.fetchall()}
         return jsonify(result)
     # Add location into the database
@@ -68,6 +70,7 @@ def escort_location():
 def blue_button_location():
     # Get the location in the database
     if request.method == 'GET':
+        print "Hit /api/blue_button_location"
         cur.execute("""SELECT * FROM tracking_blue_button""")
         result = {"result": cur.fetchall()}
         return jsonify(result)
