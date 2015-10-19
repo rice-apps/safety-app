@@ -10,3 +10,5 @@ CREATE TABLE tracking_blue_button(
   resolved BOOLEAN,
   PRIMARY KEY (net_id, request_id)
 );
+
+INSERT INTO tracking_blue_button VALUES ("request", "phone1", "bsl3", 29.716909, -95.401594, "19:38", FALSE);
