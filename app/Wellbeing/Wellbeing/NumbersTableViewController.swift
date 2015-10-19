@@ -9,7 +9,12 @@
 import Foundation
 import UIKit
 
-class NumbersTableViewController: UIViewController {
+class NumbersTableViewController: UITableViewController{
+    
+    var numbers = [String]()
+    var organizations = [String]()
+    var _receivedData = NSMutableData()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
