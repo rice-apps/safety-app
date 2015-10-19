@@ -1,12 +1,12 @@
 DROP TABLE IF EXISTS tracking_blue_button;
 
 CREATE TABLE tracking_blue_button(
-  request_id TEXT,
+  requestID TEXT,
   UUID TEXT,
-  net_id TEXT,
+  netID TEXT,
   longitude REAL,
   latitude REAL,
   time TEXT,
-  resolved INT,
+  resolved BOOLEAN,
   PRIMARY KEY (net_id, request_id)
 );

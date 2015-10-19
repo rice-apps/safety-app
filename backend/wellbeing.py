@@ -3,7 +3,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, render_t
 from flask_cas import CAS
 
 app = Flask(__name__)
-app.config.from_object('config')
+#app.config.from_object('config')
 app.config['CAS_SERVER'] = 'https://netid.rice.edu'
 app.config['CAS_AFTER_LOGIN'] = 'afterlogin'
 app.config['APP_URL'] = 'localhost:5000'
@@ -42,10 +42,10 @@ def get_numbers():
 
 
 @app.route("/api/escort_location", methods=['POST', 'GET', 'DELETE'])
-def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None, time=None):
+def escort_location():
     # Get the location in the database
     if request.method == 'GET':
-        cur.execute("""SELECT * FROM tracking""")
+        cur.execute("""SELECT * FROM tracking_escort""")
         result = {"result": cur.fetchall()}
         return jsonify(result)
     # Add location into the database
@@ -67,10 +67,10 @@ def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None
 
 
 @app.route("/api/blue_button_location", methods=['POST', 'GET', 'DELETE'])
-def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None, time=None):
+def blue_button_location():
     # Get the location in the database
     if request.method == 'GET':
-        cur.execute("""SELECT * FROM tracking""")
+        cur.execute("""SELECT * FROM tracking_blue_button""")
         result = {"result": cur.fetchall()}
         return jsonify(result)
     # Add location into the database
