@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00577FC71BD46DF2006579EB /* WLBFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00577FC61BD46DF2006579EB /* WLBFirstViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		093F9E8319C383D400DC969E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093F9E8219C383D400DC969E /* MapKit.framework */; };
 		093F9E8619C3C3D600DC969E /* WLBCoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093F9E8519C3C3D600DC969E /* WLBCoreLocationController.m */; };
 		093F9E8819C3C4C000DC969E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 093F9E8719C3C4C000DC969E /* CoreLocation.framework */; };
@@ -20,7 +21,6 @@
 		09A36F6A19C365BF003D5872 /* WLBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F6919C365BF003D5872 /* WLBAppDelegate.m */; };
 		09A36F6D19C365BF003D5872 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F6B19C365BF003D5872 /* Main_iPhone.storyboard */; };
 		09A36F7019C365BF003D5872 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F6E19C365BF003D5872 /* Main_iPad.storyboard */; };
-		09A36F7319C365BF003D5872 /* WLBFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F7219C365BF003D5872 /* WLBFirstViewController.m */; };
 		09A36F7619C365BF003D5872 /* WLBSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A36F7519C365BF003D5872 /* WLBSecondViewController.m */; };
 		09A36F7819C365BF003D5872 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09A36F7719C365BF003D5872 /* Images.xcassets */; };
 		09A36F7F19C365C0003D5872 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A36F7E19C365C0003D5872 /* XCTest.framework */; };
@@ -42,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00577FC51BD46DF1006579EB /* Wellbeing App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Wellbeing App-Bridging-Header.h"; sourceTree = "<group>"; };
+		00577FC61BD46DF2006579EB /* WLBFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WLBFirstViewController.swift; sourceTree = "<group>"; };
 		093F9E8219C383D400DC969E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		093F9E8419C3C3D600DC969E /* WLBCoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WLBCoreLocationController.h; path = ../WLBCoreLocationController.h; sourceTree = "<group>"; };
 		093F9E8519C3C3D600DC969E /* WLBCoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WLBCoreLocationController.m; path = ../WLBCoreLocationController.m; sourceTree = "<group>"; };
@@ -62,8 +64,6 @@
 		09A36F6919C365BF003D5872 /* WLBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WLBAppDelegate.m; sourceTree = "<group>"; };
 		09A36F6C19C365BF003D5872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		09A36F6F19C365BF003D5872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		09A36F7119C365BF003D5872 /* WLBFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WLBFirstViewController.h; sourceTree = "<group>"; };
-		09A36F7219C365BF003D5872 /* WLBFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WLBFirstViewController.m; sourceTree = "<group>"; };
 		09A36F7419C365BF003D5872 /* WLBSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WLBSecondViewController.h; sourceTree = "<group>"; };
 		09A36F7519C365BF003D5872 /* WLBSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WLBSecondViewController.m; sourceTree = "<group>"; };
 		09A36F7719C365BF003D5872 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -149,12 +149,12 @@
 				09A36F6E19C365BF003D5872 /* Main_iPad.storyboard */,
 				7303A9A519FE182C002A8523 /* WLBAlcoholViewController.h */,
 				7303A9A619FE182C002A8523 /* WLBAlcoholViewController.m */,
-				09A36F7119C365BF003D5872 /* WLBFirstViewController.h */,
-				09A36F7219C365BF003D5872 /* WLBFirstViewController.m */,
+				00577FC61BD46DF2006579EB /* WLBFirstViewController.swift */,
 				09A36F7419C365BF003D5872 /* WLBSecondViewController.h */,
 				09A36F7519C365BF003D5872 /* WLBSecondViewController.m */,
 				09A36F7719C365BF003D5872 /* Images.xcassets */,
 				09A36F6019C365BF003D5872 /* Supporting Files */,
+				00577FC51BD46DF1006579EB /* Wellbeing App-Bridging-Header.h */,
 			);
 			path = "Wellbeing App";
 			sourceTree = "<group>";
@@ -233,6 +233,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = WLB;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Student Association";
 				TargetAttributes = {
@@ -288,12 +289,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				09A36F7619C365BF003D5872 /* WLBSecondViewController.m in Sources */,
-				09A36F7319C365BF003D5872 /* WLBFirstViewController.m in Sources */,
 				093F9E9A19C80AE700DC969E /* WLBNumbersTableViewController.m in Sources */,
 				09A36F6A19C365BF003D5872 /* WLBAppDelegate.m in Sources */,
 				093F9E9119C8080700DC969E /* WLBNumbersDetailViewController.m in Sources */,
 				09A36F6619C365BF003D5872 /* main.m in Sources */,
 				7303A9A719FE182C002A8523 /* WLBAlcoholViewController.m in Sources */,
+				00577FC71BD46DF2006579EB /* WLBFirstViewController.swift in Sources */,
 				093F9E8619C3C3D600DC969E /* WLBCoreLocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,11 +430,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wellbeing App/Wellbeing App-Prefix.pch";
 				INFOPLIST_FILE = "Wellbeing App/Wellbeing App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wellbeing App/Wellbeing App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -443,11 +448,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Wellbeing App/Wellbeing App-Prefix.pch";
 				INFOPLIST_FILE = "Wellbeing App/Wellbeing App-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Wellbeing App/Wellbeing App-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
