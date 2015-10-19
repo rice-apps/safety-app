@@ -18,7 +18,6 @@ con = lite.connect("wellbeing.db", check_same_thread=False)
 con.row_factory = make_dicts
 cur = con.cursor()
 
-
 #get the database
 def get_db():
     if not hasattr(g, 'sqlite_db'):
@@ -31,7 +30,6 @@ def get_db():
 def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
-
 
 #return a dictionary of numbers and information about wellbeing resources
 @app.route("/api/numbers")

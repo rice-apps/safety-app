@@ -11,4 +11,5 @@ CREATE TABLE tracking_blue_button(
   PRIMARY KEY (net_id, request_id)
 );
 
-INSERT INTO tracking_blue_button VALUES ("request", "phone1", "bsl3", 29.716909, -95.401594, "19:38", FALSE);
+INSERT INTO tracking_blue_button(requestID, UUID, netID, longitude, latitude, time, resolved)
+  VALUES ("request", "phone1", "bsl3", 29.716909, -95.401594, "19:38", FALSE);
