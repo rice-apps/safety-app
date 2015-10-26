@@ -3,16 +3,9 @@ import json
 import os
 from wellbeing import app
 
+
 def make_dicts(cursor, row):
     return dict((cursor.description[idx][0], value) for idx, value in enumerate(row))
-
-#remove the database if it exists
-if os.path.exists("wellbeing.db"):
-    try:
-        os.remove("wellbeing.db")
-    except OSError as e:
-        print "Failed with: ", e.strerror
-        print "Error code: ", e.code
 
 #create connection to database and its cursor
 con = lite.connect("wellbeing.db", check_same_thread=False)
