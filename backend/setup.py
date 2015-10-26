@@ -7,10 +7,6 @@ from wellbeing import app
 def make_dicts(cursor, row):
     return dict((cursor.description[idx][0], value) for idx, value in enumerate(row))
 
-#remove the database if it exists
-if os.path.exists("wellbeing.db"):
-    os.remove("wellbeing.db")
-
 #create connection to database and its cursor
 con = lite.connect("wellbeing.db", check_same_thread=False)
 con.row_factory = make_dicts
