@@ -49,7 +49,10 @@ def escort_location():
         return jsonify(result)
     # Add location into the database
     if request.method == 'POST':
+        f = request.form
         with con:
+            cur.execute("""SELECT * FROM tracking_escort WHERE """)
+
             if first_time:
                 cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (phone_id, longitude_in, latitude_in, time))
             else:
