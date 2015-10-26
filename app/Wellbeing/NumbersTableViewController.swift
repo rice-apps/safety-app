@@ -17,6 +17,7 @@ class NumbersTableViewController: UITableViewController{
     var numbers = [String]()
     var organizations = [String]()
     lazy var _jsonData = NSDictionary()
+    var selectedIndexPath: NSIndexPath? = nil
     
     // Generic View
     
@@ -24,6 +25,7 @@ class NumbersTableViewController: UITableViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         makeRequest()
+        self.tableView.rowHeight = 75.0
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,20 +70,29 @@ class NumbersTableViewController: UITableViewController{
     // Table View
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(String(self.organizations))
         return self.organizations.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(self.numberCellID, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(self.numberCellID, forIndexPath: indexPath) as! NumberTableViewCell
         
-        cell.textLabel?.text = self.organizations[indexPath.row]
-        cell.detailTextLabel?.text = self.numbers[indexPath.row]
+        cell.titleLabel.text = self.organizations[indexPath.row]
+        cell.detailLabel.text = self.numbers[indexPath.row]
         
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! NumberTableViewCell
+        
+        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        let phone = cell.detailLabel.text!
+        let url : NSURL = NSURL(string: "telprompt:" + phone)!
+        UIApplication.sharedApplication().openURL(url)
+        
+    }
     
 
 }
