@@ -1,6 +1,5 @@
 import sqlite3 as lite
 import json
-import os
 from wellbeing import app
 
 
