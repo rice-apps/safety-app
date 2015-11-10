@@ -51,7 +51,10 @@ def escort_location():
     if request.method == 'POST':
         f = request.form
         with con:
-            cur.execute("""SELECT * FROM tracking_escort WHERE """)
+            cur.execute("""SELECT * FROM tracking_escort WHERE netID = ? AND resolved = 0""", "bsl3")
+            result = cur.fetchall()
+            if len(result) == 0:
+
 
             if first_time:
                 cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (phone_id, longitude_in, latitude_in, time))
