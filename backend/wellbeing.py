@@ -53,9 +53,6 @@ def escort_location():
         with con:
             cur.execute("""SELECT * FROM tracking_escort WHERE netID = ? AND resolved = 0""", "bsl3")
             result = cur.fetchall()
-            if len(result) == 0:
-
-
             if first_time:
                 cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (phone_id, longitude_in, latitude_in, time))
             else:
@@ -82,13 +79,17 @@ def blue_button_location():
     # Add location into the database
     if request.method == 'POST':
         print "Hit /api/blue_button_location with a POST!"
+        f = request.form
         with con:
-            if first_time:
-                cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (phone_id, longitude_in, latitude_in, time))
-            else:
-                cur.execute("""UPDATE tracking
-                           SET longitude=?, latitude=?
-                           WHERE UUID=?;""", (longitude_in, latitude_in, phone_id))
+            # if first_time:
+            cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?, ?, ?, ?, ?)""", (f["requestID"], f["caseID"],
+                                                                                     f["UUID"], f["netID"],
+                                                                                     f["longitude"], f["latitude"],
+                                                                                     f["date"], f["resolved"]))
+            # else:
+            #     cur.execute("""UPDATE tracking
+            #                SET longitude=?, latitude=?
+            #                WHERE UUID=?;""", (longitude_in, latitude_in, phone_id))
             con.commit()
     # Delete location according to phone id
     if request.method == 'DELETE':
