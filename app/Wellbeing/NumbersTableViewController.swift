@@ -16,7 +16,9 @@ class NumbersTableViewController: UITableViewController{
     let numberCellID = "numberCell"
     var numbers = [String]()
     var organizations = [String]()
+    var descriptions = [String]()
     lazy var _jsonData = NSDictionary()
+    var selectedTitle: String!
     
     // Generic View
     
@@ -24,6 +26,7 @@ class NumbersTableViewController: UITableViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         makeRequest()
+        self.tableView.rowHeight = 75.0
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,9 +53,11 @@ class NumbersTableViewController: UITableViewController{
                 
                 // Store relevant entries
                 let loadedNumbers = self._jsonData["result"] as! NSArray
+                print(loadedNumbers)
                 for entry in loadedNumbers{
                     self.numbers.append(entry["number"] as! String)
                     self.organizations.append(entry["name"] as! String)
+                    self.descriptions.append(entry["description"] as! String)
                 }
                 self.tableView.reloadData()
                 
@@ -68,20 +73,42 @@ class NumbersTableViewController: UITableViewController{
     // Table View
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(String(self.organizations))
         return self.organizations.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(self.numberCellID, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(self.numberCellID, forIndexPath: indexPath) as! NumbersTableViewCell
         
-        cell.textLabel?.text = self.organizations[indexPath.row]
-        cell.detailTextLabel?.text = self.numbers[indexPath.row]
+        cell.titleLabel.text = self.organizations[indexPath.row]
+        cell.detailLabel.text = self.numbers[indexPath.row]
         
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! NumbersTableViewCell
+        self.selectedTitle = cell.detailLabel.text!
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let segueIdentifier = "segueNumbersDetail"
+        
+        if segue.identifier == segueIdentifier {
+            //Checking identifier is crucial as there might be multiple
+            // segues attached to same view
+            if let destination = segue.destinationViewController as? NumbersDetailViewController {
+                let tableIndex = tableView.indexPathForSelectedRow!.row
+                destination.titleValue = self.organizations[tableIndex]
+                destination.descriptionValue = self.descriptions[tableIndex]
+                destination.numberValue = self.numbers[tableIndex]
+                print(self.organizations[tableIndex])
+            }
+        }
+    }
+
     
 
 }
