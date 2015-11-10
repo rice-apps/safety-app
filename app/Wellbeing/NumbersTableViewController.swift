@@ -16,8 +16,9 @@ class NumbersTableViewController: UITableViewController{
     let numberCellID = "numberCell"
     var numbers = [String]()
     var organizations = [String]()
+    var descriptions = [String]()
     lazy var _jsonData = NSDictionary()
-    var selectedIndexPath: NSIndexPath? = nil
+    var selectedTitle: String!
     
     // Generic View
     
@@ -52,9 +53,11 @@ class NumbersTableViewController: UITableViewController{
                 
                 // Store relevant entries
                 let loadedNumbers = self._jsonData["result"] as! NSArray
+                print(loadedNumbers)
                 for entry in loadedNumbers{
                     self.numbers.append(entry["number"] as! String)
                     self.organizations.append(entry["name"] as! String)
+                    self.descriptions.append(entry["description"] as! String)
                 }
                 self.tableView.reloadData()
                 
@@ -75,7 +78,7 @@ class NumbersTableViewController: UITableViewController{
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(self.numberCellID, forIndexPath: indexPath) as! NumberTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(self.numberCellID, forIndexPath: indexPath) as! NumbersTableViewCell
         
         cell.titleLabel.text = self.organizations[indexPath.row]
         cell.detailLabel.text = self.numbers[indexPath.row]
@@ -85,14 +88,27 @@ class NumbersTableViewController: UITableViewController{
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! NumberTableViewCell
-        
-        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-        let phone = cell.detailLabel.text!
-        let url : NSURL = NSURL(string: "telprompt:" + phone)!
-        UIApplication.sharedApplication().openURL(url)
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! NumbersTableViewCell
+        self.selectedTitle = cell.detailLabel.text!
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let segueIdentifier = "segueNumbersDetail"
+        
+        if segue.identifier == segueIdentifier {
+            //Checking identifier is crucial as there might be multiple
+            // segues attached to same view
+            if let destination = segue.destinationViewController as? NumbersDetailViewController {
+                let tableIndex = tableView.indexPathForSelectedRow!.row
+                destination.titleValue = self.organizations[tableIndex]
+                destination.descriptionValue = self.descriptions[tableIndex]
+                destination.numberValue = self.numbers[tableIndex]
+                print(self.organizations[tableIndex])
+            }
+        }
+    }
+
     
 
 }

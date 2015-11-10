@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002E261A1BDDAF8900635F95 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 002E26191BDDAF8900635F95 /* Images */; };
 		003CE03F1BDC1621006A13F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CE03E1BDC1621006A13F7 /* LoginViewController.swift */; };
 		003CE0431BDC1A01006A13F7 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CE0421BDC1A01006A13F7 /* LaunchScreenViewController.swift */; };
 		00577FD51BD478DC006579EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00577FD41BD478DC006579EB /* AppDelegate.swift */; };
@@ -21,7 +22,8 @@
 		005780071BD47B25006579EB /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005780061BD47B25006579EB /* CalculatorViewController.swift */; };
 		005780091BD47BC2006579EB /* ReportingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005780081BD47BC1006579EB /* ReportingViewController.swift */; };
 		007C199D1BDC1AA500308C43 /* RiceApps_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 007C199C1BDC1AA500308C43 /* RiceApps_dark.png */; };
-		007C199F1BDC1E1000308C43 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C199E1BDC1E1000308C43 /* NumberTableViewCell.swift */; };
+		007C199F1BDC1E1000308C43 /* NumbersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */; };
+		0099D6EE1BDE720100D0617B /* NumbersDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		002E26191BDDAF8900635F95 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		003CE03E1BDC1621006A13F7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		003CE0421BDC1A01006A13F7 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		00577FD11BD478DC006579EB /* Wellbeing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wellbeing.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +65,8 @@
 		005780061BD47B25006579EB /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		005780081BD47BC1006579EB /* ReportingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportingViewController.swift; sourceTree = "<group>"; };
 		007C199C1BDC1AA500308C43 /* RiceApps_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RiceApps_dark.png; path = "../../../CS Club/Logos/RiceApps_dark.png"; sourceTree = "<group>"; };
-		007C199E1BDC1E1000308C43 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
+		007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersTableViewCell.swift; sourceTree = "<group>"; };
+		0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +120,8 @@
 			children = (
 				00577FD41BD478DC006579EB /* AppDelegate.swift */,
 				00577FD61BD478DC006579EB /* NumbersTableViewController.swift */,
-				007C199E1BDC1E1000308C43 /* NumberTableViewCell.swift */,
+				007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */,
+				0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */,
 				00577FD81BD478DC006579EB /* NightEscortViewController.swift */,
 				005780041BD47ACD006579EB /* EmergencyViewController.swift */,
 				003CE03E1BDC1621006A13F7 /* LoginViewController.swift */,
@@ -125,6 +130,7 @@
 				005780081BD47BC1006579EB /* ReportingViewController.swift */,
 				003CE0421BDC1A01006A13F7 /* LaunchScreenViewController.swift */,
 				00577FDD1BD478DC006579EB /* Assets.xcassets */,
+				002E26191BDDAF8900635F95 /* Images */,
 				00577FDF1BD478DC006579EB /* LaunchScreen.storyboard */,
 				00577FE21BD478DC006579EB /* Info.plist */,
 			);
@@ -252,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				002E261A1BDDAF8900635F95 /* Images in Resources */,
 				007C199D1BDC1AA500308C43 /* RiceApps_dark.png in Resources */,
 				00577FE11BD478DC006579EB /* LaunchScreen.storyboard in Resources */,
 				00577FDE1BD478DC006579EB /* Assets.xcassets in Resources */,
@@ -286,7 +293,8 @@
 				00577FD91BD478DC006579EB /* NightEscortViewController.swift in Sources */,
 				00577FD51BD478DC006579EB /* AppDelegate.swift in Sources */,
 				005780051BD47ACD006579EB /* EmergencyViewController.swift in Sources */,
-				007C199F1BDC1E1000308C43 /* NumberTableViewCell.swift in Sources */,
+				0099D6EE1BDE720100D0617B /* NumbersDetailViewController.swift in Sources */,
+				007C199F1BDC1E1000308C43 /* NumbersTableViewCell.swift in Sources */,
 				00577FD71BD478DC006579EB /* NumbersTableViewController.swift in Sources */,
 				005780091BD47BC2006579EB /* ReportingViewController.swift in Sources */,
 			);
