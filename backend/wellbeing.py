@@ -81,6 +81,7 @@ def blue_button_location():
         return jsonify(result)
     # Add location into the database
     if request.method == 'POST':
+        print "Hit /api/blue_button_location with a POST!"
         with con:
             if first_time:
                 cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (phone_id, longitude_in, latitude_in, time))
