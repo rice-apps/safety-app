@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--Numbers-->
@@ -109,6 +109,9 @@
                                 <state key="normal" title="Clear">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="clear:" destination="0Sj-vI-gIL" eventType="touchUpInside" id="vGs-Eh-PKY"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hours before sober" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5X-0Q-KqH">
                                 <rect key="frame" x="29" y="450" width="148" height="21"/>
@@ -198,6 +201,9 @@
                                 <state key="normal" title="Add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addShot:" destination="0Sj-vI-gIL" eventType="touchUpInside" id="fqX-ss-KlW"/>
+                                </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gaC-oo-U2w">
                                 <rect key="frame" x="172" y="105" width="117" height="29"/>
@@ -248,6 +254,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="BAC" image="first" id="Xzt-Ab-gdz"/>
+                    <connections>
+                        <outlet property="alcType" destination="oFL-y7-AJH" id="uTi-DX-4q7"/>
+                        <outlet property="bac" destination="48O-RA-yOe" id="hEu-gV-uUi"/>
+                        <outlet property="hDrive" destination="ydv-Qm-zpQ" id="EEq-B4-T8e"/>
+                        <outlet property="hSober" destination="xl3-81-lYr" id="m7m-IJ-NZ6"/>
+                        <outlet property="sex" destination="gaC-oo-U2w" id="UNL-sF-h7N"/>
+                        <outlet property="shotsTaken" destination="wkk-Yn-fkw" id="owU-LZ-lOO"/>
+                        <outlet property="time" destination="e34-Po-6Hx" id="Z07-0J-nvL"/>
+                        <outlet property="weight" destination="KYj-FB-16h" id="8vg-Bg-SDH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nv6-dW-Fjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
