@@ -25,7 +25,7 @@ class NumbersTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        makeRequest()
+        getRequest()
         self.tableView.rowHeight = 75.0
     }
     
@@ -41,7 +41,7 @@ class NumbersTableViewController: UITableViewController{
     
     // URL Request
     
-    func makeRequest(){
+    func getRequest(){
         let path: String = "http://riceapps.org:19125/api/numbers"
         let url: NSURL = NSURL(string: path)!
         

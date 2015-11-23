@@ -14,6 +14,22 @@ class EmergencyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        // API CALL
+        /*
+        
+        POST: 
+        riceapps.org/api/blue_button_location
+            - send caseID
+            - UUID text
+            - longitude real
+            - latitude real
+            - date text
+            - resolved default 0
+
+
+        */
     }
     
     override func didReceiveMemoryWarning() {
