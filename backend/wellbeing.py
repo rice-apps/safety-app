@@ -80,22 +80,34 @@ def blue_button_location():
     if request.method == 'POST':
         print "Hit /api/blue_button_location with a POST!"
         f = request.form
+        print f
+        print f["requestID"], f["caseID"], f["UUID"], f["longitude"], f["latitude"], f["date"], f["resolved"]
         with con:
             # if first_time:
-            cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?, ?, ?, ?, ?)""", (f["requestID"], f["caseID"],
-                                                                                     f["UUID"], f["netID"],
+            print "flag 1"
+
+            cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?, ?, ?, ?, ?)""", (15, 24, "phone3",
+                                                                                     29.71609, -95.401594, "2015-11-09 21:00:04", 0))
+
+            print "flag 1.5"
+
+            cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?, ?, ?, ?, ?)""", (f["requestID"], f["caseID"], f["netID"],
                                                                                      f["longitude"], f["latitude"],
                                                                                      f["date"], f["resolved"]))
+            print "flag 2"
             # else:
             #     cur.execute("""UPDATE tracking
             #                SET longitude=?, latitude=?
             #                WHERE UUID=?;""", (longitude_in, latitude_in, phone_id))
             con.commit()
+            print "flag 3"
+
     # Delete location according to phone id
     if request.method == 'DELETE':
+        f = request.form
         with con:
             cur.execute("""DELETE FROM tracking
-                       WHERE UUID=?;""", (phone_id,))
+                       WHERE requestID=?;""", (f["requestID"]))
             con.commit()
 
 
