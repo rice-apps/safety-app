@@ -44,7 +44,7 @@ def escort_location():
     # Get the location in the database
     if request.method == 'GET':
         print "Hit /api/blue_button_location"
-        cur.execute("""SELECT * FROM tracking_blue_button""")
+        cur.execute("""SELECT * FROM tracking_escort""")
         result = {"result": cur.fetchall()}
         return jsonify(result)
 
@@ -52,7 +52,7 @@ def escort_location():
     # Add location into the database
     if request.method == 'POST':
         f = request.form
-        insert_stmt = "INSERT INTO tracking_blue_button (caseID, UUID, longitude, latitude, date, resolved) " \
+        insert_stmt = "INSERT INTO tracking_escort (caseID, UUID, longitude, latitude, date, resolved) " \
                       "VALUES (?, ?, ?, ?, ?, ?)"
         form_values = (f["requestID"], f["caseID"], f["longitude"],
                        f["latitude"], f["date"], f["resolved"])
@@ -65,8 +65,9 @@ def escort_location():
     if request.method == 'DELETE':
         f = request.form
         with con:
-            cur.execute("""DELETE FROM tracking
-                       WHERE caseID=?;""", (f["caseID"]))
+            print f
+            cur.execute("""DELETE FROM tracking_escort
+                       WHERE caseID=?;""", (f["caseID"], ))
             con.commit()
             return jsonify(success)
 
@@ -107,10 +108,10 @@ def blue_button_location():
 def anon_reporting():
     # Get the reports from the database
     if request.method == 'GET':
-        print "Hit /api/anon_reporting"
         cur.execute("""SELECT * FROM anon_reporting""")
         result = {"result": cur.fetchall()}
         return jsonify(result)
+
     # Add a report into the database
     if request.method == 'POST':
         print "Hit /api/anon_reporting with a POST!"
