@@ -80,6 +80,8 @@ def blue_button_location():
     if request.method == 'POST':
         print "Hit /api/blue_button_location with a POST!"
         f = request.form
+        print f["requestID"], f["caseID"], f["UUID"], f["netID"], f["longitude"], f["latitude"], f["date"], f["resolved"]
+        print f
         with con:
             # if first_time:
             cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?, ?, ?, ?, ?)""", (f["requestID"], f["caseID"],
