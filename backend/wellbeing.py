@@ -99,7 +99,7 @@ def blue_button_location():
         f = request.form
         with con:
             cur.execute("""DELETE FROM tracking_blue_button
-                       WHERE caseID=?;""", (f["caseID"], ))
+                       WHERE caseID=?""", (f["caseID"], ))
             con.commit()
             return jsonify(success)
 
@@ -130,4 +130,4 @@ def after_login():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", debug=True)
