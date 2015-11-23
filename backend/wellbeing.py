@@ -43,29 +43,32 @@ def get_numbers():
 def escort_location():
     # Get the location in the database
     if request.method == 'GET':
-        print "Hit /api/escort_location"
-        cur.execute("""SELECT * FROM tracking_escort""")
+        print "Hit /api/blue_button_location"
+        cur.execute("""SELECT * FROM tracking_blue_button""")
         result = {"result": cur.fetchall()}
         return jsonify(result)
+
+    success = {"status":200,}
     # Add location into the database
     if request.method == 'POST':
         f = request.form
+        insert_stmt = "INSERT INTO tracking_blue_button (caseID, UUID, longitude, latitude, date, resolved) " \
+                      "VALUES (?, ?, ?, ?, ?, ?)"
+        form_values = (f["requestID"], f["caseID"], f["longitude"],
+                       f["latitude"], f["date"], f["resolved"])
         with con:
-            cur.execute("""SELECT * FROM tracking_escort WHERE netID = ? AND resolved = 0""", "bsl3")
-            result = cur.fetchall()
-            if first_time:
-                cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (phone_id, longitude_in, latitude_in, time))
-            else:
-                cur.execute("""UPDATE tracking
-                           SET longitude=?, latitude=?
-                           WHERE UUID=?;""", (longitude_in, latitude_in, phone_id))
+            cur.execute(insert_stmt, form_values)
             con.commit()
-    # Delete location according to phone id
+            return jsonify(success)
+
+    # Delete location according to case id
     if request.method == 'DELETE':
+        f = request.form
         with con:
             cur.execute("""DELETE FROM tracking
-                       WHERE UUID=?;""", (phone_id,))
+                       WHERE caseID=?;""", (f["caseID"]))
             con.commit()
+            return jsonify(success)
 
 
 @app.route("/api/blue_button_location", methods=['POST', 'GET', 'DELETE'])
@@ -90,13 +93,14 @@ def blue_button_location():
             con.commit()
             return jsonify(success)
 
-    # Delete location according to phone id
+    # Delete location according to case id
     if request.method == 'DELETE':
         f = request.form
         with con:
             cur.execute("""DELETE FROM tracking
-                       WHERE requestID=?;""", (f["requestID"]))
+                       WHERE caseID=?;""", (f["caseID"]))
             con.commit()
+            return jsonify(success)
 
 
 @app.route('/after_login', methods=['GET'])
