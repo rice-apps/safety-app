@@ -101,6 +101,25 @@ def blue_button_location():
             con.commit()
 
 
+@app.route("/api/anon_reporting", methods=['POST', 'GET'])
+def anon_reporting():
+    # Get the reports from the database
+    if request.method == 'GET':
+        print "Hit /api/anon_reporting"
+        cur.execute("""SELECT * FROM anon_reporting""")
+        result = {"result": cur.fetchall()}
+        return jsonify(result)
+    # Add a report into the database
+    if request.method == 'POST':
+        print "Hit /api/anon_reporting with a POST!"
+        f = request.form
+        with con:
+            cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
+            con.commit()
+        result = {"status": 200, }
+        return jsonify(result)
+
+
 @app.route('/after_login', methods=['GET'])
 def after_login():
     net_id = session.get(app.config['CAS_USERNAME_SESSION_KEY'], None)

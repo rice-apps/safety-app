@@ -10,8 +10,8 @@ CREATE TABLE tracking_blue_button(
   resolved INTEGER
 );
 
-INSERT INTO tracking_blue_button(requestID, caseID, UUID, longitude, latitude, date, resolved)
-  VALUES (1, 10, "phone1", 29.716909, -95.401594, "2015-10-25 19:38:50", 0);
+INSERT INTO tracking_blue_button(caseID, UUID, longitude, latitude, date, resolved)
+  VALUES (10, "phone1", 29.716909, -95.401594, "2015-10-25 19:38:50", 0);
 
 INSERT INTO tracking_blue_button(caseID, UUID, longitude, latitude, date, resolved)
   VALUES (11, "phone2", 29.716909, -95.401594, "2015-10-25 17:38:22", 0);
