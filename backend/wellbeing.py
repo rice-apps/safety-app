@@ -76,28 +76,26 @@ def blue_button_location():
         cur.execute("""SELECT * FROM tracking_blue_button""")
         result = {"result": cur.fetchall()}
         return jsonify(result)
+
+    success = {"status":200,}
     # Add location into the database
     if request.method == 'POST':
-        print "Hit /api/blue_button_location with a POST!"
         f = request.form
-        print f["requestID"], f["caseID"], f["UUID"], f["netID"], f["longitude"], f["latitude"], f["date"], f["resolved"]
-        print f
+        insert_stmt = "INSERT INTO tracking_blue_button (caseID, UUID, longitude, latitude, date, resolved) " \
+                      "VALUES (?, ?, ?, ?, ?, ?)"
+        form_values = (f["requestID"], f["caseID"], f["longitude"],
+                       f["latitude"], f["date"], f["resolved"])
         with con:
-            # if first_time:
-            cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?, ?, ?, ?, ?)""", (f["requestID"], f["caseID"],
-                                                                                     f["UUID"], f["netID"],
-                                                                                     f["longitude"], f["latitude"],
-                                                                                     f["date"], f["resolved"]))
-            # else:
-            #     cur.execute("""UPDATE tracking
-            #                SET longitude=?, latitude=?
-            #                WHERE UUID=?;""", (longitude_in, latitude_in, phone_id))
+            cur.execute(insert_stmt, form_values)
             con.commit()
+            return jsonify(success)
+
     # Delete location according to phone id
     if request.method == 'DELETE':
+        f = request.form
         with con:
             cur.execute("""DELETE FROM tracking
-                       WHERE UUID=?;""", (phone_id,))
+                       WHERE requestID=?;""", (f["requestID"]))
             con.commit()
 
 
