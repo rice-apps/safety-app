@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--Emergency-->
@@ -29,9 +29,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wZF-Dv-qPZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1158" y="0.0"/>
+            <point key="canvasLocation" x="48" y="160"/>
         </scene>
-        <!--Night Escort-->
+        <!--Night Escort View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="NightEscortViewController" customModule="Wellbeing" customModuleProvider="target" sceneMemberID="viewController">
@@ -43,38 +43,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Night Escort" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBo-FJ-0la">
-                                <rect key="frame" x="112" y="62" width="96" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night Escort" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBo-FJ-0la">
+                                <rect key="frame" x="112.5" y="72" width="95.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are not logged in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6d-Wk-aHH">
+                                <rect key="frame" x="79" y="273" width="162" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vg4-C1-0Gb">
+                                <rect key="frame" x="40" y="220" width="240" height="128"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yBo-FJ-0la" firstAttribute="top" secondItem="UM6-wn-83K" secondAttribute="bottom" constant="8" symbolic="YES" id="7QQ-xy-Z73"/>
+                            <constraint firstItem="yBo-FJ-0la" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="PkS-vQ-9pP"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Night Escort" image="first" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" id="XQM-HQ-2wz">
+                        <barButtonItem key="rightBarButtonItem" title="Log In" id="wH2-It-gLu">
+                            <connections>
+                                <action selector="logInOrOut:" destination="8rJ-Kc-sve" id="nNh-2d-m71"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="logButton" destination="wH2-It-gLu" id="8Ah-VA-sfy"/>
+                        <outlet property="trackingMap" destination="vg4-C1-0Gb" id="BYc-0Z-S5H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="0.0"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="ayA-hI-wth">
-            <objects>
-                <viewController id="9cV-Di-06b" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HVC-qe-Elq"/>
-                        <viewControllerLayoutGuide type="bottom" id="aWk-Xu-mgN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4q0-FH-CCg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XsA-eT-109" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-390" y="613"/>
+            <point key="canvasLocation" x="580" y="-1354"/>
         </scene>
         <!--BAC-->
         <scene sceneID="H8u-M0-eab">
@@ -101,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nv6-dW-Fjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="715"/>
+            <point key="canvasLocation" x="48" y="1721"/>
         </scene>
         <!--Reporting-->
         <scene sceneID="rr6-fl-4Sz">
@@ -128,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9B-gO-ag5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="778" y="0.0"/>
+            <point key="canvasLocation" x="48" y="962"/>
         </scene>
         <!--Important Numbers-->
         <scene sceneID="XTc-kl-goD">
@@ -182,7 +187,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgN-cE-AHc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="-666"/>
+            <point key="canvasLocation" x="580" y="-624"/>
         </scene>
         <!--Numbers Detail View Controller-->
         <scene sceneID="6pf-OT-T74">
@@ -199,7 +204,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ayK-3e-jaf">
                                 <rect key="frame" x="40" y="193" width="240" height="304"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -230,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sar-3C-WK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="-666"/>
+            <point key="canvasLocation" x="1142" y="-624"/>
         </scene>
         <!--Important Numbers Nav-->
         <scene sceneID="hDj-Fv-WQi">
@@ -251,7 +256,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cty-Rv-UzR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-88" y="-666"/>
+            <point key="canvasLocation" x="48" y="-624"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -264,7 +269,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="T2c-wA-sV7" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="cZu-Dk-YqV" kind="relationship" relationship="viewControllers" id="IQn-sB-Hq8"/>
                         <segue destination="k4j-Xz-aUq" kind="relationship" relationship="viewControllers" id="3qI-5q-gHV"/>
                         <segue destination="9Ey-AG-jrR" kind="relationship" relationship="viewControllers" id="uHE-Of-LRv"/>
@@ -273,7 +278,26 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38" y="0.0"/>
+            <point key="canvasLocation" x="-440" y="160"/>
+        </scene>
+        <!--Night Escort-->
+        <scene sceneID="cdR-2n-kEO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T2c-wA-sV7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Night Escort" image="first" id="cPa-gy-q4n"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A3V-mE-Jgm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="wYG-ln-757"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mj9-gV-LUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="48" y="-1354"/>
         </scene>
     </scenes>
     <resources>
