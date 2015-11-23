@@ -77,13 +77,13 @@ def blue_button_location():
         result = {"result": cur.fetchall()}
         return jsonify(result)
 
-    success = {"status":200,}
+    success = {"status": 200, }
     # Add location into the database
     if request.method == 'POST':
         f = request.form
         insert_stmt = "INSERT INTO tracking_blue_button (caseID, UUID, longitude, latitude, date, resolved) " \
                       "VALUES (?, ?, ?, ?, ?, ?)"
-        form_values = (f["requestID"], f["caseID"], f["longitude"],
+        form_values = (f["caseID"], f["UUID"], f["longitude"],
                        f["latitude"], f["date"], f["resolved"])
         with con:
             cur.execute(insert_stmt, form_values)
