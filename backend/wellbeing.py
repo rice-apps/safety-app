@@ -114,7 +114,6 @@ def anon_reporting():
 
     # Add a report into the database
     if request.method == 'POST':
-        print "Hit /api/anon_reporting with a POST!"
         f = request.form
         with con:
             cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
