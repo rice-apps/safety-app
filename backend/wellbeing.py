@@ -1,14 +1,28 @@
 import sqlite3 as lite
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify
 from flask_cas import CAS
+from flask.ext.mail import Mail
+from flask.ext.mail import Message
+import config
 
 app = Flask(__name__)
-#app.config.from_object('config')
+# app.config.from_object('config')
 app.config['CAS_SERVER'] = 'https://netid.rice.edu'
 app.config['CAS_AFTER_LOGIN'] = 'afterlogin'
 app.config['APP_URL'] = 'localhost:5000'
 app.config.setdefault('CAS_USERNAME_SESSION_KEY', 'CAS_USERNAME')
 CAS(app)
+
+# Email setup
+app.config['MAIL_SERVER']='smtp.zoho.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = config.MAIL_USERNAME
+app.config['MAIL_PASSWORD'] = config.MAIL_PASSWORD
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_SUPPRESS_SEND'] = False
+app.config['TESTING'] = False
+mail = Mail(app)
 
 
 def make_dicts(cursor, row):
@@ -18,20 +32,20 @@ con = lite.connect("wellbeing.db", check_same_thread=False)
 con.row_factory = make_dicts
 cur = con.cursor()
 
-#get the database
+# get the database
 def get_db():
     if not hasattr(g, 'sqlite_db'):
         g.sqlite_db = con
     return g.sqlite_db
 
 
-#close the database if there is an error
+# close the database if there is an error
 @app.teardown_appcontext
 def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
-#return a dictionary of numbers and information about wellbeing resources
+# return a dictionary of numbers and information about wellbeing resources
 @app.route("/api/numbers")
 def get_numbers():
     cur.execute("""SELECT * FROM important_numbers""")
@@ -41,6 +55,9 @@ def get_numbers():
 
 @app.route("/api/escort_location", methods=['POST', 'GET', 'DELETE'])
 def escort_location():
+    # Define a success response message
+    success = {"status":200,}
+
     # Get the location in the database
     if request.method == 'GET':
         print "Hit /api/blue_button_location"
@@ -48,7 +65,6 @@ def escort_location():
         result = {"result": cur.fetchall()}
         return jsonify(result)
 
-    success = {"status":200,}
     # Add location into the database
     if request.method == 'POST':
         f = request.form
@@ -116,6 +132,14 @@ def anon_reporting():
     if request.method == 'POST':
         print "Hit /api/anon_reporting with a POST!"
         f = request.form
+
+        # Send an email report to RUPD
+        # TODO: switch the recipient email to config.RUPD_EMAIL
+        msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['jx13@rice.edu'])
+        msg.body = f["description"]   # TODO: write the actual email message
+        mail.send(msg)
+
+
         with con:
             cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
             con.commit()

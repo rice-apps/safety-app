@@ -3,3 +3,4 @@
 config.py
 .DS_Store
 backend/wellbeing.db
+backend/config.py
