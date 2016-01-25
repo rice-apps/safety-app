@@ -7,13 +7,22 @@
 //
 
 import Foundation
+import CoreLocation
 import UIKit
 
-class EmergencyViewController: UIViewController {
+class EmergencyViewController: UIViewController, CLLocationManagerDelegate {
+    
+    let locationManager = CLLocationManager()
+    let RICE_X = 29.719565
+    let RICE_Y = -95.402233
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
         
         
         // API CALL
@@ -27,8 +36,6 @@ class EmergencyViewController: UIViewController {
             - latitude real
             - date text
             - resolved default 0
-
-
         */
     }
     
@@ -36,7 +43,11 @@ class EmergencyViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    //
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        
+        
+    }
 }
     
