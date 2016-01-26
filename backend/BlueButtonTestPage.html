@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page</title>
+</head>
+<body>
+<h1>Tracking Blue Button Test Page</h1>
+
+<p>Use this form to test the POST method on the /api/blue_button_location API endpoint.</p>
+
+<form action="http://localhost:5000/api/blue_button_location" method="post">
+    RequestID (num):<br>
+    <input type="number" name="request_id">
+    <br>
+    CaseID (num):<br>
+    <input type="number" name="case_id">
+    <br>
+    UUID (string):<br>
+    <input type="text" name="uuid">
+    <br>
+    NetID (string):<br>
+    <input type="text" name="net_id">
+    <br>
+    Longitude (string):<br>
+    <input type="text" name="longitude">
+    <br>
+    Latitude (string):<br>
+    <input type="text" name="latitude">
+    <br>
+    Date (string):<br>
+    <input type="text" name="date">
+    <br>
+    Resolved (1 for true, 0 for false):<br>
+    <input type="number" name="net_id">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

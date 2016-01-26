@@ -1,14 +1,28 @@
 import sqlite3 as lite
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify
 from flask_cas import CAS
+from flask.ext.mail import Mail
+from flask.ext.mail import Message
+import config
 
 app = Flask(__name__)
-app.config.from_object('config')
+# app.config.from_object('config')
 app.config['CAS_SERVER'] = 'https://netid.rice.edu'
 app.config['CAS_AFTER_LOGIN'] = 'afterlogin'
 app.config['APP_URL'] = 'localhost:5000'
 app.config.setdefault('CAS_USERNAME_SESSION_KEY', 'CAS_USERNAME')
 CAS(app)
+
+# Email setup
+app.config['MAIL_SERVER']='smtp.zoho.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = config.MAIL_USERNAME
+app.config['MAIL_PASSWORD'] = config.MAIL_PASSWORD
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_SUPPRESS_SEND'] = False
+app.config['TESTING'] = False
+mail = Mail(app)
 
 
 def make_dicts(cursor, row):
@@ -18,22 +32,20 @@ con = lite.connect("wellbeing.db", check_same_thread=False)
 con.row_factory = make_dicts
 cur = con.cursor()
 
-
-#get the database
+# get the database
 def get_db():
     if not hasattr(g, 'sqlite_db'):
         g.sqlite_db = con
     return g.sqlite_db
 
 
-#close the database if there is an error
+# close the database if there is an error
 @app.teardown_appcontext
 def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
-
-#return a dictionary of numbers and information about wellbeing resources
+# return a dictionary of numbers and information about wellbeing resources
 @app.route("/api/numbers")
 def get_numbers():
     cur.execute("""SELECT * FROM important_numbers""")
@@ -41,29 +53,97 @@ def get_numbers():
     return jsonify(result)
 
 
-@app.route("/api/location", methods=['POST', 'GET', 'DELETE'])
-def location(first_time=None, phone_id=None, longitude_in=None, latitude_in=None, time=None):
+@app.route("/api/escort_location", methods=['POST', 'GET', 'DELETE'])
+def escort_location():
+    # Define a success response message
+    success = {"status":200,}
+
     # Get the location in the database
     if request.method == 'GET':
-        cur.execute("""SELECT * FROM tracking""")
+        print "Hit /api/blue_button_location"
+        cur.execute("""SELECT * FROM tracking_escort""")
         result = {"result": cur.fetchall()}
         return jsonify(result)
+
     # Add location into the database
     if request.method == 'POST':
+        f = request.form
+        insert_stmt = "INSERT INTO tracking_escort (caseID, UUID, longitude, latitude, date, resolved) " \
+                      "VALUES (?, ?, ?, ?, ?, ?)"
+        form_values = (f["requestID"], f["caseID"], f["longitude"],
+                       f["latitude"], f["date"], f["resolved"])
         with con:
-            if first_time:
-                cur.execute("""INSERT INTO tracking VALUES (?, ?, ?, ?)""", (phone_id, longitude_in, latitude_in, time))
-            else:
-                cur.execute("""UPDATE tracking
-                           SET longitude=?, latitude=?
-                           WHERE UUID=?;""", (longitude_in, latitude_in, phone_id))
+            cur.execute(insert_stmt, form_values)
             con.commit()
-    # Delete location according to phone id
+            return jsonify(success)
+
+    # Delete location according to case id
     if request.method == 'DELETE':
+        f = request.form
         with con:
-            cur.execute("""DELETE FROM tracking
-                       WHERE UUID=?;""", (phone_id,))
+            print f
+            cur.execute("""DELETE FROM tracking_escort
+                       WHERE caseID=?;""", (f["caseID"], ))
             con.commit()
+            return jsonify(success)
+
+
+@app.route("/api/blue_button_location", methods=['POST', 'GET', 'DELETE'])
+def blue_button_location():
+    # Get the location in the database
+    if request.method == 'GET':
+        print "Hit /api/blue_button_location"
+        cur.execute("""SELECT * FROM tracking_blue_button""")
+        result = {"result": cur.fetchall()}
+        return jsonify(result)
+
+    success = {"status": 200, }
+    # Add location into the database
+    if request.method == 'POST':
+        f = request.form
+        insert_stmt = "INSERT INTO tracking_blue_button (caseID, UUID, longitude, latitude, date, resolved) " \
+                      "VALUES (?, ?, ?, ?, ?, ?)"
+        form_values = (f["caseID"], f["UUID"], f["longitude"],
+                       f["latitude"], f["date"], f["resolved"])
+        with con:
+            cur.execute(insert_stmt, form_values)
+            con.commit()
+            return jsonify(success)
+
+    # Delete location according to case id
+    if request.method == 'DELETE':
+        f = request.form
+        with con:
+            cur.execute("""DELETE FROM tracking_blue_button
+                       WHERE caseID=?""", (f["caseID"], ))
+            con.commit()
+            return jsonify(success)
+
+
+@app.route("/api/anon_reporting", methods=['POST', 'GET'])
+def anon_reporting():
+    # Get the reports from the database
+    if request.method == 'GET':
+        cur.execute("""SELECT * FROM anon_reporting""")
+        result = {"result": cur.fetchall()}
+        return jsonify(result)
+
+    # Add a report into the database
+    if request.method == 'POST':
+        f = request.form
+
+        # Send an email report to RUPD
+        # TODO: switch the recipient email to config.RUPD_EMAIL
+        msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['jx13@rice.edu'])
+        msg.body = f["description"]   # TODO: write the actual email message
+        mail.send(msg)
+
+
+        with con:
+            cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
+            con.commit()
+        result = {"status": 200, }
+        return jsonify(result)
 
 
 @app.route('/after_login', methods=['GET'])
@@ -73,4 +153,4 @@ def after_login():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", debug=True)
