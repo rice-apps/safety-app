@@ -15,6 +15,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+<<<<<<< HEAD
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RiceApps_dark.png" translatesAutoresizingMaskIntoConstraints="NO" id="8zW-fg-g4x">
                                 <rect key="frame" x="85" y="-55.5" width="150" height="679"/>
@@ -23,6 +24,8 @@
                                 </constraints>
                             </imageView>
                         </subviews>
+=======
+>>>>>>> hiddenviews
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -36,7 +39,4 @@
             <point key="canvasLocation" x="31" y="322"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="RiceApps_dark.png" width="679" height="679"/>
-    </resources>
 </document>
