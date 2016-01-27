@@ -1,8 +1,8 @@
 import sqlite3 as lite
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify
 from flask_cas import CAS
-from flask.ext.mail import Mail
-from flask.ext.mail import Message
+from flask_mail import Mail
+from flask_mail import Message
 import config
 
 app = Flask(__name__)
@@ -56,7 +56,7 @@ def get_numbers():
 @app.route("/api/escort_location", methods=['POST', 'GET', 'DELETE'])
 def escort_location():
     # Define a success response message
-    success = {"status":200,}
+    success = {"status": 200}
 
     # Get the location in the database
     if request.method == 'GET':
@@ -130,6 +130,7 @@ def anon_reporting():
 
     # Add a report into the database
     if request.method == 'POST':
+        print "email initiated"
         f = request.form
 
         # Send an email report to RUPD
@@ -138,8 +139,10 @@ def anon_reporting():
         msg.body = f["description"]   # TODO: write the actual email message
         mail.send(msg)
 
+        print "mail sent"
 
         with con:
+            print "inserting to db"
             cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
             con.commit()
         result = {"status": 200, }

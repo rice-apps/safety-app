@@ -24,11 +24,28 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="activateEmergency:" destination="k4j-Xz-aUq" eventType="touchUpInside" id="rcV-2z-yzf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeS-US-mAa">
+                                <rect key="frame" x="79" y="321" width="163" height="89"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelEmergency:" destination="k4j-Xz-aUq" eventType="touchUpInside" id="i1b-fa-UcG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Emergency" image="first" id="XIv-uD-2TZ"/>
+                    <connections>
+                        <outlet property="cancel" destination="TeS-US-mAa" id="mdg-Yt-7Lq"/>
+                        <outlet property="emergency" destination="5nV-sF-aGl" id="9YD-QY-YSt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wZF-Dv-qPZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
