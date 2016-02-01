@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS tracking_blue_button;
 
 CREATE TABLE tracking_blue_button(
   requestID INTEGER PRIMARY KEY,
-  caseID INTEGER,
+  deviceID INTEGER,
   UUID TEXT,
   longitude REAL,
   latitude REAL,
