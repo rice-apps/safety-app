@@ -142,7 +142,7 @@ def anon_reporting():
         # Send an email report to RUPD
         # TODO: switch the recipient email to config.RUPD_EMAIL
         msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['bsl3@rice.edu'])
-        msg.body = f["description"]   # TODO: write the actual email message
+        msg.body = format_email(f["description"])   # TODO: write the actual email message
         mail.send(msg)
 
         print "mail sent"
@@ -160,6 +160,9 @@ def after_login():
     net_id = session.get(app.config['CAS_USERNAME_SESSION_KEY'], None)
     return net_id
 
+# TODO: Format the message into a more presentable format
+def format_email(message):
+    return message
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
