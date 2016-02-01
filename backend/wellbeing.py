@@ -135,7 +135,7 @@ def anon_reporting():
 
         # Send an email report to RUPD
         # TODO: switch the recipient email to config.RUPD_EMAIL
-        msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['jx13@rice.edu'])
+        msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['bsl3@rice.edu'])
         msg.body = f["description"]   # TODO: write the actual email message
         mail.send(msg)
 
