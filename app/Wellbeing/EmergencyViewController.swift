@@ -102,8 +102,8 @@ class EmergencyViewController: UIViewController, CLLocationManagerDelegate {
         
         let timestamp = dateFormatter.stringFromDate(location.timestamp)
         
-        let postString = "caseID" + validateURLString(caseID) + "&deviceID=" + validateURLString(deviceID) + "&longitude=" + validateURLString(longitude) + "&latitude=" + validateURLString(latitude) + "&date=" + validateURLString(timestamp) + "&resolved=false"
-        
+        let postString = "caseID=" + validateURLString(caseID) + "&deviceID=" + validateURLString(deviceID) + "&longitude=" + validateURLString(longitude) + "&latitude=" + validateURLString(latitude) + "&date=" + validateURLString(timestamp) + "&resolved=false"
+        print(postString)
         let path: String = "http://0.0.0.0:5000/api/blue_button_location"
         let url: NSURL = NSURL(string: path)!
         let cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
