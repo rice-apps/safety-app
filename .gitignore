@@ -4,3 +4,4 @@ config.py
 .DS_Store
 backend/wellbeing.db
 backend/config.py
+app/Wellbeing.xcodeproj/project.xcworkspace/xcuserdata/Jeffrey.xcuserdatad/UserInterfaceState.xcuserstate
