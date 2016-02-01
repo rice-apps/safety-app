@@ -102,7 +102,7 @@ class EmergencyViewController: UIViewController, CLLocationManagerDelegate {
         
         let timestamp = dateFormatter.stringFromDate(location.timestamp)
         
-        let postString = "caseID" + validateURLString(caseID) + "deviceID=" + validateURLString(deviceID) + "&longitude=" + validateURLString(longitude) + "&latitude=" + validateURLString(latitude) + "&date=" + validateURLString(timestamp) + "&resolved=false"
+        let postString = "caseID" + validateURLString(caseID) + "&deviceID=" + validateURLString(deviceID) + "&longitude=" + validateURLString(longitude) + "&latitude=" + validateURLString(latitude) + "&date=" + validateURLString(timestamp) + "&resolved=false"
         
         let path: String = "http://0.0.0.0:5000/api/blue_button_location"
         let url: NSURL = NSURL(string: path)!
@@ -121,7 +121,7 @@ class EmergencyViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             let responseString = NSString(data: data!, encoding:NSUTF8StringEncoding)
-            print("response =\(responseString)")
+            print("response =\(responseString!)")
             
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [.MutableContainers, .AllowFragments]) as? NSDictionary

@@ -97,15 +97,18 @@ def blue_button_location():
         result = {"result": cur.fetchall()}
         return jsonify(result)
 
-    success = {"status": 200, }
+    success = {"status": 200}
     # Add location into the database
     if request.method == 'POST':
         f = request.form
         insert_stmt = "INSERT INTO tracking_blue_button (caseID, deviceID, longitude, latitude, date, resolved) " \
                       "VALUES (?, ?, ?, ?, ?, ?)"
+        print f["caseID"]
+        print f["deviceID"]
         form_values = (f["caseID"], f["deviceID"], f["longitude"],
                        f["latitude"], f["date"], f["resolved"])
         with con:
+            print "successful connection"
             cur.execute(insert_stmt, form_values)
             con.commit()
             return jsonify(success)
@@ -145,7 +148,7 @@ def anon_reporting():
             print "inserting to db"
             cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
             con.commit()
-        result = {"status": 200, }
+        result = {"status": 200}
         return jsonify(result)
 
 
