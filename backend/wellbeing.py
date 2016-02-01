@@ -48,9 +48,7 @@ def close_db(error):
 # return a dictionary of numbers and information about wellbeing resources
 @app.route("/api/numbers")
 def get_numbers():
-    cur.execute("""SELECT * FROM important_numbers""")
-    result = {"result": cur.fetchall()}
-    return jsonify(result)
+    location_get("important_numbers")
 
 @app.route("/api/escort_location", methods=['POST', 'GET', 'DELETE'])
 def escort_location():
@@ -110,6 +108,11 @@ def anon_reporting():
         result = {"status": 200}
         return jsonify(result)
 
+@app.route('/after_login', methods=['GET'])
+def after_login():
+    net_id = session.get(app.config['CAS_USERNAME_SESSION_KEY'], None)
+    return net_id
+
 # return information from one of the location tables
 def location_get(table_name):
     select_stmt = "SELECT * FROM " + table_name
@@ -139,14 +142,6 @@ def location_delete(table_name):
         cur.execute("DELETE FROM " + table_name + " WHERE caseID=?;""", (f["caseID"], ))
         con.commit()
         return jsonify({"status": 200})
-
-
-
-
-@app.route('/after_login', methods=['GET'])
-def after_login():
-    net_id = session.get(app.config['CAS_USERNAME_SESSION_KEY'], None)
-    return net_id
 
 # TODO: Format the message into a more presentable format
 def format_email(message):
