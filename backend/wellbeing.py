@@ -52,79 +52,65 @@ def get_numbers():
     result = {"result": cur.fetchall()}
     return jsonify(result)
 
-
 @app.route("/api/escort_location", methods=['POST', 'GET', 'DELETE'])
 def escort_location():
-    # Define a success response message
-    success = {"status": 200}
-
     # Get the location in the database
     if request.method == 'GET':
-        print "Hit /api/escort_location"
-        cur.execute("""SELECT * FROM tracking_escort""")
-        result = {"result": cur.fetchall()}
-        return jsonify(result)
+        return location_get("tracking_escort")
 
     # Add location into the database
     if request.method == 'POST':
-        f = request.form
-        insert_stmt = "INSERT INTO tracking_escort (caseID, deviceID, longitude, latitude, date, resolved) " \
-                      "VALUES (?, ?, ?, ?, ?, ?)"
-        print f["caseID"]
-        print f["deviceID"]
-        form_values = (f["caseID"], f["deviceID"], f["longitude"],
-                       f["latitude"], f["date"], f["resolved"])
-
-        with con:
-            cur.execute(insert_stmt, form_values)
-            con.commit()
-            return jsonify(success)
+        return location_post("tracking_escort")
 
     # Delete location according to case id
     if request.method == 'DELETE':
-        f = request.form
-        with con:
-            print f
-            cur.execute("""DELETE FROM tracking_escort
-                       WHERE caseID=?;""", (f["caseID"], ))
-            con.commit()
-            return jsonify(success)
+        location_delete("tracking_escort")
 
 
 @app.route("/api/blue_button_location", methods=['POST', 'GET', 'DELETE'])
 def blue_button_location():
     # Get the location in the database
     if request.method == 'GET':
-        print "Hit /api/blue_button_location"
-        cur.execute("""SELECT * FROM tracking_blue_button""")
-        result = {"result": cur.fetchall()}
-        return jsonify(result)
+        return location_get("tracking_blue_button")
 
-    success = {"status": 200}
     # Add location into the database
     if request.method == 'POST':
-        f = request.form
-        insert_stmt = "INSERT INTO tracking_blue_button (caseID, deviceID, longitude, latitude, date, resolved) " \
-                      "VALUES (?, ?, ?, ?, ?, ?)"
-        print f["caseID"]
-        print f["deviceID"]
-        form_values = (f["caseID"], f["deviceID"], f["longitude"],
-                       f["latitude"], f["date"], f["resolved"])
-        with con:
-            print "successful connection"
-            cur.execute(insert_stmt, form_values)
-            con.commit()
-            return jsonify(success)
+        return location_post("tracking_blue_button")
 
     # Delete location according to case id
     if request.method == 'DELETE':
-        f = request.form
-        with con:
-            cur.execute("""DELETE FROM tracking_blue_button
-                       WHERE deviceID=?""", (f["deviceID"], ))
-            con.commit()
-            return jsonify(success)
+        location_delete("tracking_escort")
 
+# return information from one of the location tables
+def location_get(table_name):
+    print "Hit /api/escort_location"
+    select_stmt = "SELECT * FROM " + table_name
+    cur.execute(select_stmt)
+    result = {"result": cur.fetchall()}
+    return jsonify(result)
+
+# post information to one of the location tables
+def location_post(table_name):
+    f = request.form
+    insert_stmt = "INSERT INTO " + table_name + "(caseID, deviceID, longitude, latitude, date, resolved) " \
+                   "VALUES (?, ?, ?, ?, ?, ?)"
+    print f["caseID"]
+    print f["deviceID"]
+    form_values = (f["caseID"], f["deviceID"], f["longitude"],
+                   f["latitude"], f["date"], f["resolved"])
+    with con:
+        cur.execute(insert_stmt, form_values)
+        con.commit()
+        return jsonify({"status": 200})
+
+# delete information from one of the location tables
+def location_delete(table_name):
+    f = request.form
+    with con:
+        print f
+        cur.execute("DELETE FROM " + table_name + " WHERE caseID=?;""", (f["caseID"], ))
+        con.commit()
+        return jsonify({"status": 200})
 
 @app.route("/api/anon_reporting", methods=['POST', 'GET'])
 def anon_reporting():
