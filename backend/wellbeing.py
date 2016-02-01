@@ -79,7 +79,7 @@ def blue_button_location():
 
     # Delete location according to case id
     if request.method == 'DELETE':
-        location_delete("tracking_escort")
+        location_delete("tracking_blue_button")
 
 # return information from one of the location tables
 def location_get(table_name):
