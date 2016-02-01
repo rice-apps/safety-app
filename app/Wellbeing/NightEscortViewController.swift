@@ -23,15 +23,12 @@ class NightEscortViewController: UIViewController {
             logButton.title = newValue ? "Log Out" : "Log In"
         }
     }
+    let busUrl: NSURL = NSURL(string: "http://localhost:5000")!//http://bus.rice.edu/json/buses.php")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        //TODO: center on current location
+        loadBusJSON()
     }
 
     @IBAction func logInOrOut(sender: UIBarButtonItem) {
@@ -39,6 +36,20 @@ class NightEscortViewController: UIViewController {
             loggedIn = false
         } else {
             promptLogin()
+        }
+    }
+    
+    func loadBusJSON() {
+        do {
+            let data = NSData(contentsOfURL: busUrl)
+            let busData = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)["d"]
+            let escortData: NSDictionary?
+            if busData?!.count > 0 && busData?![0]["Name"] as? String == "Night Escort" {
+                escortData = busData?![0] as? NSDictionary
+                print(escortData!["Latitude"]!)
+            }
+        } catch {
+            print("Could not get NE bus data")
         }
     }
     
