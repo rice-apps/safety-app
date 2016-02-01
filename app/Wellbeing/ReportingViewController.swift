@@ -45,7 +45,7 @@ class ReportingViewController: UIViewController {
             }
             
             let responseString = NSString(data: data!, encoding:NSUTF8StringEncoding)
-            print("response =\(responseString)")
+            print("response =\(responseString!)")
             
             do {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [.MutableContainers, .AllowFragments]) as? NSDictionary
