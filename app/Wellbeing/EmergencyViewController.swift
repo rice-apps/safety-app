@@ -92,17 +92,17 @@ class EmergencyViewController: UIViewController, CLLocationManagerDelegate {
         
         print("serving data")
         
-        let uniqueID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+        let caseID = NSUUID().UUIDString
+        let deviceID = UIDevice.currentDevice().identifierForVendor!.UUIDString
         let latitude = "\(location.coordinate.latitude)"
         let longitude = "\(location.coordinate.longitude)"
-        // case ID ??? TODO!
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy - hh:mm:ss"
         
         let timestamp = dateFormatter.stringFromDate(location.timestamp)
         
-        let postString = "id=" + validateURLString(uniqueID) + "&timestamp=" + validateURLString(timestamp) + "&latitude=" + validateURLString(latitude) + "&longitude=" + validateURLString(longitude) + "&resolved=false"
+        let postString = "caseID" + validateURLString(caseID) + "deviceID=" + validateURLString(deviceID) + "&longitude=" + validateURLString(longitude) + "&latitude=" + validateURLString(latitude) + "&date=" + validateURLString(timestamp) + "&resolved=false"
         
         let path: String = "http://0.0.0.0:5000/api/blue_button_location"
         let url: NSURL = NSURL(string: path)!
@@ -129,7 +129,7 @@ class EmergencyViewController: UIViewController, CLLocationManagerDelegate {
                     let result = parseJSON["status"] as? String
                     print("status =\(result)")
                 }
-                // use anyObj here
+                
             } catch {
                 print("json error: \(error)")
             }

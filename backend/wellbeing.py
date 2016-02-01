@@ -101,9 +101,9 @@ def blue_button_location():
     # Add location into the database
     if request.method == 'POST':
         f = request.form
-        insert_stmt = "INSERT INTO tracking_blue_button (caseID, UUID, longitude, latitude, date, resolved) " \
+        insert_stmt = "INSERT INTO tracking_blue_button (caseID, deviceID, longitude, latitude, date, resolved) " \
                       "VALUES (?, ?, ?, ?, ?, ?)"
-        form_values = (f["caseID"], f["UUID"], f["longitude"],
+        form_values = (f["caseID"], f["deviceID"], f["longitude"],
                        f["latitude"], f["date"], f["resolved"])
         with con:
             cur.execute(insert_stmt, form_values)
@@ -115,7 +115,7 @@ def blue_button_location():
         f = request.form
         with con:
             cur.execute("""DELETE FROM tracking_blue_button
-                       WHERE caseID=?""", (f["caseID"], ))
+                       WHERE deviceID=?""", (f["deviceID"], ))
             con.commit()
             return jsonify(success)
 
