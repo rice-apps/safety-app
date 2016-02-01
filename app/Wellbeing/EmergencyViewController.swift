@@ -50,7 +50,6 @@ class EmergencyViewController: UIViewController, CLLocationManagerDelegate {
         if checkRiceRadius(current!) {
             // do things if at Rice.
             allowActions = true
-            
         }
         
         if serveEmergencyData {
@@ -64,7 +63,6 @@ class EmergencyViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // UI FUNCTIONS
-    
     
     /* 
         Activates location on
