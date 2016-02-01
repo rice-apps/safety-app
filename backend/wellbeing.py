@@ -60,7 +60,7 @@ def escort_location():
 
     # Get the location in the database
     if request.method == 'GET':
-        print "Hit /api/blue_button_location"
+        print "Hit /api/escort_location"
         cur.execute("""SELECT * FROM tracking_escort""")
         result = {"result": cur.fetchall()}
         return jsonify(result)
@@ -68,10 +68,13 @@ def escort_location():
     # Add location into the database
     if request.method == 'POST':
         f = request.form
-        insert_stmt = "INSERT INTO tracking_escort (caseID, UUID, longitude, latitude, date, resolved) " \
+        insert_stmt = "INSERT INTO tracking_escort (caseID, deviceID, longitude, latitude, date, resolved) " \
                       "VALUES (?, ?, ?, ?, ?, ?)"
-        form_values = (f["requestID"], f["caseID"], f["longitude"],
+        print f["caseID"]
+        print f["deviceID"]
+        form_values = (f["caseID"], f["deviceID"], f["longitude"],
                        f["latitude"], f["date"], f["resolved"])
+
         with con:
             cur.execute(insert_stmt, form_values)
             con.commit()
