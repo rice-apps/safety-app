@@ -10,31 +10,49 @@ import Foundation
 import CoreLocation
 import UIKit
 
-class EmergencyViewController: UIViewController, CLLocationManagerDelegate {
+
+class EmergencyViewController: UIViewController {
     
     @IBOutlet weak var emergency: UIButton!
     @IBOutlet weak var cancel: UIButton!
-    let locationManager = CLLocationManager()
+    
     let RICE_X = 29.719565
     let RICE_Y = -95.402233
     let RICE_RADIUS = 1000
     var allowActions = false
     var serveEmergencyData = false
     
+    let locationService = LocationService.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // request location access
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
+
         
-        if CLLocationManager.locationServicesEnabled() {
-            print("location enabled")
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+        locationService.startUpdatingLocation()
+        
+        if checkRiceRadius((locationService.currentLocation?.coordinate)!) {
+            allowActions = true
         }
+        
+        if serveEmergencyData {
+            
+        }
+        
+        // request location access
+//        let locationService = LocationService.init()
+//        let locationManager = locationService.locationManager!
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
+        
+//        if CLLocationManager.locationServicesEnabled() {
+//            print("location enabled")
+//            locationService.startUpdatingLocation()
+//        }
+        
+
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,25 +60,25 @@ class EmergencyViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    // LOCATION MANAGER
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let current = locations.last?.coordinate
-        
-        if checkRiceRadius(current!) {
-            // do things if at Rice.
-            allowActions = true
-        }
-        
-        if serveEmergencyData {
-            updateLocationToServer(locations.last!)
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
-    {
-        print(error)
-    }
+//    // LOCATION MANAGER
+//    
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let current = locations.last?.coordinate
+//        
+//        if checkRiceRadius(current!) {
+//            // do things if at Rice.
+//            allowActions = true
+//        }
+//        
+//        if serveEmergencyData {
+//            updateLocationToServer(locations.last!)
+//        }
+//    }
+//    
+//    func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
+//    {
+//        print(error)
+//    }
     
     // UI FUNCTIONS
     
