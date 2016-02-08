@@ -20,7 +20,6 @@ class EmergencyViewController: UIViewController {
     let RICE_Y = -95.402233
     let RICE_RADIUS = 1000
     var allowActions = false
-    var serveEmergencyData = false
     
     let locationService = LocationService.sharedInstance
     
@@ -36,49 +35,12 @@ class EmergencyViewController: UIViewController {
             allowActions = true
         }
         
-        if serveEmergencyData {
-            
-        }
-        
-        // request location access
-//        let locationService = LocationService.init()
-//        let locationManager = locationService.locationManager!
-//        locationManager.requestAlwaysAuthorization()
-//        locationManager.requestWhenInUseAuthorization()
-        
-//        if CLLocationManager.locationServicesEnabled() {
-//            print("location enabled")
-//            locationService.startUpdatingLocation()
-//        }
-        
-
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    // LOCATION MANAGER
-//    
-//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let current = locations.last?.coordinate
-//        
-//        if checkRiceRadius(current!) {
-//            // do things if at Rice.
-//            allowActions = true
-//        }
-//        
-//        if serveEmergencyData {
-//            updateLocationToServer(locations.last!)
-//        }
-//    }
-//    
-//    func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
-//    {
-//        print(error)
-//    }
     
     // UI FUNCTIONS
     
@@ -88,7 +50,7 @@ class EmergencyViewController: UIViewController {
     */
     @IBAction func activateEmergency(sender: AnyObject) {
         if allowActions {
-            serveEmergencyData = true
+            updateLocationToServer(locationService.currentLocation!)
         } else {
             print("wrong place bud")
         }
