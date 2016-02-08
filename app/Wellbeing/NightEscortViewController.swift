@@ -14,6 +14,9 @@ class NightEscortViewController: UIViewController {
 
     @IBOutlet weak var trackingMap: MKMapView!
     @IBOutlet weak var logButton: UIBarButtonItem!
+    
+    let locationService = LocationService.sharedInstance
+    
     var loggedIn: Bool {
         get {
             return !trackingMap.hidden
@@ -27,7 +30,7 @@ class NightEscortViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TODO: center on current location
+        centerMapOnLocation(locationService.currentLocation!)
         loadBusJSON()
     }
 
@@ -38,6 +41,13 @@ class NightEscortViewController: UIViewController {
             promptLogin()
         }
     }
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
+        trackingMap.setRegion(coordinateRegion, animated: true)
+    }
+    
     
     func loadBusJSON() {
         do {
