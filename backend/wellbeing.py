@@ -45,10 +45,12 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
+
 # return a dictionary of numbers and information about wellbeing resources
 @app.route("/api/numbers")
 def get_numbers():
     location_get("important_numbers")
+
 
 @app.route("/api/escort_location", methods=['POST', 'GET', 'DELETE'])
 def escort_location():
@@ -81,6 +83,7 @@ def blue_button_location():
     if request.method == 'DELETE':
         location_delete("tracking_blue_button")
 
+
 @app.route("/api/anon_reporting", methods=['POST', 'GET'])
 def anon_reporting():
     print "hit /api/anon_reporting"
@@ -107,10 +110,22 @@ def anon_reporting():
         result = {"status": 200}
         return jsonify(result)
 
+
 @app.route('/after_login', methods=['GET'])
 def after_login():
     net_id = session.get(app.config['CAS_USERNAME_SESSION_KEY'], None)
     return net_id
+
+
+@app.route('/is_authorized', methods=['POST'])
+def is_authorized():
+    f = request.form
+    if f["password"] == config.RUPD_PASSWORD:
+        result = {"authorized": 1}
+    else:
+        result = {"authorized": 0}
+    return jsonify(result)
+
 
 # return information from one of the location tables
 def location_get(table_name):
@@ -118,6 +133,7 @@ def location_get(table_name):
     cur.execute(select_stmt)
     result = {"result": cur.fetchall()}
     return jsonify(result)
+
 
 # post information to one of the location tables
 def location_post(table_name):
@@ -133,6 +149,7 @@ def location_post(table_name):
         con.commit()
         return jsonify({"status": 200})
 
+
 # delete information from one of the location tables
 def location_delete(table_name):
     f = request.form
@@ -141,6 +158,7 @@ def location_delete(table_name):
         cur.execute("DELETE FROM " + table_name + " WHERE caseID=?;""", (f["caseID"], ))
         con.commit()
         return jsonify({"status": 200})
+
 
 # TODO: Format the message into a more presentable format
 def format_email(message):
