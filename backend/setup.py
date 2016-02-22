@@ -1,15 +1,10 @@
 import sqlite3 as lite
 import json
-import os
 from wellbeing import app
 
 
 def make_dicts(cursor, row):
     return dict((cursor.description[idx][0], value) for idx, value in enumerate(row))
-
-#remove the database if it exists
-if os.path.exists("wellbeing.db"):
-    os.remove("wellbeing.db")
 
 #create connection to database and its cursor
 con = lite.connect("wellbeing.db", check_same_thread=False)
@@ -22,7 +17,11 @@ def init_db():
     with con:
         with app.open_resource('numbers.sql', mode='r') as f:
             cur.executescript(f.read())
-        with app.open_resource('tracking.sql', mode='r') as f:
+        with app.open_resource('tracking_blue_button.sql', mode='r') as f:
+            cur.executescript(f.read())
+        with app.open_resource('tracking_escort.sql', mode='r') as f:
+            cur.executescript(f.read())
+        with app.open_resource('anon_reporting.sql', mode='r') as f:
             cur.executescript(f.read())
         insert_number()
         con.commit()
