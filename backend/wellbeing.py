@@ -1,5 +1,6 @@
 import sqlite3 as lite
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify
+import os
+from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify, send_from_directory
 from flask_cas import CAS
 from flask_mail import Mail
 from flask_mail import Message
@@ -14,7 +15,7 @@ app.config.setdefault('CAS_USERNAME_SESSION_KEY', 'CAS_USERNAME')
 CAS(app)
 
 # Email setup
-app.config['MAIL_SERVER']='smtp.zoho.com'
+app.config['MAIL_SERVER'] = 'smtp.zoho.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = config.MAIL_USERNAME
 app.config['MAIL_PASSWORD'] = config.MAIL_PASSWORD
@@ -28,9 +29,11 @@ mail = Mail(app)
 def make_dicts(cursor, row):
     return dict((cursor.description[idx][0], value) for idx, value in enumerate(row))
 
+
 con = lite.connect("wellbeing.db", check_same_thread=False)
 con.row_factory = make_dicts
 cur = con.cursor()
+
 
 # get the database
 def get_db():
@@ -77,11 +80,30 @@ def blue_button_location():
 
     # Add location into the database
     if request.method == 'POST':
+        # Push location data to RUPD tracking website
+        f = request.form
+        longitude = f["longitude"]
+        latitude = f["latitude"]
         return location_post("tracking_blue_button")
 
     # Delete location according to case id
     if request.method == 'DELETE':
         location_delete("tracking_blue_button")
+
+
+@app.route("/test_push", methods=['POST', 'GET'])
+def test_push():
+    if request.method == 'GET':
+        print ("hit /test_push with get")
+        return render_template("rupd_portal.html")
+    if request.method == 'POST':
+        print ("hit /test_push with POST")
+        f = request.form
+        longitude = f["longitude"]
+        latitude = f["latitude"]
+        print ("lat: " + latitude, ", long: " + longitude)
+        return jsonify({"lat": latitude, "long": longitude})
+
 
 
 @app.route("/api/anon_reporting", methods=['POST', 'GET'])
@@ -99,7 +121,7 @@ def anon_reporting():
         # Send an email report to RUPD
         # TODO: switch the recipient email to config.RUPD_EMAIL
         msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['jx13@rice.edu'])
-        msg.body = format_email(f["description"])   # TODO: write the actual email message
+        msg.body = format_email(f["description"])  # TODO: write the actual email message
         mail.send(msg)
         print "mail sent"
 
@@ -139,7 +161,7 @@ def location_get(table_name):
 def location_post(table_name):
     f = request.form
     insert_stmt = "INSERT INTO " + table_name + "(caseID, deviceID, longitude, latitude, date, resolved) " \
-                   "VALUES (?, ?, ?, ?, ?, ?)"
+                                                "VALUES (?, ?, ?, ?, ?, ?)"
     print f["caseID"]
     print f["deviceID"]
     form_values = (f["caseID"], f["deviceID"], f["longitude"],
@@ -155,7 +177,7 @@ def location_delete(table_name):
     f = request.form
     with con:
         print f
-        cur.execute("DELETE FROM " + table_name + " WHERE caseID=?;""", (f["caseID"], ))
+        cur.execute("DELETE FROM " + table_name + " WHERE caseID=?;""", (f["caseID"],))
         con.commit()
         return jsonify({"status": 200})
 
@@ -163,6 +185,7 @@ def location_delete(table_name):
 # TODO: Format the message into a more presentable format
 def format_email(message):
     return message
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)

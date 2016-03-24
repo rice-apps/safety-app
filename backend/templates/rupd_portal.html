@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rice Blue Button</title>
+    <style>
+        #map {
+            width: 500px;
+            height: 400px;
+            background-color: #CCC;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Rice University Police Department Web Portal</h1>
+
+<div id="map"></div>
+
+Form to test server push <br>
+Long: <input type="text" id="longitude"> <br>
+Lat: <input type="text" id="latitude"> <br>
+<button id="button">Click Me</button>
+
+<p>Testing Server Push:</p> <br>
+<span id="pushDisplay"></span>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+<script>
+    $("button").click(function () {
+        $.post("test_push",
+                {
+                    latitude: $("#latitude").val(),
+                    longitude: $("#longitude").val()
+                },
+                function (data, status) {
+                    // Do nothing
+                });
+    });
+
+    // Functionality for displaying map
+    function initMap() {
+        var mapDiv = document.getElementById('map');
+        var map = new google.maps.Map(mapDiv, {
+            center: {lat: 29.717860, lng: -95.403333},
+            zoom: 15
+        });
+    }
+
+    // Functionality for displaying issues on map via server push
+    function push_location_endpoint() {
+        var source = new EventSource("/api/test_push");
+        var out = document.getElementById('pushDisplay');
+        source.onmessage = function (e) {
+            // XSS in chat is fun
+            out.innerHTML = e.data + '\\n' + out.innerHTML;
+        };
+    }
+</script>
+</body>
+</html>
