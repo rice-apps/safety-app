@@ -80,10 +80,6 @@ def blue_button_location():
 
     # Add location into the database
     if request.method == 'POST':
-        # Push location data to RUPD tracking website
-        f = request.form
-        longitude = f["longitude"]
-        latitude = f["latitude"]
         return location_post("tracking_blue_button")
 
     # Delete location according to case id

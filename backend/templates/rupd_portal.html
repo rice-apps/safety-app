@@ -34,33 +34,43 @@ Lat: <input type="text" id="latitude"> <br>
 <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
 <script>
     $("button").click(function () {
-        $.post("test_push",
-                {
-                    latitude: $("#latitude").val(),
-                    longitude: $("#longitude").val()
-                },
-                function (data, status) {
-                    // Do nothing
-                });
+        getAndDisplayIssues();
     });
 
     // Functionality for displaying map
+    var gmap;
     function initMap() {
         var mapDiv = document.getElementById('map');
-        var map = new google.maps.Map(mapDiv, {
+        gmap = new google.maps.Map(mapDiv, {
             center: {lat: 29.717860, lng: -95.403333},
             zoom: 15
         });
+        getAndDisplayIssues();
     }
 
-    // Functionality for displaying issues on map via server push
-    function push_location_endpoint() {
-        var source = new EventSource("/api/test_push");
-        var out = document.getElementById('pushDisplay');
-        source.onmessage = function (e) {
-            // XSS in chat is fun
-            out.innerHTML = e.data + '\\n' + out.innerHTML;
-        };
+    // Interval for querying the backend
+    var intervalCounter = setInterval(getAndDisplayIssues, 60000);
+
+    // Functionality for querying backend for issues, and displaying them on map
+    function getAndDisplayIssues() {
+        var marker;
+        $.ajax({
+            url: 'http://localhost:5000/api/blue_button_location',
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                // Display the issues on map
+                console.log(JSON.stringify(data));
+                $.each(data.result, function (index, val) {
+                    console.log("latitude: " + val.latitude + ', longitude: ' + val.longitude);
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(val.latitude, val.longitude),
+                        map: gmap,
+                        title: 'Case ID: '
+                    });
+                });
+            }
+        });
     }
 </script>
 </body>
