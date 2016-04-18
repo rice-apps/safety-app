@@ -16,18 +16,6 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     
     static let sharedInstance = LocationService()
     
-//    class var sharedInstance: LocationService {
-//        struct Static {
-//            static var onceToken: dispatch_once_t = 0
-//            static var instance: LocationService? = nil
-//        }
-//        dispatch_once(&Static.onceToken) {
-//            Static.instance = LocationService()
-//        }
-//        
-//        return Static.instance!
-//    }
-    
     var locationManager: CLLocationManager?
     var currentLocation: CLLocation?
     
@@ -53,10 +41,11 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
+        let location = locations.last!
         
-        self.currentLocation = location!
+        self.currentLocation = location
         
+        print("Latitude: \(location.coordinate.latitude), Longitude: \(location.coordinate.longitude)")
     }
     
     

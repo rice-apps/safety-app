@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -41,7 +41,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Emergency" image="first" id="XIv-uD-2TZ"/>
+                    <tabBarItem key="tabBarItem" title="Emergency" image="Emergency Icon" id="XIv-uD-2TZ"/>
                     <connections>
                         <outlet property="cancel" destination="TeS-US-mAa" id="mdg-Yt-7Lq"/>
                         <outlet property="emergency" destination="5nV-sF-aGl" id="9YD-QY-YSt"/>
@@ -72,7 +72,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are not logged in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6d-Wk-aHH">
                                 <rect key="frame" x="79" y="273" width="162" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vg4-C1-0Gb">
@@ -122,7 +122,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5d-lO-Mo2">
                                 <rect key="frame" x="18" y="78" width="59" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tYx-QW-PrI">
@@ -140,13 +140,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sex:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CX-Gc-pvI">
                                 <rect key="frame" x="160" y="78" width="33" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5v-KU-VFU">
-                                <rect key="frame" x="18" y="148" width="43" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tLL-kz-O9h">
@@ -155,27 +149,21 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alcohol Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxR-Ke-Zpi">
-                                <rect key="frame" x="18" y="254" width="104" height="21"/>
+                                <rect key="frame" x="13" y="261" width="104" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OkZ-35-fKe">
-                                <rect key="frame" x="18" y="283" width="190" height="29"/>
+                                <rect key="frame" x="13" y="290" width="190" height="29"/>
                                 <segments>
                                     <segment title="Beer"/>
                                     <segment title="Soft"/>
                                     <segment title="Liquor"/>
                                 </segments>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shots Taken:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gol-fB-v6o">
-                                <rect key="frame" x="18" y="325" width="99" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4pU-tC-kH4">
-                                <rect key="frame" x="18" y="354" width="89" height="30"/>
+                                <rect key="frame" x="13" y="361" width="89" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -184,53 +172,82 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Clear"/>
                                 <connections>
-                                    <action selector="clear:" destination="0Sj-vI-gIL" eventType="touchUpInside" id="UFL-lx-BMn"/>
+                                    <action selector="clear:" destination="0Sj-vI-gIL" eventType="touchUpInside" id="MS5-Dc-3zo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNS-aH-C8m">
-                                <rect key="frame" x="144" y="354" width="64" height="30"/>
-                                <state key="normal" title="Add Shot"/>
+                                <rect key="frame" x="13" y="211" width="81" height="30"/>
+                                <state key="normal" title="Update Info"/>
                                 <connections>
-                                    <action selector="addShot:" destination="0Sj-vI-gIL" eventType="touchUpInside" id="e4J-07-aQQ"/>
+                                    <action selector="updateInfo:" destination="0Sj-vI-gIL" eventType="touchUpInside" id="2sK-74-do9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekJ-QX-pPg">
-                                <rect key="frame" x="18" y="216" width="51" height="30"/>
-                                <state key="normal" title="Update"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gf6-3W-zon">
+                                <rect key="frame" x="117" y="360" width="86" height="30"/>
+                                <state key="normal" title="Add Drink(s)"/>
                                 <connections>
-                                    <action selector="updateSelf:" destination="0Sj-vI-gIL" eventType="touchUpInside" id="C1d-JF-B86"/>
+                                    <action selector="addDrink:" destination="0Sj-vI-gIL" eventType="touchUpInside" id="3qm-P6-HOz"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3C-yM-QMX">
-                                <rect key="frame" x="20" y="419" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TBD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3C-yM-QMX">
+                                <rect key="frame" x="236" y="433" width="64" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksR-xn-Sfg">
-                                <rect key="frame" x="20" y="448" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BAC:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peV-8W-oKy">
+                                <rect key="frame" x="184" y="433" width="38" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMe-8b-oqO">
-                                <rect key="frame" x="20" y="477" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Drinks / Shots Taken:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gol-fB-v6o">
+                                <rect key="frame" x="13" y="332" width="162" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="* Disclaimer: This is an estimate, as BAC can vary from person to person." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84z-nK-2YO">
+                                <rect key="frame" x="15" y="471" width="293" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" No major decisions should be made based off of this calculation. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWQ-Q6-eSZ">
+                                <rect key="frame" x="20" y="490" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Since Last Drink (hours):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5v-KU-VFU">
+                                <rect key="frame" x="15" y="145" width="230" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFI-m5-7i3">
+                                <rect key="frame" x="222" y="365" width="43" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weh-2V-yVx">
+                                <rect key="frame" x="265" y="365" width="43" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="BAC" image="first" id="Xzt-Ab-gdz"/>
+                    <tabBarItem key="tabBarItem" title="BAC" image="BAC Icon" id="Xzt-Ab-gdz"/>
                     <connections>
                         <outlet property="alcType" destination="OkZ-35-fKe" id="LZ0-ke-ihB"/>
                         <outlet property="bac" destination="G3C-yM-QMX" id="W0W-BK-Qwe"/>
-                        <outlet property="hDrive" destination="ksR-xn-Sfg" id="qOL-Qm-UP6"/>
-                        <outlet property="hSober" destination="bMe-8b-oqO" id="tsi-T9-lDx"/>
                         <outlet property="sex" destination="1vM-SY-MZ9" id="E43-lM-QmZ"/>
                         <outlet property="shotsTaken" destination="4pU-tC-kH4" id="bRe-rR-10m"/>
                         <outlet property="time" destination="tLL-kz-O9h" id="5a5-Av-KVJ"/>
+                        <outlet property="totalDrinks" destination="weh-2V-yVx" id="7Ik-i2-zn8"/>
                         <outlet property="weight" destination="tYx-QW-PrI" id="vmK-Bb-LPl"/>
                     </connections>
                 </viewController>
@@ -272,7 +289,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Reporting" image="first" id="Bks-Mx-6R2"/>
+                    <tabBarItem key="tabBarItem" title="Reporting" image="Reporting Icon" id="Bks-Mx-6R2"/>
                     <connections>
                         <outlet property="reportTextView" destination="fQb-Da-SRW" id="par-C9-MbQ"/>
                         <outlet property="submitReportBtn" destination="LUc-tQ-L75" id="Yhq-xb-ujd"/>
@@ -327,7 +344,7 @@
                             <outlet property="delegate" destination="0Zx-Es-n1X" id="B6Z-6H-YTS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Numbers" image="first" id="pdp-nC-FF7"/>
+                    <tabBarItem key="tabBarItem" title="Numbers" image="Numbers Icon" id="pdp-nC-FF7"/>
                     <navigationItem key="navigationItem" title="Important Numbers" id="5d5-SW-0dv">
                         <barButtonItem key="backBarButtonItem" title="Back" id="fzg-x4-apI"/>
                     </navigationItem>
@@ -406,7 +423,7 @@
         <scene sceneID="hDj-Fv-WQi">
             <objects>
                 <navigationController title="Important Numbers Nav" id="cZu-Dk-YqV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Numbers" image="first" id="Gmc-fj-UQp"/>
+                    <tabBarItem key="tabBarItem" title="Numbers" image="Numbers Icon" id="Gmc-fj-UQp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CIu-aB-vWR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -434,11 +451,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="0Sj-vI-gIL" kind="relationship" relationship="viewControllers" id="ddJ-LA-deZ"/>
                         <segue destination="T2c-wA-sV7" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="cZu-Dk-YqV" kind="relationship" relationship="viewControllers" id="IQn-sB-Hq8"/>
                         <segue destination="k4j-Xz-aUq" kind="relationship" relationship="viewControllers" id="3qI-5q-gHV"/>
                         <segue destination="9Ey-AG-jrR" kind="relationship" relationship="viewControllers" id="uHE-Of-LRv"/>
-                        <segue destination="0Sj-vI-gIL" kind="relationship" relationship="viewControllers" id="ddJ-LA-deZ"/>
+                        <segue destination="cZu-Dk-YqV" kind="relationship" relationship="viewControllers" id="IQn-sB-Hq8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -449,7 +466,7 @@
         <scene sceneID="cdR-2n-kEO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T2c-wA-sV7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Night Escort" image="first" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Night Escort" image="Night Escort Icon" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="A3V-mE-Jgm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -466,6 +483,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="BAC Icon" width="20" height="23"/>
+        <image name="Emergency Icon" width="25" height="24"/>
+        <image name="Night Escort Icon" width="26" height="25"/>
+        <image name="Numbers Icon" width="25" height="25"/>
+        <image name="Reporting Icon" width="25" height="22"/>
     </resources>
 </document>

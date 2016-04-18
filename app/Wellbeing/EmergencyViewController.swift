@@ -27,8 +27,6 @@ class EmergencyViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-
-        
         locationService.startUpdatingLocation()
         
         if checkRiceRadius((locationService.currentLocation?.coordinate)!) {
@@ -54,10 +52,14 @@ class EmergencyViewController: UIViewController {
         } else {
             print("wrong place bud")
         }
+        
+        // Call RUPD
+        let url : NSURL = NSURL(string: "telprompt:" + "7133486000")!
+        UIApplication.sharedApplication().openURL(url)
+        print("Calling RUPD")
     }
     
     @IBAction func cancelEmergency(sender: AnyObject) {
-        serveEmergencyData = false
         print("data serve halted")
     }
     

@@ -16,12 +16,20 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var time: UITextField?
     @IBOutlet weak var alcType: UISegmentedControl?
     @IBOutlet weak var shotsTaken: UITextField?
-    
     @IBOutlet weak var bac: UILabel?
-    @IBOutlet weak var hDrive: UILabel?
-    @IBOutlet weak var hSober: UILabel?
+    @IBOutlet weak var totalDrinks: UILabel?
+    
+    
+    // Wedmark formula variables
     var totalAlcohol: Double = 0.0
     var bodyWater: Double?
+    var waterConstant: Double?
+    var metabolism: Double?
+    var numDrinks: Double = 0.0
+    // formula constants
+    let LB_TO_KG = 0.453592             // conversion factor pounds (LB) to grams (g)
+    let SCALE_FACTOR = 1.2              // scale factor given by Swedish National Institue of Public Health
+    let BLOOD_WATER_CONSTANT = 0.806    // constant for body water in blood
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,78 +43,104 @@ class CalculatorViewController: UIViewController {
     
     @IBAction func clear(sender: UIButton){
         totalAlcohol = 0;
+        numDrinks = 0.0;
+        totalDrinks?.text = String(format: "%.1f", numDrinks);
         self.updateBAC();
-    }
-    
-    @IBAction func updateSelf(sender: UIButton){
-        //Get Inputs
-        let weightKg = Double(self.weight!.text!)! * 0.453592;
-        let percentWater = Double(self.sex?.selectedSegmentIndex == 0 ? 0.58 : 0.49);
-        bodyWater = Double(weightKg * percentWater * 1000);
-        
-        self.updateBAC();
-        
-    }
-    
-    @IBAction func addShot(sender: UIButton){
-        //Source: http://celtickane.com/projects/blood-alcohol-content-bac-calculator/
-        //Open console and type "CalcBAC"
-        
-        //Update alcohol info
-        let alcType = (self.alcType?.selectedSegmentIndex)!;
-        var alcPercent = 0.0;
-        var alcAmount = 0.0;
-        switch(alcType){
-        case 0 : //beer
-            alcPercent = 4.5;
-            alcAmount = 12;
-            break;
-        case 1: //wine
-            alcPercent = 12.5;
-            alcAmount = 5;
-            break;
-        case 2: //liquor
-            alcPercent = 40;
-            alcAmount = 1.5;
-            break;
-        default:
-            break;
-        }
-        
-        totalAlcohol += 0.01 * alcPercent * alcAmount * Double((self.shotsTaken?.text)!)!;
-        
-        self.updateBAC();
-        
-    }
-    
-    func updateBAC(){
-        //Calculate BAC
-        let metabolism = 0.017;
-        let elapsedTime = Double((self.time?.text)!);
-        var bac = totalAlcohol/bodyWater! * 23.36 * 0.806 * 100;
-        // g/oz EtOH, water in blood
-        bac -= metabolism * elapsedTime!; //average metabolism
-        bac = bac >= 0 || bac < 1 ? bac : 0;
-        var hDrive = (bac - 0.08) / metabolism;
-        if hDrive < 0 {
-            hDrive = 0;
-        }
-        let hSober  = bac / metabolism;
-        
-        self.bac?.text = String(format: "%.3f", bac);
-        self.hDrive?.text = String(format: "%.1f", hDrive);
-        self.hSober?.text = String(format: "%.1f", hSober);
-        
     }
     
     /*
-    #pragma mark - Navigation
+    Calculate BAC as according to 2009 Paper:
+    http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2724514/
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    }
+    Widmark Formula:
+    BAC = (BW * D * 1.2) / (BM * W) - (MR * P)
+    where:
+    BW = body water in blood, 0.806
+    D = # of standard drinks
+    1.2 = scaling factor defined by Swedish National Institute of Public Health
+    BM = body mass
+    W = body water constant (0.49 for women, 0.58 for men)
+    MR = average metabolic rate (0.017 for women, 0.015 for men)
+    P = drinking period in hours
     */
+    
+    func updateBAC(){
+        
+        // Get time
+        if let elapsedTime = self.time?.text {
+            if elapsedTime.isEmpty {
+                print("BAC: No time was provided")
+            } else {
+                // Compute first half
+                var bac = BLOOD_WATER_CONSTANT * totalAlcohol * SCALE_FACTOR / bodyWater!
+                // Compute second half
+                bac -= metabolism! * Double(elapsedTime)!
+                // If invalid, display 0
+                bac = (bac >= 0 || bac < 1) ? bac : 0;
+                // Update label
+                self.bac?.text = String(format: "%.2f", bac);
+            }
+        }
+    }
+    
+    @IBAction func updateInfo(sender: UIButton) {
+        
+        // Get weight and sex
+        if let weightInLb = self.weight!.text {
+            if weightInLb.isEmpty {
+                print("BAC: No weight was provided")
+            } else {
+                let weightInGrams = Double(weightInLb)! * LB_TO_KG
+                if let sex = self.sex?.selectedSegmentIndex {
+                    // 0.58 for male, 0.49 for female
+                    waterConstant = Double(sex == 0 ? 0.58 : 0.49)
+                    // 0.015 for male, 0.017 for female
+                    metabolism = Double(sex == 0 ? 0.015 : 0.017)
+                    bodyWater = Double(weightInGrams * waterConstant! * 1.2)
+                }
+            }
+        }
+        self.updateBAC()
+    }
+
+    @IBAction func addDrink(sender: UIButton){
+        
+        // Get type of alcohol
+        if let alcType = self.alcType?.selectedSegmentIndex {
+            var alcContent = 0.0;
+            var alcAmount = 0.0;
+            
+            // Get respective data
+            switch(alcType) {
+            case 0:
+                alcContent = 0.45
+                alcAmount = 12
+                break
+            case 1:
+                alcContent = 0.125
+                alcAmount = 5
+                break
+            case 2:
+                alcContent = 0.4
+                alcAmount = 1.5
+                break
+            default:
+                break
+            }
+            
+            // Calculate total alcohol consumption
+            if let drinksTaken = self.shotsTaken?.text {
+                if drinksTaken.isEmpty {
+                    print("BAC: Number of drinks was not indicated.")
+                } else {
+                    print(drinksTaken)
+                    totalAlcohol += alcContent * alcAmount * Double(drinksTaken)!
+                    numDrinks += Double(drinksTaken)!
+                    totalDrinks?.text = String(format: "%.1f", numDrinks);
+                    self.updateBAC()
+                }
+            }
+        }
+    }
     
 }

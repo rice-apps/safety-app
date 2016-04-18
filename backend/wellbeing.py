@@ -45,6 +45,10 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
+# temporarily get json bus data
+@app.route("/api/night_escort")
+def get_escort():
+    return jsonify({"d": [{"Name": "Night Escort", "Latitude": "29.716752", "Longitude": "-95.401021"}]})
 
 # return a dictionary of numbers and information about wellbeing resources
 @app.route("/api/numbers")

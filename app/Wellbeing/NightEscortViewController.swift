@@ -26,11 +26,15 @@ class NightEscortViewController: UIViewController {
             logButton.title = newValue ? "Log Out" : "Log In"
         }
     }
-    let busUrl: NSURL = NSURL(string: "http://localhost:5000")!//http://bus.rice.edu/json/buses.php")
+    let busUrl: NSURL = NSURL(string: "http://localhost:5000/api/night_escort")!//http://bus.rice.edu/json/buses.php")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        centerMapOnLocation(locationService.currentLocation!)
+        locationService.startUpdatingLocation()
+        if locationService.currentLocation != nil {
+            centerMapOnLocation(locationService.currentLocation!)
+        }
+        
         loadBusJSON()
     }
 
@@ -51,12 +55,15 @@ class NightEscortViewController: UIViewController {
     
     func loadBusJSON() {
         do {
+            // Timer for this
             let data = NSData(contentsOfURL: busUrl)
+            print(data)
             let busData = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)["d"]
             let escortData: NSDictionary?
             if busData?!.count > 0 && busData?![0]["Name"] as? String == "Night Escort" {
                 escortData = busData?![0] as? NSDictionary
-                print(escortData!["Latitude"]!)
+                print("Night Escort Latitude: \(escortData!["Latitude"]!)")
+                print("Night Escort Longitude: \(escortData!["Longitude"]!)")
             }
         } catch {
             print("Could not get NE bus data")

@@ -15,13 +15,13 @@ class ReportingViewController: UIViewController {
     @IBOutlet weak var reportTextView: UITextView!
     @IBOutlet weak var submitReportBtn: UIButton!
     
+    let locationService = LocationService.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         // Send message to backend
-        
-        
         
     }
     
