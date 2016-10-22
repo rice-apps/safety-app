@@ -9,6 +9,26 @@
 import Foundation
 import UIKit
 import MapKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class NightEscortViewController: UIViewController, MKMapViewDelegate {
 
@@ -17,18 +37,18 @@ class NightEscortViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var locateButton: UIButton!
     
     let PATH = "http://localhost:5000/api/escort_location"
-    let BUSURL: NSURL = NSURL(string: "http://localhost:5000/api/night_escort")!//http://bus.rice.edu/json/buses.php")
+    let BUSURL: URL = URL(string: "http://localhost:5000/api/night_escort")!//http://bus.rice.edu/json/buses.php")
     
     let locationService = LocationService.sharedInstance
     let backendHandler = BackendHandler.sharedInstance
 
     var loggedIn: Bool {
         get {
-            return locateButton.enabled
+            return locateButton.isEnabled
         } set {
             let loginTitle = newValue ? "Log Out" : "Log In"
-            logButton.setTitle(loginTitle, forState: .Normal)
-            locateButton.enabled = !newValue
+            logButton.setTitle(loginTitle, for: UIControlState())
+            locateButton.isEnabled = !newValue
         }
     }
 
@@ -37,7 +57,7 @@ class NightEscortViewController: UIViewController, MKMapViewDelegate {
         
         // setup
         trackingMap.delegate = self
-        trackingMap.hidden = false;
+        trackingMap.isHidden = false;
         
         // initiate location services
         locationService.startUpdatingLocation()
@@ -54,7 +74,7 @@ class NightEscortViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    @IBAction func showOrHideLocation(sender: AnyObject) {
+    @IBAction func showOrHideLocation(_ sender: AnyObject) {
         // post user location to server
         backendHandler.postLocationToServer(locationService.currentLocation!, path: PATH)
         // display user on map
@@ -62,7 +82,7 @@ class NightEscortViewController: UIViewController, MKMapViewDelegate {
     
     
     
-    @IBAction func loginOrLogout(sender: AnyObject) {
+    @IBAction func loginOrLogout(_ sender: AnyObject) {
         if loggedIn {
             loggedIn = false
         } else {
@@ -70,7 +90,7 @@ class NightEscortViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func centerMapOnLocation(location: CLLocation) {
+    func centerMapOnLocation(_ location: CLLocation) {
         let regionRadius: CLLocationDistance = 1000
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
         trackingMap.setRegion(coordinateRegion, animated: true)
@@ -80,9 +100,9 @@ class NightEscortViewController: UIViewController, MKMapViewDelegate {
     func loadBusJSON() {
         do {
             // Timer for this
-            let data = NSData(contentsOfURL: BUSURL)
+            let data = try? Data(contentsOf: BUSURL)
             print(data)
-            let busData = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)["d"]
+            let busData = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)["d"]
             let escortData: NSDictionary?
             if busData?!.count > 0 && busData?![0]["Name"] as? String == "Night Escort" {
                 escortData = busData?![0] as? NSDictionary
@@ -95,27 +115,27 @@ class NightEscortViewController: UIViewController, MKMapViewDelegate {
     }
     
     func promptLogin() {
-        let alert = UIAlertController(title: "Login", message: "Please login with the provided password", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Login", message: "Please login with the provided password", preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: "Login", style: .Default) {
+        alert.addAction(UIAlertAction(title: "Login", style: .default) {
             (action: UIAlertAction) -> Void in
             
             if let tf = alert.textFields?.first {
                 if tf.text == "jeffrey" {
                     self.loggedIn = true
                 } else {
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             })
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel) {
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {
             (action: UIAlertAction) -> Void in
             // do nothing
             })
         
-        alert.addTextFieldWithConfigurationHandler { (textField) in textField.placeholder = "Password" }
+        alert.addTextField { (textField) in textField.placeholder = "Password" }
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 }

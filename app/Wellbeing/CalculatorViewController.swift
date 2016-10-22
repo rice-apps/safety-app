@@ -41,7 +41,7 @@ class CalculatorViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func clear(sender: UIButton){
+    @IBAction func clear(_ sender: UIButton){
         totalAlcohol = 0;
         numDrinks = 0.0;
         totalDrinks?.text = String(format: "%.1f", numDrinks);
@@ -83,7 +83,7 @@ class CalculatorViewController: UIViewController {
         }
     }
     
-    @IBAction func updateInfo(sender: UIButton) {
+    @IBAction func updateInfo(_ sender: UIButton) {
         
         // Get weight and sex
         if let weightInLb = self.weight!.text {
@@ -103,7 +103,7 @@ class CalculatorViewController: UIViewController {
         self.updateBAC()
     }
 
-    @IBAction func addDrink(sender: UIButton){
+    @IBAction func addDrink(_ sender: UIButton){
         
         // Get type of alcohol
         if let alcType = self.alcType?.selectedSegmentIndex {

@@ -25,17 +25,17 @@ class ReportingViewController: UIViewController {
         
     }
     
-    func postRequest(content: String) {
-        let postString = "description=" + content.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
+    func postRequest(_ content: String) {
+        let postString = "description=" + content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed())!
         // actual path: http://riceapps.org/api/anon_reporting
         let path: String = "http://0.0.0.0:5000/api/anon_reporting"
-        let url: NSURL = NSURL(string: path)!
-        let cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
-        let request = NSMutableURLRequest(URL: url, cachePolicy: cachePolicy, timeoutInterval: 2.0)
-        request.HTTPMethod = "POST"
-        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
+        let url: URL = URL(string: path)!
+        let cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData
+        let request = NSMutableURLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: 2.0)
+        request.httpMethod = "POST"
+        request.httpBody = postString.data(using: String.Encoding.utf8);
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+        let task = URLSession.shared.dataTask(with: request, completionHandler: {
             
             data, response, error in
             
@@ -44,11 +44,11 @@ class ReportingViewController: UIViewController {
                 return
             }
             
-            let responseString = NSString(data: data!, encoding:NSUTF8StringEncoding)
+            let responseString = NSString(data: data!, encoding:String.Encoding.utf8)
             print("response =\(responseString!)")
             
             do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [.MutableContainers, .AllowFragments]) as? NSDictionary
+                let json = try JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .allowFragments]) as? NSDictionary
                 if let parseJSON = json {
                     let result = parseJSON["status"] as? String
                     print("status =\(result)")
@@ -57,14 +57,14 @@ class ReportingViewController: UIViewController {
             } catch {
                 print("json error: \(error)")
             }
-        }
+        }) 
         
         task.resume()
         
         
     }
     
-    @IBAction func submitReport(sender: AnyObject) {
+    @IBAction func submitReport(_ sender: AnyObject) {
         postRequest(reportTextView.text)
         print("report submitted")
     }

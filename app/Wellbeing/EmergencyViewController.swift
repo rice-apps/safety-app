@@ -48,7 +48,7 @@ class EmergencyViewController: UIViewController {
         Activates location on
     
     */
-    @IBAction func activateEmergency(sender: AnyObject) {
+    @IBAction func activateEmergency(_ sender: AnyObject) {
         if allowActions {
             backendHandler.postLocationToServer(locationService.currentLocation!, path: PATH)
 //            updateLocationToServer(locationService.currentLocation!)
@@ -57,12 +57,12 @@ class EmergencyViewController: UIViewController {
         }
         
         // Call RUPD
-        let url : NSURL = NSURL(string: "telprompt:" + "7133486000")!
-        UIApplication.sharedApplication().openURL(url)
+        let url : URL = URL(string: "telprompt:" + "7133486000")!
+        UIApplication.shared.openURL(url)
         print("Calling RUPD")
     }
     
-    @IBAction func cancelEmergency(sender: AnyObject) {
+    @IBAction func cancelEmergency(_ sender: AnyObject) {
         print("data serve halted")
     }
     
@@ -132,12 +132,12 @@ class EmergencyViewController: UIViewController {
         Arguments: CLLocationCoordinate2D
         Returns: Bool
     */
-    func checkRiceRadius(current: CLLocationCoordinate2D) -> Bool {
+    func checkRiceRadius(_ current: CLLocationCoordinate2D) -> Bool {
         let radius = CLLocationDistance.init(RICE_RADIUS)
         let coordinates = CLLocationCoordinate2DMake(RICE_X, RICE_Y)
         let riceRegion = CLCircularRegion(center: coordinates, radius: radius, identifier: "Rice")
         
-        if riceRegion.containsCoordinate(current) {
+        if riceRegion.contains(current) {
             return true
         } else {
             return false

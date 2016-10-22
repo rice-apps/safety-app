@@ -29,7 +29,7 @@ class NumbersTableViewController: UITableViewController{
         self.tableView.rowHeight = 75.0
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
@@ -43,13 +43,13 @@ class NumbersTableViewController: UITableViewController{
     
     func getRequest(){
         let path: String = "http://riceapps.org:19125/api/numbers"
-        let url: NSURL = NSURL(string: path)!
+        let url: URL = URL(string: path)!
         
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url){
+        let task = URLSession.shared.dataTask(with: url, completionHandler: {
             (data, response, error) -> Void in
             do {
                 // Load JSON Object
-                self._jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                self._jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 
                 // Store relevant entries
                 let loadedNumbers = self._jsonData["result"] as! NSArray
@@ -65,42 +65,42 @@ class NumbersTableViewController: UITableViewController{
                 // Error
             }
             
-        }
+        })
         task.resume()
         
     }
     
     // Table View
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.organizations.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(self.numberCellID, forIndexPath: indexPath) as! NumbersTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.numberCellID, for: indexPath) as! NumbersTableViewCell
         
-        cell.titleLabel.text = self.organizations[indexPath.row]
-        cell.detailLabel.text = self.numbers[indexPath.row]
+        cell.titleLabel.text = self.organizations[(indexPath as NSIndexPath).row]
+        cell.detailLabel.text = self.numbers[(indexPath as NSIndexPath).row]
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! NumbersTableViewCell
+        let cell = self.tableView.cellForRow(at: indexPath) as! NumbersTableViewCell
         self.selectedTitle = cell.detailLabel.text!
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         let segueIdentifier = "segueNumbersDetail"
         
         if segue.identifier == segueIdentifier {
             //Checking identifier is crucial as there might be multiple
             // segues attached to same view
-            if let destination = segue.destinationViewController as? NumbersDetailViewController {
-                let tableIndex = tableView.indexPathForSelectedRow!.row
+            if let destination = segue.destination as? NumbersDetailViewController {
+                let tableIndex = (tableView.indexPathForSelectedRow! as NSIndexPath).row
                 destination.titleValue = self.organizations[tableIndex]
                 destination.descriptionValue = self.descriptions[tableIndex]
                 destination.numberValue = self.numbers[tableIndex]
