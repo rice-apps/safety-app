@@ -26,7 +26,7 @@ class ReportingViewController: UIViewController {
     }
     
     func postRequest(_ content: String) {
-        let postString = "description=" + content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed())!
+        let postString = "description=" + content.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         // actual path: http://riceapps.org/api/anon_reporting
         let path: String = "http://0.0.0.0:5000/api/anon_reporting"
         let url: URL = URL(string: path)!
@@ -35,7 +35,7 @@ class ReportingViewController: UIViewController {
         request.httpMethod = "POST"
         request.httpBody = postString.data(using: String.Encoding.utf8);
         
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {
+        let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
             
             data, response, error in
             
@@ -44,7 +44,7 @@ class ReportingViewController: UIViewController {
                 return
             }
             
-            let responseString = NSString(data: data!, encoding:String.Encoding.utf8)
+            let responseString = NSString(data: data!, encoding:String.Encoding.utf8.rawValue)
             print("response =\(responseString!)")
             
             do {

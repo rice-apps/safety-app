@@ -18,7 +18,7 @@ class BackendHandler: NSObject {
     lazy var _jsonData = NSDictionary()
     
     
-    func getLocationsFromServer(_ path: String) -> [CLLocation] {
+    func getLocationsFromServer(_ path: String) {
         // Gets
         let url: URL = URL(string: path)!
         
@@ -75,7 +75,7 @@ class BackendHandler: NSObject {
         request.httpBody = postString.data(using: String.Encoding.utf8);
         
         // launch request
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {
+        let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
             data, response, error in
             
             // handle error
@@ -85,7 +85,7 @@ class BackendHandler: NSObject {
             }
             
             // get response
-            let responseString = NSString(data: data!, encoding:String.Encoding.utf8)
+            let responseString = NSString(data: data!, encoding:String.Encoding.utf8.rawValue)
             print("response =\(responseString!)")
             
             do {
@@ -106,6 +106,6 @@ class BackendHandler: NSObject {
     }
     
     func validateURLString(_ string: String) -> String {
-        return string.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed())!
+        return string.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
     }
 }

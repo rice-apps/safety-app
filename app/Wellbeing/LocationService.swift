@@ -50,7 +50,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Update Location Error : \(error.description)")
+        print("Update Location Error : \(error.localizedDescription)")
     }
     
 
