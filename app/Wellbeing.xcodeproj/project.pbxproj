@@ -21,6 +21,8 @@
 		005780071BD47B25006579EB /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005780061BD47B25006579EB /* CalculatorViewController.swift */; };
 		005780091BD47BC2006579EB /* ReportingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005780081BD47BC1006579EB /* ReportingViewController.swift */; };
 		006DBE8F1C6828B800DD2E4D /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DBE8E1C6828B800DD2E4D /* LocationService.swift */; };
+		0075136A1CC46A350083A211 /* BackendHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007513691CC46A350083A211 /* BackendHandler.swift */; };
+		0075136C1CC46EA50083A211 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0075136B1CC46EA50083A211 /* MapKit.framework */; };
 		007C199F1BDC1E1000308C43 /* NumbersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */; };
 		00889AB11CBB46F700FB6A93 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 002E26191BDDAF8900635F95 /* Images */; };
 		0099D6EE1BDE720100D0617B /* NumbersDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */; };
@@ -65,6 +67,8 @@
 		005780061BD47B25006579EB /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		005780081BD47BC1006579EB /* ReportingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportingViewController.swift; sourceTree = "<group>"; };
 		006DBE8E1C6828B800DD2E4D /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		007513691CC46A350083A211 /* BackendHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendHandler.swift; sourceTree = "<group>"; };
+		0075136B1CC46EA50083A211 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersTableViewCell.swift; sourceTree = "<group>"; };
 		0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0075136C1CC46EA50083A211 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +102,7 @@
 		00577FC81BD478DC006579EB = {
 			isa = PBXGroup;
 			children = (
+				0075136B1CC46EA50083A211 /* MapKit.framework */,
 				00577FD31BD478DC006579EB /* Wellbeing */,
 				00577FEA1BD478DC006579EB /* WellbeingTests */,
 				00577FF51BD478DC006579EB /* WellbeingUITests */,
@@ -118,12 +124,13 @@
 			isa = PBXGroup;
 			children = (
 				00577FD41BD478DC006579EB /* AppDelegate.swift */,
+				007513691CC46A350083A211 /* BackendHandler.swift */,
+				006DBE8E1C6828B800DD2E4D /* LocationService.swift */,
 				00577FD61BD478DC006579EB /* NumbersTableViewController.swift */,
 				007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */,
 				0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */,
 				00577FD81BD478DC006579EB /* NightEscortViewController.swift */,
 				005780041BD47ACD006579EB /* EmergencyViewController.swift */,
-				006DBE8E1C6828B800DD2E4D /* LocationService.swift */,
 				003CE03E1BDC1621006A13F7 /* LoginViewController.swift */,
 				00577FDA1BD478DC006579EB /* Main.storyboard */,
 				005780061BD47B25006579EB /* CalculatorViewController.swift */,
@@ -294,6 +301,7 @@
 				00577FD51BD478DC006579EB /* AppDelegate.swift in Sources */,
 				005780051BD47ACD006579EB /* EmergencyViewController.swift in Sources */,
 				0099D6EE1BDE720100D0617B /* NumbersDetailViewController.swift in Sources */,
+				0075136A1CC46A350083A211 /* BackendHandler.swift in Sources */,
 				007C199F1BDC1E1000308C43 /* NumbersTableViewCell.swift in Sources */,
 				00577FD71BD478DC006579EB /* NumbersTableViewController.swift in Sources */,
 				005780091BD47BC2006579EB /* ReportingViewController.swift in Sources */,

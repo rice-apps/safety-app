@@ -75,8 +75,23 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vg4-C1-0Gb">
-                                <rect key="frame" x="40" y="220" width="240" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvW-h4-CXN">
+                                <rect key="frame" x="206" y="464" width="70" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="logInOrOut:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="LNg-sY-YwB"/>
+                                    <action selector="loginOrLogout:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="UGH-HI-dNb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L4U-39-8O3">
+                                <rect key="frame" x="20" y="464" width="133" height="30"/>
+                                <state key="normal" title="Broadcast Location"/>
+                                <connections>
+                                    <action selector="broadcastLocation:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="fG8-1J-2cf"/>
+                                </connections>
+                            </button>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vg4-C1-0Gb">
+                                <rect key="frame" x="0.0" y="64" width="320" height="379"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -85,15 +100,10 @@
                             <constraint firstItem="yBo-FJ-0la" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="PkS-vQ-9pP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="XQM-HQ-2wz">
-                        <barButtonItem key="rightBarButtonItem" title="Log In" id="wH2-It-gLu">
-                            <connections>
-                                <action selector="logInOrOut:" destination="8rJ-Kc-sve" id="nNh-2d-m71"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="XQM-HQ-2wz"/>
                     <connections>
-                        <outlet property="logButton" destination="wH2-It-gLu" id="8Ah-VA-sfy"/>
+                        <outlet property="locateButton" destination="L4U-39-8O3" id="3By-nP-xVD"/>
+                        <outlet property="logButton" destination="jvW-h4-CXN" id="6bN-cB-rhX"/>
                         <outlet property="trackingMap" destination="vg4-C1-0Gb" id="BYc-0Z-S5H"/>
                     </connections>
                 </viewController>

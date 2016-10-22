@@ -10,35 +10,59 @@ import Foundation
 import UIKit
 import MapKit
 
-class NightEscortViewController: UIViewController {
+class NightEscortViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var trackingMap: MKMapView!
-    @IBOutlet weak var logButton: UIBarButtonItem!
+    @IBOutlet weak var logButton: UIButton!
+    @IBOutlet weak var locateButton: UIButton!
+    
+    let PATH = "http://localhost:5000/api/escort_location"
+    let BUSURL: NSURL = NSURL(string: "http://localhost:5000/api/night_escort")!//http://bus.rice.edu/json/buses.php")
     
     let locationService = LocationService.sharedInstance
-    
+    let backendHandler = BackendHandler.sharedInstance
+
     var loggedIn: Bool {
         get {
-            return !trackingMap.hidden
-        }
-        set {
-            trackingMap.hidden = !newValue
-            logButton.title = newValue ? "Log Out" : "Log In"
+            return locateButton.enabled
+        } set {
+            let loginTitle = newValue ? "Log Out" : "Log In"
+            logButton.setTitle(loginTitle, forState: .Normal)
+            locateButton.enabled = !newValue
         }
     }
-    let busUrl: NSURL = NSURL(string: "http://localhost:5000/api/night_escort")!//http://bus.rice.edu/json/buses.php")
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // setup
+        trackingMap.delegate = self
+        trackingMap.hidden = false;
+        
+        // initiate location services
         locationService.startUpdatingLocation()
+        
         if locationService.currentLocation != nil {
             centerMapOnLocation(locationService.currentLocation!)
         }
         
+        // get bus location
         loadBusJSON()
+        
+        if loggedIn {
+            // get locations provided
+        }
     }
-
-    @IBAction func logInOrOut(sender: UIBarButtonItem) {
+    
+    @IBAction func showOrHideLocation(sender: AnyObject) {
+        // post user location to server
+        backendHandler.postLocationToServer(locationService.currentLocation!, path: PATH)
+        // display user on map
+    }
+    
+    
+    
+    @IBAction func loginOrLogout(sender: AnyObject) {
         if loggedIn {
             loggedIn = false
         } else {
@@ -56,7 +80,7 @@ class NightEscortViewController: UIViewController {
     func loadBusJSON() {
         do {
             // Timer for this
-            let data = NSData(contentsOfURL: busUrl)
+            let data = NSData(contentsOfURL: BUSURL)
             print(data)
             let busData = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)["d"]
             let escortData: NSDictionary?
