@@ -54,7 +54,7 @@ class NumbersTableViewController: UITableViewController{
                 // Store relevant entries
                 let loadedNumbers = self._jsonData["result"] as! NSArray
                 print(loadedNumbers)
-                for entry in loadedNumbers{
+                for entry:AnyObject in loadedNumbers as [AnyObject]{
                     self.numbers.append(entry["number"] as! String)
                     self.organizations.append(entry["name"] as! String)
                     self.descriptions.append(entry["description"] as! String)
