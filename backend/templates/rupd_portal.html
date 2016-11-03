@@ -53,7 +53,7 @@ Lat: <input type="text" id="latitude"> <br>
 
     // Functionality for querying backend for issues, and displaying them on map
     function getAndDisplayIssues() {
-        var marker;
+        //var marker;
         $.ajax({
             url: 'http://localhost:5000/api/blue_button_location',
             type: 'get',
@@ -61,17 +61,30 @@ Lat: <input type="text" id="latitude"> <br>
             success: function (data) {
                 // Display the issues on map
                 console.log(JSON.stringify(data));
+                console.log("result length: " + data.result.length);
+                var i;
+                for (i = 0; i < data.result.length; i++) {
+                    console.log(data.result[i].requestID);
+                    drawMarker(data.result[i].latitude, data.result[i].longitude, data.result[i].caseID);
+                }
+                /*
                 $.each(data.result, function (index, val) {
-                    console.log("latitude: " + val.latitude + ', longitude: ' + val.longitude);
-                    marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(val.latitude, val.longitude),
-                        map: gmap,
-                        title: 'Case ID: '
-                    });
+                    console.log("requestID: " + val.requestID + ", latitude: " + val.latitude + ', longitude: ' + val.longitude);
+                    drawMarker(val.latitude, val.longitude, val.caseID)
                 });
+                */
             }
         });
     }
+
+    function drawMarker(lat, long, caseID) {
+        new google.maps.Marker({
+            position: new google.maps.LatLng(lat, long),
+            map: gmap,
+            title: 'Case ID: ' + caseID
+        });
+    }
+
 </script>
 </body>
 </html>

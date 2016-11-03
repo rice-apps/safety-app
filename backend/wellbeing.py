@@ -52,7 +52,7 @@ def close_db(error):
 # return a dictionary of numbers and information about wellbeing resources
 @app.route("/api/numbers")
 def get_numbers():
-    location_get("important_numbers")
+    return location_get("important_numbers")
 
 
 @app.route("/api/escort_location", methods=['POST', 'GET', 'DELETE'])
@@ -76,7 +76,8 @@ def blue_button_location():
     print "hit /api/blue_button_location"
     # Get the location in the database
     if request.method == 'GET':
-        return location_get("tracking_blue_button")
+        # return location_get("tracking_blue_button")
+        return get_blue_button_cases()
 
     # Add location into the database
     if request.method == 'POST':
@@ -107,7 +108,7 @@ def anon_reporting():
     print "hit /api/anon_reporting"
     # Get the reports from the database
     if request.method == 'GET':
-        location_get("anon_reporting")
+        return location_get("anon_reporting")
 
     # Add a report into the database
     if request.method == 'POST':
@@ -116,7 +117,7 @@ def anon_reporting():
 
         # Send an email report to RUPD
         # TODO: switch the recipient email to config.RUPD_EMAIL
-        msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['jx13@rice.edu'])
+        msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['agl5@rice.edu'])
         msg.body = format_email(f["description"])  # TODO: write the actual email message
         mail.send(msg)
         print "mail sent"
@@ -148,6 +149,15 @@ def is_authorized():
 # return information from one of the location tables
 def location_get(table_name):
     select_stmt = "SELECT * FROM " + table_name
+    cur.execute(select_stmt)
+    result = {"result": cur.fetchall()}
+    return jsonify(result)
+
+
+# Returns most recent entry for each case in Blue Button table
+def get_blue_button_cases():
+    table = "tracking_blue_button"
+    select_stmt = "SELECT t1.* from " + table + " t1 inner join (select caseID, max(date) as md from " + table + " group by caseID) t2 on t2.caseID = t1.caseID and t1.date = t2.md"
     cur.execute(select_stmt)
     result = {"result": cur.fetchall()}
     return jsonify(result)
