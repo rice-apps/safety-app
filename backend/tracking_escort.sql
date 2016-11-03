@@ -6,6 +6,6 @@ CREATE TABLE tracking_escort(
   deviceID TEXT,
   longitude REAL,
   latitude REAL,
-  date TEXT,
+  date DATETIME DEFAULT CURRENT_TIMESTAMP,
   resolved INTEGER
 );
