@@ -14,6 +14,9 @@ class BackendHandler: NSObject {
     
     static let sharedInstance = BackendHandler()
     
+    enum BackendError: Error {
+        case serverError
+    }
     
     lazy var _jsonData = NSDictionary()
     
@@ -25,6 +28,11 @@ class BackendHandler: NSObject {
         let task = URLSession.shared.dataTask(with: url, completionHandler: {
             (data, response, error) -> Void in
             do {
+                
+                if (data == nil) {
+                    throw BackendError.serverError
+                }
+                
                 // Load JSON Object
                 self._jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 

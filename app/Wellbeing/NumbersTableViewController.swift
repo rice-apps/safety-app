@@ -20,6 +20,12 @@ class NumbersTableViewController: UITableViewController{
     lazy var _jsonData = NSDictionary()
     var selectedTitle: String!
     
+    // Errors
+    
+    enum NumbersError: Error {
+        case serverError
+    }
+    
     // Generic View
     
     override func viewDidLoad() {
@@ -49,7 +55,17 @@ class NumbersTableViewController: UITableViewController{
             (data, response, error) -> Void in
             do {
                 // Load JSON Object
-                self._jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                if (data == nil) {
+                    throw NumbersError.serverError
+                }
+                
+                let json : Any? = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                
+                if (json == nil) {
+                    throw NumbersError.serverError
+                }
+                
+                self._jsonData = json as! NSDictionary
                 
                 // Store relevant entries
                 let loadedNumbers = self._jsonData["result"] as! NSArray
@@ -62,6 +78,7 @@ class NumbersTableViewController: UITableViewController{
                 self.tableView.reloadData()
                 
             } catch _ {
+                
                 // Error
             }
             
