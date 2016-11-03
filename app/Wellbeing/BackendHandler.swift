@@ -21,22 +21,22 @@ class BackendHandler: NSObject {
     lazy var _jsonData = NSDictionary()
     
     
-    func getLocationsFromServer(_ path: String) {
-        // Gets
-        let url: URL = URL(string: path)!
-        
-        let task = URLSession.shared.dataTask(with: url, completionHandler: {
-            (data, response, error) -> Void in
-            do {
-                
-                if (data == nil) {
-                    throw BackendError.serverError
-                }
-                
-                // Load JSON Object
-                self._jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-                
-                // Store relevant entries
+//    func getLocationsFromServer(_ path: String) {
+//        // Gets
+//        let url: URL = URL(string: path)!
+//        
+//        let task = URLSession.shared.dataTask(with: url, completionHandler: {
+//            (data, response, error) -> Void in
+//            do {
+//                
+//                if (data == nil) {
+//                    throw BackendError.serverError
+//                }
+//                
+//                // Load JSON Object
+//                self._jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+//                
+//                // Store relevant entries
 //                let loadedNumbers = self._jsonData["result"] as! NSArray
 //                print(loadedNumbers)
 //                for entry in loadedNumbers{
@@ -45,14 +45,14 @@ class BackendHandler: NSObject {
 //                    self.descriptions.append(entry["description"] as! String)
 //                }
 //                self.tableView.reloadData()
-                
-            } catch _ {
-                // Error
-            }
-            
-        })
-        task.resume()
-    }
+//
+//            } catch _ {
+//                // Error
+//            }
+//            
+//        })
+//        task.resume()
+//    }
     
     func postLocationToServer(_ location: CLLocation, path: String) {
         
@@ -84,21 +84,21 @@ class BackendHandler: NSObject {
         
         // launch request
         let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
-            data, response, error in
+            (data, response, error) in
             
-            // handle error
-            if error != nil {
-                print("error =\(error)")
+            // error handling
+            guard let data = data, let _ = response, error != nil else {
+                print("error: \(error)")
                 return
             }
             
             // get response
-            let responseString = NSString(data: data!, encoding:String.Encoding.utf8.rawValue)
+            let responseString = NSString(data: data, encoding:String.Encoding.utf8.rawValue)
             print("response =\(responseString!)")
             
             do {
                 // convert to json
-                let json = try JSONSerialization.jsonObject(with: data!, options: [.mutableContainers, .allowFragments]) as? NSDictionary
+                let json = try JSONSerialization.jsonObject(with: data, options: [.mutableContainers, .allowFragments]) as? NSDictionary
                 if let parseJSON = json {
                     let result = parseJSON["status"] as? String
                     print("status =\(result)")

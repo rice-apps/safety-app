@@ -48,7 +48,6 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         print("Latitude: \(location.coordinate.latitude), Longitude: \(location.coordinate.longitude)")
     }
     
-    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Update Location Error : \(error.localizedDescription)")
     }
