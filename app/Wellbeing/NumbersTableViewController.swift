@@ -20,16 +20,22 @@ class NumbersTableViewController: UITableViewController{
     lazy var _jsonData = NSDictionary()
     var selectedTitle: String!
     
+    // Errors
+    
+    enum NumbersError: Error {
+        case serverError
+    }
+    
     // Generic View
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        makeRequest()
+        getRequest()
         self.tableView.rowHeight = 75.0
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
@@ -41,20 +47,30 @@ class NumbersTableViewController: UITableViewController{
     
     // URL Request
     
-    func makeRequest(){
+    func getRequest(){
         let path: String = "http://riceapps.org:19125/api/numbers"
-        let url: NSURL = NSURL(string: path)!
+        let url: URL = URL(string: path)!
         
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url){
+        let task = URLSession.shared.dataTask(with: url, completionHandler: {
             (data, response, error) -> Void in
             do {
                 // Load JSON Object
-                self._jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                if (data == nil) {
+                    throw NumbersError.serverError
+                }
+                
+                let json : Any? = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                
+                if (json == nil) {
+                    throw NumbersError.serverError
+                }
+                
+                self._jsonData = json as! NSDictionary
                 
                 // Store relevant entries
                 let loadedNumbers = self._jsonData["result"] as! NSArray
                 print(loadedNumbers)
-                for entry in loadedNumbers{
+                for entry:AnyObject in loadedNumbers as [AnyObject]{
                     self.numbers.append(entry["number"] as! String)
                     self.organizations.append(entry["name"] as! String)
                     self.descriptions.append(entry["description"] as! String)
@@ -62,45 +78,46 @@ class NumbersTableViewController: UITableViewController{
                 self.tableView.reloadData()
                 
             } catch _ {
+                
                 // Error
             }
             
-        }
+        })
         task.resume()
         
     }
     
     // Table View
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.organizations.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(self.numberCellID, forIndexPath: indexPath) as! NumbersTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.numberCellID, for: indexPath) as! NumbersTableViewCell
         
-        cell.titleLabel.text = self.organizations[indexPath.row]
-        cell.detailLabel.text = self.numbers[indexPath.row]
+        cell.titleLabel.text = self.organizations[(indexPath as NSIndexPath).row]
+        cell.detailLabel.text = self.numbers[(indexPath as NSIndexPath).row]
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! NumbersTableViewCell
+        let cell = self.tableView.cellForRow(at: indexPath) as! NumbersTableViewCell
         self.selectedTitle = cell.detailLabel.text!
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         let segueIdentifier = "segueNumbersDetail"
         
         if segue.identifier == segueIdentifier {
             //Checking identifier is crucial as there might be multiple
             // segues attached to same view
-            if let destination = segue.destinationViewController as? NumbersDetailViewController {
-                let tableIndex = tableView.indexPathForSelectedRow!.row
+            if let destination = segue.destination as? NumbersDetailViewController {
+                let tableIndex = (tableView.indexPathForSelectedRow! as NSIndexPath).row
                 destination.titleValue = self.organizations[tableIndex]
                 destination.descriptionValue = self.descriptions[tableIndex]
                 destination.numberValue = self.numbers[tableIndex]

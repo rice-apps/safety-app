@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		002E261A1BDDAF8900635F95 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 002E26191BDDAF8900635F95 /* Images */; };
 		003CE03F1BDC1621006A13F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CE03E1BDC1621006A13F7 /* LoginViewController.swift */; };
 		003CE0431BDC1A01006A13F7 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CE0421BDC1A01006A13F7 /* LaunchScreenViewController.swift */; };
 		00577FD51BD478DC006579EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00577FD41BD478DC006579EB /* AppDelegate.swift */; };
@@ -21,8 +20,11 @@
 		005780051BD47ACD006579EB /* EmergencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005780041BD47ACD006579EB /* EmergencyViewController.swift */; };
 		005780071BD47B25006579EB /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005780061BD47B25006579EB /* CalculatorViewController.swift */; };
 		005780091BD47BC2006579EB /* ReportingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005780081BD47BC1006579EB /* ReportingViewController.swift */; };
-		007C199D1BDC1AA500308C43 /* RiceApps_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 007C199C1BDC1AA500308C43 /* RiceApps_dark.png */; };
+		006DBE8F1C6828B800DD2E4D /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DBE8E1C6828B800DD2E4D /* LocationService.swift */; };
+		0075136A1CC46A350083A211 /* BackendHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007513691CC46A350083A211 /* BackendHandler.swift */; };
+		0075136C1CC46EA50083A211 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0075136B1CC46EA50083A211 /* MapKit.framework */; };
 		007C199F1BDC1E1000308C43 /* NumbersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */; };
+		00889AB11CBB46F700FB6A93 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 002E26191BDDAF8900635F95 /* Images */; };
 		0099D6EE1BDE720100D0617B /* NumbersDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +66,9 @@
 		005780041BD47ACD006579EB /* EmergencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyViewController.swift; sourceTree = "<group>"; };
 		005780061BD47B25006579EB /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		005780081BD47BC1006579EB /* ReportingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportingViewController.swift; sourceTree = "<group>"; };
-		007C199C1BDC1AA500308C43 /* RiceApps_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RiceApps_dark.png; path = "../../../CS Club/Logos/RiceApps_dark.png"; sourceTree = "<group>"; };
+		006DBE8E1C6828B800DD2E4D /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		007513691CC46A350083A211 /* BackendHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendHandler.swift; sourceTree = "<group>"; };
+		0075136B1CC46EA50083A211 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersTableViewCell.swift; sourceTree = "<group>"; };
 		0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0075136C1CC46EA50083A211 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +102,7 @@
 		00577FC81BD478DC006579EB = {
 			isa = PBXGroup;
 			children = (
-				007C199C1BDC1AA500308C43 /* RiceApps_dark.png */,
+				0075136B1CC46EA50083A211 /* MapKit.framework */,
 				00577FD31BD478DC006579EB /* Wellbeing */,
 				00577FEA1BD478DC006579EB /* WellbeingTests */,
 				00577FF51BD478DC006579EB /* WellbeingUITests */,
@@ -119,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				00577FD41BD478DC006579EB /* AppDelegate.swift */,
+				007513691CC46A350083A211 /* BackendHandler.swift */,
+				006DBE8E1C6828B800DD2E4D /* LocationService.swift */,
 				00577FD61BD478DC006579EB /* NumbersTableViewController.swift */,
 				007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */,
 				0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */,
@@ -222,13 +229,16 @@
 				TargetAttributes = {
 					00577FD01BD478DC006579EB = {
 						CreatedOnToolsVersion = 7.0.1;
+						LastSwiftMigration = 0800;
 					};
 					00577FE61BD478DC006579EB = {
 						CreatedOnToolsVersion = 7.0.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 00577FD01BD478DC006579EB;
 					};
 					00577FF11BD478DC006579EB = {
 						CreatedOnToolsVersion = 7.0.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 00577FD01BD478DC006579EB;
 					};
 				};
@@ -258,8 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002E261A1BDDAF8900635F95 /* Images in Resources */,
-				007C199D1BDC1AA500308C43 /* RiceApps_dark.png in Resources */,
+				00889AB11CBB46F700FB6A93 /* Images in Resources */,
 				00577FE11BD478DC006579EB /* LaunchScreen.storyboard in Resources */,
 				00577FDE1BD478DC006579EB /* Assets.xcassets in Resources */,
 				00577FDC1BD478DC006579EB /* Main.storyboard in Resources */,
@@ -287,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006DBE8F1C6828B800DD2E4D /* LocationService.swift in Sources */,
 				003CE03F1BDC1621006A13F7 /* LoginViewController.swift in Sources */,
 				005780071BD47B25006579EB /* CalculatorViewController.swift in Sources */,
 				003CE0431BDC1A01006A13F7 /* LaunchScreenViewController.swift in Sources */,
@@ -294,6 +304,7 @@
 				00577FD51BD478DC006579EB /* AppDelegate.swift in Sources */,
 				005780051BD47ACD006579EB /* EmergencyViewController.swift in Sources */,
 				0099D6EE1BDE720100D0617B /* NumbersDetailViewController.swift in Sources */,
+				0075136A1CC46A350083A211 /* BackendHandler.swift in Sources */,
 				007C199F1BDC1E1000308C43 /* NumbersTableViewCell.swift in Sources */,
 				00577FD71BD478DC006579EB /* NumbersTableViewController.swift in Sources */,
 				005780091BD47BC2006579EB /* ReportingViewController.swift in Sources */,
@@ -440,6 +451,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.riceapps.Wellbeing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -451,6 +463,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.riceapps.Wellbeing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -462,6 +475,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.riceapps.WellbeingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wellbeing.app/Wellbeing";
 			};
 			name = Debug;
@@ -474,6 +488,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.riceapps.WellbeingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wellbeing.app/Wellbeing";
 			};
 			name = Release;
@@ -485,6 +500,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.riceapps.WellbeingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Wellbeing;
 				USES_XCTRUNNER = YES;
 			};
@@ -497,6 +513,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.riceapps.WellbeingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Wellbeing;
 				USES_XCTRUNNER = YES;
 			};

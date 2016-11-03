@@ -15,13 +15,14 @@ class NumbersDetailViewController: UIViewController {
     var descriptionValue = String()
     var numberValue = String()
     
+    
     @IBOutlet weak var callBtn: UIButton!
     @IBOutlet weak var descriptionTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = titleValue
         descriptionTextView.text = descriptionValue
-        descriptionTextView.scrollEnabled = false
+        descriptionTextView.isScrollEnabled = false
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -30,9 +31,9 @@ class NumbersDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func callBtnPressed(sender: AnyObject) {
-        let url : NSURL = NSURL(string: "telprompt:" + numberValue)!
-        UIApplication.sharedApplication().openURL(url)
+    @IBAction func callBtnPressed(_ sender: AnyObject) {
+        let url : URL = URL(string: "telprompt:" + numberValue)!
+        UIApplication.shared.openURL(url)
         print("Calling" + numberValue)
     }
 }
