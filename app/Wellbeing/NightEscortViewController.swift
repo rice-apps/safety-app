@@ -6,9 +6,9 @@
 ////  Copyright © 2015 Rice Apps. All rights reserved.
 ////
 //
-//import Foundation
-//import UIKit
-//import MapKit
+import Foundation
+import UIKit
+import MapKit
 //fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 //  switch (lhs, rhs) {
 //  case let (l?, r?):
@@ -30,7 +30,7 @@
 //}
 //
 //
-//class NightEscortViewController: UIViewController, MKMapViewDelegate {
+class NightEscortViewController: UIViewController, MKMapViewDelegate {
 //
 //    @IBOutlet weak var trackingMap: MKMapView!
 //    @IBOutlet weak var logButton: UIButton!
@@ -139,4 +139,4 @@
 //        
 //        present(alert, animated: true, completion: nil)
 //    }
-//}
+}

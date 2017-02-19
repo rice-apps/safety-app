@@ -54,6 +54,63 @@ class BackendHandler: NSObject {
 //        task.resume()
 //    }
     
+    func postRequest(_ postString: String, path: String, background: Bool) {
+        
+        // format and create request
+        let url: URL = URL(string: path)!
+        let cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
+        var request = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: 30.0)
+        request.httpMethod = "POST"
+        request.httpBody = postString.data(using: String.Encoding.utf8);
+        
+        var session = URLSession.shared
+        
+        if background {
+            let backgroundConfig = URLSessionConfiguration.background(withIdentifier: "x")
+            session = URLSession(configuration: backgroundConfig)
+        }
+        
+        // define task
+        let task = session.dataTask(with: request, completionHandler: {
+            data, response, error in
+            
+            // error check
+            guard error == nil else {
+                print("BackendHandler: error with POST request")
+                print(error as Any)
+                return
+            }
+
+            // fetch data
+            guard let responseData = data else {
+                print("BackendHandler: did not receive data")
+                return
+            }
+
+            do {
+                // get json from data
+                guard let json = try JSONSerialization.jsonObject(with: responseData, options: [.mutableContainers, .allowFragments]) as? [String: AnyObject] else {
+                    print("BackendHandler: error converting data to JSON")
+                    return
+                }
+
+                guard let result = json["status"] as? Int else {
+                    print("BackendHandler: error fetching status")
+                    return
+                }
+                
+                print("status = \(result)")
+                
+            } catch {
+                print("BackendHandler: error converting data to JSON")
+            }
+            
+        })
+        
+        task.resume()
+    }
+    
+    
     func postLocationToServer(_ location: CLLocation, path: String) {
         
         // Sends POST request to specified server url with unique identifiers and location data.

@@ -23,7 +23,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         super.init()
         self.locationManager = CLLocationManager()
         self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager?.distanceFilter = 200
+        self.locationManager?.distanceFilter = 20
         self.locationManager?.delegate = self
         self.locationManager?.requestAlwaysAuthorization()
         self.locationManager?.requestWhenInUseAuthorization()

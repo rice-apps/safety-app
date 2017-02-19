@@ -48,7 +48,7 @@ class NumbersTableViewController: UITableViewController{
     // URL Request
     
     func getRequest(){
-        let path: String = "http://riceapps.org:19125/api/numbers"
+        let path: String = "http://0.0.0.0:5000/api/numbers"
         let url: URL = URL(string: path)!
         
         let task = URLSession.shared.dataTask(with: url, completionHandler: {
