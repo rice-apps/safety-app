@@ -23,6 +23,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_SUPPRESS_SEND'] = False
 app.config['TESTING'] = False
+app.config['DEBUG'] = True
 mail = Mail(app)
 
 
@@ -47,6 +48,11 @@ def get_db():
 def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
+
+# temporary homepage
+@app.route("/")
+def hello_world():
+    return "<h1 style='color:blue'>Wellbeing App!</h1>"
 
 # temporarily get json bus data
 @app.route("/api/night_escort")
@@ -116,22 +122,27 @@ def anon_reporting():
 
     # Add a report into the database
     if request.method == 'POST':
-        print "email initiated"
-        f = request.form
 
-        # Send an email report to RUPD
-        # TODO: switch the recipient email to config.RUPD_EMAIL
-        msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['agl5@rice.edu'])
-        msg.body = format_email(f["description"])  # TODO: write the actual email message
-        mail.send(msg)
-        print "mail sent"
+        send_email()
 
-        with con:
-            print "inserting to db"
-            cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
-            con.commit()
         result = {"status": 200}
         return jsonify(result)
+
+def send_email():
+    print "email initiated"
+    f = request.form
+
+    # Send an email report to RUPD
+    # TODO: switch the recipient email to config.RUPD_EMAIL
+    msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['jx13@rice.edu'])
+    msg.body = format_email(f["description"])  # TODO: write the actual email message
+    mail.send(msg)
+    print "mail sent"
+
+    with con:
+        print "inserting to db"
+        cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
+        con.commit()
 
 
 @app.route('/after_login', methods=['GET'])
