@@ -26,6 +26,8 @@ app.config['TESTING'] = False
 app.config['DEBUG'] = True
 mail = Mail(app)
 
+def create_app():
+    return app
 
 def make_dicts(cursor, row):
     return dict((cursor.description[idx][0], value) for idx, value in enumerate(row))
@@ -123,27 +125,23 @@ def anon_reporting():
     # Add a report into the database
     if request.method == 'POST':
 
-        send_email()
+        print "email initiated"
+        f = request.form
+
+        # Send an email report to RUPD
+        # TODO: switch the recipient email to config.RUPD_EMAIL
+        msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['jx13@rice.edu'])
+        msg.body = format_email(f["description"])  # TODO: write the actual email message
+        mail.send(msg)
+        print "mail sent"
+
+        with con:
+            print "inserting to db"
+            cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
+            con.commit()
 
         result = {"status": 200}
         return jsonify(result)
-
-def send_email():
-    print "email initiated"
-    f = request.form
-
-    # Send an email report to RUPD
-    # TODO: switch the recipient email to config.RUPD_EMAIL
-    msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['jx13@rice.edu'])
-    msg.body = format_email(f["description"])  # TODO: write the actual email message
-    mail.send(msg)
-    print "mail sent"
-
-    with con:
-        print "inserting to db"
-        cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
-        con.commit()
-
 
 @app.route('/after_login', methods=['GET'])
 def after_login():
