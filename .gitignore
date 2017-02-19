@@ -1,7 +1,7 @@
 .idea/
 *.pyc
 config.py
-.DS_Store
+*.DS_Store
 backend/wellbeing.db
 backend/config.py
 app/Wellbeing.xcodeproj/project.xcworkspace/xcuserdata/*
