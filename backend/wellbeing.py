@@ -54,7 +54,7 @@ def close_db(error):
         g.sqlite_db.close()
 
 # temporary homepage
-@app.route("/")
+@app.route("/api/test")
 def hello_world():
     return "<h1 style='color:blue'>Wellbeing App!</h1>"
 
