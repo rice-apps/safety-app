@@ -5,3 +5,4 @@ config.py
 backend/wellbeing.db
 backend/config.py
 app/Wellbeing.xcodeproj/project.xcworkspace/xcuserdata/*
+backend/venv
