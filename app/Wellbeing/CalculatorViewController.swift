@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CalculatorViewController: UIViewController {
+class CalculatorViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var weight: UITextField?
     @IBOutlet weak var sex: UISegmentedControl?
@@ -33,7 +33,40 @@ class CalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        //Load weight and sex values from NSUserDefaults, if available
+        let defaults = UserDefaults.standard;
+        if (defaults.string(forKey: "weight") != nil)
+        {
+            weight?.text = defaults.string(forKey: "weight");
+            sex?.selectedSegmentIndex = defaults.integer(forKey: "sex");
+            
+        }
+        
+        //Add a tap gesture recognizer to background view with a selector to dismiss keyboards
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboards));
+        gestureRecognizer.delegate = self;
+        self.view.addGestureRecognizer(gestureRecognizer);
+    }
+    
+    func dismissKeyboards()
+    {
+        //To be called when user taps background - dismisses all active keyboards of UITextField outlets
+        
+        weight?.resignFirstResponder();
+        time?.resignFirstResponder();
+        shotsTaken?.resignFirstResponder();
+    
+    }
+
+    
+    func updateDefaults(){
+        
+        //Update the weight and sex values in NSUserDefaults
+        let defaults = UserDefaults.standard;
+        defaults.set(weight?.text, forKey:"weight");
+        defaults.set(sex?.selectedSegmentIndex, forKey: "sex");
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -101,6 +134,7 @@ class CalculatorViewController: UIViewController {
             }
         }
         self.updateBAC()
+        self.updateDefaults()
     }
 
     @IBAction func addDrink(_ sender: UIButton){
