@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Wellbeing App requires access to your phone&apos;s location to properly send emergency blue button updates.</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string> Wellbeing App uses your location to send emergency blue button updates to RUPD.</string>
+	<string>Enable location services to properly send updates to RUPD if emergency button is pressed.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string> Wellbeing App uses your location to send emergency blue button updates to RUPD.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

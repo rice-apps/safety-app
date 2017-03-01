@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MessageUI
 
-class ReportingViewController: UIViewController {
+class ReportingViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var reportTextView: UITextView!
     @IBOutlet weak var submitReportBtn: UIButton!
@@ -21,8 +21,17 @@ class ReportingViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Send message to backend
+        //Add a tap gesture recognizer to background view with a selector to dismiss keyboards
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard));
+        gestureRecognizer.delegate = self;
+        self.view.addGestureRecognizer(gestureRecognizer);
         
+    }
+    
+    func dismissKeyboard() {
+        
+        reportTextView.resignFirstResponder()
+    
     }
     
     
