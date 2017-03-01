@@ -1,9 +1,8 @@
 //
-//  LocationController.swift
+//  LocationService.swift
 //  Wellbeing
 //
-//  Created by Jeffrey Xiong on 2/7/16.
-//  Copyright © 2016 Rice Apps. All rights reserved.
+//  Copyright © 2017 Rice Apps. All rights reserved.
 //
 
 import Foundation
@@ -37,7 +36,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     // delegate-defined methods
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
+        if status == CLAuthorizationStatus.authorizedAlways {
             self.locationManager?.startUpdatingLocation();
         }
     }
@@ -63,7 +62,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             let postString = "caseID=" + caseID + "&deviceID=" + deviceID + "&longitude=" + longitude + "&latitude=" + latitude + "&date=" + timestamp + "&resolved=false"
             
             
-            backendHandler.postRequest(postString, path: "http://localhost:5000/api/blue_button_location", background: true)
+            backendHandler.postRequest(postString, path: "http://localhost:5000/api/blue_button_location", background: false)
         }
         
         print("LocationService: Lat \(location.coordinate.latitude), Long \(location.coordinate.longitude)")
@@ -73,53 +72,38 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         print("LocationService: Update Location Error : \(error.localizedDescription)")
     }
     
-    // user-defined methods
-    
-    func startUpdatingLocation(_emergency: Bool) -> Int {
+
+    func startSendingLocation() -> Int {
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
             
-            if _emergency {
-                
-                if checkRiceRadius(self.currentLocation!.coordinate) {
-                    print("LocationService: Starting Location Updates")
-                    self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-                    self.locationManager?.distanceFilter = 20
-                    self.postLocation = true
-                    return 0
-                } else {
-                    return -2
-                }
-            } else {
+            if checkRiceRadius() {
                 print("LocationService: Starting Location Updates")
-                self.locationManager?.startUpdatingLocation()
+                self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+                self.locationManager?.distanceFilter = 20
+                self.postLocation = true
                 return 0
             }
+            // out of range error
+            return -2
         }
-        
+        // unauthorized error
         return -1
     }
     
-    func stopUpdatingLocation() {
+
+    func stopSendingLocation() {
         print("LocationService: Stop Location Updates")
+        self.postLocation = false
         self.locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
         self.locationManager?.distanceFilter = 200
     }
     
-    /*
-     *  Checks whether current location is within 1000m of Rice
-     *  Arguments: CLLocationCoordinate2D
-     *  Returns: Bool
-     */
-    func checkRiceRadius(_ current: CLLocationCoordinate2D) -> Bool {
+
+    func checkRiceRadius() -> Bool {
         let radius = CLLocationDistance.init(RICE_RADIUS)
         let coordinates = CLLocationCoordinate2DMake(RICE_X, RICE_Y)
         let riceRegion = CLCircularRegion(center: coordinates, radius: radius, identifier: "Rice")
         
-        if riceRegion.contains(current) {
-            return true
-        } else {
-            return false
-        }
-        
+        return riceRegion.contains((self.currentLocation?.coordinate)!)
     }
 }

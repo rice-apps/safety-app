@@ -57,70 +57,6 @@
             </objects>
             <point key="canvasLocation" x="-168" y="1016"/>
         </scene>
-        <!--Night Escort View Controller-->
-        <scene sceneID="wg7-f3-ORb">
-            <objects>
-                <viewController id="8rJ-Kc-sve" customClass="NightEscortViewController" customModule="Wellbeing" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="UM6-wn-83K"/>
-                        <viewControllerLayoutGuide type="bottom" id="JoW-ko-1MM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night Escort" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBo-FJ-0la">
-                                <rect key="frame" x="140" y="72" width="95.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are not logged in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6d-Wk-aHH">
-                                <rect key="frame" x="79" y="273" width="162" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvW-h4-CXN">
-                                <rect key="frame" x="206" y="464" width="70" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <action selector="logInOrOut:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="LNg-sY-YwB"/>
-                                    <action selector="loginOrLogout:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="UGH-HI-dNb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L4U-39-8O3">
-                                <rect key="frame" x="20" y="464" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Broadcast Location"/>
-                                <connections>
-                                    <action selector="broadcastLocation:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="fG8-1J-2cf"/>
-                                </connections>
-                            </button>
-                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vg4-C1-0Gb">
-                                <rect key="frame" x="0.0" y="64" width="320" height="379"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="yBo-FJ-0la" firstAttribute="top" secondItem="UM6-wn-83K" secondAttribute="bottom" constant="8" symbolic="YES" id="7QQ-xy-Z73"/>
-                            <constraint firstItem="yBo-FJ-0la" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="PkS-vQ-9pP"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="XQM-HQ-2wz"/>
-                    <connections>
-                        <outlet property="locateButton" destination="L4U-39-8O3" id="3By-nP-xVD"/>
-                        <outlet property="logButton" destination="jvW-h4-CXN" id="6bN-cB-rhX"/>
-                        <outlet property="trackingMap" destination="vg4-C1-0Gb" id="BYc-0Z-S5H"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-177" y="-549"/>
-        </scene>
         <!--BAC-->
         <scene sceneID="H8u-M0-eab">
             <objects>
@@ -525,9 +461,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="wYG-ln-757"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mj9-gV-LUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

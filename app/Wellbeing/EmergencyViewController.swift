@@ -2,8 +2,7 @@
 //  EmergencyViewController.swift
 //  Wellbeing
 //
-//  Created by Jeffrey Xiong on 10/18/15.
-//  Copyright © 2015 Rice Apps. All rights reserved.
+//  Copyright © 2017 Rice Apps. All rights reserved.
 //
 
 import Foundation
@@ -42,7 +41,7 @@ class EmergencyViewController: UIViewController {
     */
     @IBAction func activateEmergency(_ sender: AnyObject) {
         
-        let status = locationService.startUpdatingLocation(_emergency: true)
+        let status = locationService.startSendingLocation()
         
         var alert: UIAlertController
         
@@ -79,7 +78,7 @@ class EmergencyViewController: UIViewController {
     
     @IBAction func cancelEmergency(_ sender: AnyObject) {
         print("data serve halted")
-        locationService.stopUpdatingLocation()
+        locationService.stopSendingLocation()
     }
     
 }

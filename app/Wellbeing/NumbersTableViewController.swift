@@ -1,9 +1,8 @@
 //
-//  FirstViewController.swift
+//  NumbersTableViewController.swift
 //  Wellbeing
 //
-//  Created by Jeffrey Xiong on 10/18/15.
-//  Copyright © 2015 Rice Apps. All rights reserved.
+//  Copyright © 2017 Rice Apps. All rights reserved.
 //
 
 import Foundation
