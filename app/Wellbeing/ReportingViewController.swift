@@ -7,48 +7,27 @@
 
 import Foundation
 import UIKit
-import MessageUI
+import WebKit
 
-class ReportingViewController: UIViewController, UIGestureRecognizerDelegate {
+class ReportingViewController: UIViewController, WKUIDelegate {
     
-    @IBOutlet weak var reportTextView: UITextView!
-    @IBOutlet weak var submitReportBtn: UIButton!
+    var webView: WKWebView!
     
-    let backendHandler = BackendHandler.sharedInstance
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self;
+        view = webView;
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        //Add a tap gesture recognizer to background view with a selector to dismiss keyboards
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard));
-        gestureRecognizer.delegate = self;
-        self.view.addGestureRecognizer(gestureRecognizer);
-        
+        let myURL = URL(string:"https://rupdadmin.rice.edu/witnessreports/create/")
+        let myRequest = URLRequest(url: myURL!)
+        webView.load(myRequest)
     }
     
-    func dismissKeyboard() {
-        
-        reportTextView.resignFirstResponder()
-    
-    }
-    
-    
-    @IBAction func submitReport(_ sender: AnyObject) {
-        // generate post request body string
-        let postString = "description=" + backendHandler.validateURLString(reportTextView.text)
-        // specify path
-        let path: String = "http://0.0.0.0:5000/api/anon_reporting"     // actual path: http://riceapps.org/api/anon_reporting
-        // make post request
-        backendHandler.postRequest(postString, path: path, background: false)
-        
-        print("report submitted")
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
 }

@@ -74,7 +74,11 @@ class NumbersTableViewController: UITableViewController{
                     self.organizations.append(entry["name"] as! String)
                     self.descriptions.append(entry["description"] as! String)
                 }
-                self.tableView.reloadData()
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
                 
             } catch _ {
                 

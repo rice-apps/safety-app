@@ -1,10 +1,6 @@
 import sqlite3 as lite
-import os
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify, send_from_directory
 from flask_cas import CAS
-from flask_mail import Mail
-from flask_mail import Message
-import config
 
 app = Flask(__name__)
 # app.config.from_object('config')
@@ -13,19 +9,6 @@ app.config['CAS_AFTER_LOGIN'] = 'afterlogin'
 app.config['APP_URL'] = 'localhost:5000'
 app.config.setdefault('CAS_USERNAME_SESSION_KEY', 'CAS_USERNAME')
 CAS(app)
-
-# Email setup
-app.config['MAIL_SERVER'] = 'smtp.zoho.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = config.MAIL_USERNAME
-app.config['MAIL_PASSWORD'] = config.MAIL_PASSWORD
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_SUPPRESS_SEND'] = False
-app.config['TESTING'] = False
-app.config['DEBUG'] = True
-mail = Mail(app)
-
 
 def create_app():
     return app
@@ -115,35 +98,6 @@ def test_push():
         print ("lat: " + latitude, ", long: " + longitude)
         return jsonify({"lat": latitude, "long": longitude})
 
-
-
-@app.route("/api/anon_reporting", methods=['POST', 'GET'])
-def anon_reporting():
-    print "hit /api/anon_reporting"
-    # Get the reports from the database
-    if request.method == 'GET':
-        return location_get("anon_reporting")
-
-    # Add a report into the database
-    if request.method == 'POST':
-
-        print "email initiated"
-        f = request.form
-
-        # Send an email report to RUPD
-        # TODO: switch the recipient email to config.RUPD_EMAIL
-        msg = Message("Anonymous RUPD Report", sender=app.config['MAIL_USERNAME'], recipients=['jx13@rice.edu'])
-        msg.body = format_email(f["description"])  # TODO: write the actual email message
-        mail.send(msg)
-        print "mail sent"
-
-        with con:
-            print "inserting to db"
-            cur.execute("""INSERT INTO anon_reporting (description) VALUES (?)""", (f["description"],))
-            con.commit()
-
-        result = {"status": 200}
-        return jsonify(result)
 
 @app.route('/after_login', methods=['GET'])
 def after_login():
