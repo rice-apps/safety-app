@@ -4,6 +4,8 @@ flask_cas.__init__
 
 import flask
 from flask import current_app
+from . import routing
+from functools import wraps
 
 # Find the stack on which we want to store the database connection.
 # Starting with Flask 0.9, the _app_ctx_stack is the correct one,
@@ -71,3 +73,22 @@ class CAS(object):
     def token(self):
         return flask.session.get(
             self.app.config['CAS_TOKEN_SESSION_KEY'], None)
+
+
+def login():
+    return flask.redirect(flask.url_for('cas.login', _external=True))
+
+
+def logout():
+    return flask.redirect(flask.url_for('cas.logout', _external=True))
+
+
+def login_required(function):
+    @wraps(function)
+    def wrap(*args, **kwargs):
+        if 'CAS_USERNAME' not in flask.session:
+            flask.session['CAS_AFTER_LOGIN_SESSION_URL'] = flask.request.path
+            return login()
+        else:
+            return function(*args, **kwargs)
+    return wrap

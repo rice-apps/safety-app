@@ -1,0 +1,6 @@
+framework module Pods_Wellbeing {
+  umbrella header "Pods-Wellbeing-umbrella.h"
+
+  export *
+  module * { export * }
+}

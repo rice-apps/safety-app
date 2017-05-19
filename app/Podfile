@@ -1,0 +1,9 @@
+platform :ios, '9.0'
+
+workspace 
+
+use_frameworks!
+
+target 'Wellbeing' do
+    pod 'Socket.IO-Client-Swift', '~> 9.0.0'
+end

@@ -17,8 +17,49 @@ class BackendHandler: NSObject {
         case serverError
     }
     
+    func getRequest(_ path: String, completion: @escaping (Dictionary<String, Any>) -> ()) {
+        // format and create request
+        let url: URL = URL(string: path)!
+        
+        let task = URLSession.shared.dataTask(with: url, completionHandler: {
+            (data, response, error) -> Void in
+            
+            // error check
+            guard error == nil else {
+                print("BackendHandler: error with GET request to url \(path)")
+                print(error as Any)
+                return
+            }
+            
+            // fetch data
+            guard let responseData = data else {
+                print("BackendHandler: did not receive data from url \(path)")
+                return
+            }
+            
+            do {
+                
+                // get json from data
+                guard let json = try JSONSerialization.jsonObject(with: responseData, options: [.mutableContainers, .allowFragments]) as? [String: AnyObject] else {
+                    print("BackendHandler: error converting data from url \(path) to JSON")
+                    return
+                }
+                
+                // expose json as dictionary to completion handler
+                let jsonData = json as Dictionary <String, Any>
+                completion(jsonData)
+                
+                
+            } catch {
+                print("BackendHandler: error converting data from url \(path) to JSON")
+            }
+        })
+        
+        task.resume()
+    }
     
-    func postRequest(_ postString: String, path: String, background: Bool) {
+    
+    func postRequest(_ postString: String, _ path: String) {
         
         // format and create request
         let url: URL = URL(string: path)!
@@ -27,15 +68,8 @@ class BackendHandler: NSObject {
         request.httpMethod = "POST"
         request.httpBody = postString.data(using: String.Encoding.utf8);
         
-        var session = URLSession.shared
-        
-        if background {
-            let backgroundConfig = URLSessionConfiguration.background(withIdentifier: "x")
-            session = URLSession(configuration: backgroundConfig)
-        }
-        
         // define task
-        let task = session.dataTask(with: request, completionHandler: {
+        let task = URLSession.shared.dataTask(with: request, completionHandler: {
             data, response, error in
             
             // error check
@@ -68,7 +102,6 @@ class BackendHandler: NSObject {
             } catch {
                 print("BackendHandler: error converting data from url \(path) to JSON")
             }
-            
         })
         
         task.resume()

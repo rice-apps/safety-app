@@ -1,90 +1,83 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Rice Blue Button</title>
-    <style>
-        #map {
-            width: 500px;
-            height: 400px;
-            background-color: #CCC;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        h1 {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="static/rupd_portal.css">
 </head>
+
 <body>
-<h1>Rice University Police Department Web Portal</h1>
+    <h1>Rice University Police Department Web Portal</h1>
 
-<div id="map"></div>
+    <div id="map"></div>
 
-Form to test server push <br>
-Long: <input type="text" id="longitude"> <br>
-Lat: <input type="text" id="latitude"> <br>
-<button id="button">Click Me</button>
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="static/socket.io.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMFSuTtdme517ox9FITQ0yA8ER3PL5_tw&callback=initMap"></script>
+    <script>
+        var socket = io("http://localhost:5000");
+        socket.on('map message', function(msg){
 
-<p>Testing Server Push:</p> <br>
-<span id="pushDisplay"></span>
-
-<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
-<script>
-    $("button").click(function () {
-        getAndDisplayIssues();
-    });
-
-    // Functionality for displaying map
-    var gmap;
-    function initMap() {
-        var mapDiv = document.getElementById('map');
-        gmap = new google.maps.Map(mapDiv, {
-            center: {lat: 29.717860, lng: -95.403333},
-            zoom: 15
+            console.log(msg);
         });
-        getAndDisplayIssues();
-    }
 
-    // Interval for querying the backend
-    var intervalCounter = setInterval(getAndDisplayIssues, 60000);
+        var gmap;
+        function initMap() {
+            var mapDiv = document.getElementById('map');
+            gmap = new google.maps.Map(mapDiv, {
+                center: {lat: 29.717860, lng: -95.403333},
+                zoom: 15
+            });
+        }
+    </script>
 
-    // Functionality for querying backend for issues, and displaying them on map
-    function getAndDisplayIssues() {
-        //var marker;
-        $.ajax({
-            url: 'http://localhost:5000/api/blue_button_location',
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-                // Display the issues on map
-                console.log(JSON.stringify(data));
-                console.log("result length: " + data.result.length);
-                var i;
-                for (i = 0; i < data.result.length; i++) {
-                    console.log(data.result[i].requestID);
-                    drawMarker(data.result[i].latitude, data.result[i].longitude, data.result[i].caseID);
-                }
-                /*
-                $.each(data.result, function (index, val) {
-                    console.log("requestID: " + val.requestID + ", latitude: " + val.latitude + ', longitude: ' + val.longitude);
-                    drawMarker(val.latitude, val.longitude, val.caseID)
-                });
-                */
-            }
-        });
-    }
+    <!--<script>-->
+        <!--$("button").click(function () {-->
+            <!--getAndDisplayIssues();-->
+        <!--});-->
 
-    function drawMarker(lat, long, caseID) {
-        new google.maps.Marker({
-            position: new google.maps.LatLng(lat, long),
-            map: gmap,
-            title: 'Case ID: ' + caseID
-        });
-    }
+        <!--// Functionality for displaying map-->
 
-</script>
+
+        <!--// Interval for querying the backend-->
+        <!--var intervalCounter = setInterval(getAndDisplayIssues, 60000);-->
+
+        <!--// Functionality for querying backend for issues, and displaying them on map-->
+        <!--function getAndDisplayIssues() {-->
+            <!--//var marker;-->
+            <!--$.ajax({-->
+                <!--url: 'http://localhost:5000/api/blue_button_location',-->
+                <!--type: 'get',-->
+                <!--dataType: 'json',-->
+                <!--success: function (data) {-->
+                    <!--// Display the issues on map-->
+                    <!--console.log(JSON.stringify(data));-->
+                    <!--console.log("result length: " + data.result.length);-->
+                    <!--var i;-->
+                    <!--for (i = 0; i < data.result.length; i++) {-->
+                        <!--console.log(data.result[i].requestID);-->
+                        <!--drawMarker(data.result[i].latitude, data.result[i].longitude, data.result[i].caseID);-->
+                    <!--}-->
+                    <!--/*-->
+                    <!--$.each(data.result, function (index, val) {-->
+                        <!--console.log("requestID: " + val.requestID + ", latitude: " + val.latitude + ', longitude: ' + val.longitude);-->
+                        <!--drawMarker(val.latitude, val.longitude, val.caseID)-->
+                    <!--});-->
+                    <!--*/-->
+                <!--}-->
+            <!--});-->
+        <!--}-->
+
+        <!--function drawMarker(lat, long, caseID) {-->
+            <!--new google.maps.Marker({-->
+                <!--position: new google.maps.LatLng(lat, long),-->
+                <!--map: gmap,-->
+                <!--title: 'Case ID: ' + caseID-->
+            <!--});-->
+        <!--}-->
+
+    <!--</script>-->
 </body>
 </html>

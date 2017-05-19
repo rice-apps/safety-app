@@ -10,28 +10,26 @@ import UIKit
 
 class NumbersTableViewController: UITableViewController{
     
+    let backendHandler = BackendHandler.sharedInstance
+    
     // Class Variables
     
     let numberCellID = "numberCell"
     var numbers = [String]()
     var organizations = [String]()
     var descriptions = [String]()
-    lazy var _jsonData = NSDictionary()
     var selectedTitle: String!
-    
-    // Errors
-    
-    enum NumbersError: Error {
-        case serverError
-    }
     
     // Generic View
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        getRequest()
+        
+        // view setup
         self.tableView.rowHeight = 75.0
+        
+        // get data
+        getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,51 +42,27 @@ class NumbersTableViewController: UITableViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    // URL Request
-    
-    func getRequest(){
-        let path: String = "http://0.0.0.0:5000/api/numbers"
-        let url: URL = URL(string: path)!
+    func getData() {
         
-        let task = URLSession.shared.dataTask(with: url, completionHandler: {
-            (data, response, error) -> Void in
-            do {
-                // Load JSON Object
-                if (data == nil) {
-                    throw NumbersError.serverError
-                }
-                
-                let json : Any? = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-                
-                if (json == nil) {
-                    throw NumbersError.serverError
-                }
-                
-                self._jsonData = json as! NSDictionary
-                
-                // Store relevant entries
-                let loadedNumbers = self._jsonData["result"] as! NSArray
-                print(loadedNumbers)
-                for entry:AnyObject in loadedNumbers as [AnyObject]{
-                    self.numbers.append(entry["number"] as! String)
-                    self.organizations.append(entry["name"] as! String)
-                    self.descriptions.append(entry["description"] as! String)
-                }
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                
-                
-            } catch _ {
-                
-                // Error
+        let path: String = "http://0.0.0.0:5000/api/numbers"
+        backendHandler.getRequest(path) {
+            jsonData in
+            
+            let loadedNumbers = jsonData["result"] as! NSArray
+            print(loadedNumbers)
+            for entry:AnyObject in loadedNumbers as [AnyObject] {
+                self.numbers.append(entry["number"] as! String)
+                self.organizations.append(entry["name"] as! String)
+                self.descriptions.append(entry["description"] as! String)
             }
             
-        })
-        task.resume()
-        
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+        }
     }
+    
     
     // Table View
     

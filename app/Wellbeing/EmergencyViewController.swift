@@ -48,9 +48,9 @@ class EmergencyViewController: UIViewController {
         if status == -2 {
             alert = UIAlertController(title: "Error posting location", message: "You are not close enough to Rice Campus for RUPD response.", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            let openAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
             alert.addAction(cancelAction)
-            alert.addAction(openAction)
+            alert.addAction(okAction)
             self.present(alert, animated: true, completion: nil)
         }
         
@@ -70,14 +70,16 @@ class EmergencyViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
         
-        // Call RUPD
-        let url: URL = URL(string: "telprompt:" + "7133486000")!
-        UIApplication.shared.openURL(url)
-        print("Calling RUPD")
+        if status == 0 {
+            // Call RUPD
+            let url: URL = URL(string: "telprompt:" + "7133486000")!
+            UIApplication.shared.openURL(url)
+            print("Calling RUPD")
+        }
+        
     }
     
     @IBAction func cancelEmergency(_ sender: AnyObject) {
-        print("data serve halted")
         locationService.stopSendingLocation()
     }
     

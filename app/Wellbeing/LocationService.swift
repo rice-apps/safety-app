@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import CoreLocation
-
+import SocketIO
 
 
 class LocationService: NSObject, CLLocationManagerDelegate {
@@ -19,6 +19,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     var currentLocation: CLLocation?
     var postLocation: Bool?
+    var caseId: Int?
     
     let RICE_X = 29.719565
     let RICE_Y = -95.402233
@@ -46,26 +47,26 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         
         self.currentLocation = location
         
+        
         if self.postLocation! {
-            // get data to pass to server
-            let caseID = backendHandler.validateURLString(UUID().uuidString)
-            let deviceID = backendHandler.validateURLString(UIDevice.current.identifierForVendor!.uuidString)
-            let latitude = backendHandler.validateURLString("\(location.coordinate.latitude)")
-            let longitude = backendHandler.validateURLString("\(location.coordinate.longitude)")
+            // format arguments
+            let caseID = "caseID=" + backendHandler.validateURLString(String(self.caseId!))
+            let deviceID = "&deviceID=" + backendHandler.validateURLString(UIDevice.current.identifierForVendor!.uuidString)
+            let latitude = "&latitude=" + backendHandler.validateURLString("\(location.coordinate.latitude)")
+            let longitude = "&longitude=" + backendHandler.validateURLString("\(location.coordinate.longitude)")
             
             // format date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM-dd-yyyy hh:mm:ss"
-            let timestamp = dateFormatter.string(from: location.timestamp)
+            let timestamp = "&timestamp=" + dateFormatter.string(from: location.timestamp)
             
             // generate post string
-            let postString = "caseID=" + caseID + "&deviceID=" + deviceID + "&longitude=" + longitude + "&latitude=" + latitude + "&date=" + timestamp + "&resolved=false"
+            let postString = caseID + deviceID + longitude + latitude + timestamp + "&resolved=false"
             
+            print("LocationService: Lat \(location.coordinate.latitude), Long \(location.coordinate.longitude)")
             
-            backendHandler.postRequest(postString, path: "http://localhost:5000/api/blue_button_location", background: false)
+            backendHandler.postRequest(postString, "http://localhost:5000/api/blue_button_location")
         }
-        
-        print("LocationService: Lat \(location.coordinate.latitude), Long \(location.coordinate.longitude)")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -96,6 +97,11 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         self.postLocation = false
         self.locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
         self.locationManager?.distanceFilter = 200
+    }
+    
+    
+    func setCaseId(_ id: Int) {
+        self.caseId = id
     }
     
 

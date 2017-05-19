@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002D56F01EC2953E0094505F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 002D56EF1EC2953E0094505F /* Podfile */; };
 		003CE03F1BDC1621006A13F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CE03E1BDC1621006A13F7 /* LoginViewController.swift */; };
 		003CE0431BDC1A01006A13F7 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CE0421BDC1A01006A13F7 /* LaunchScreenViewController.swift */; };
 		00577FD51BD478DC006579EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00577FD41BD478DC006579EB /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 		007C199F1BDC1E1000308C43 /* NumbersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */; };
 		00889AB11CBB46F700FB6A93 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 002E26191BDDAF8900635F95 /* Images */; };
 		0099D6EE1BDE720100D0617B /* NumbersDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */; };
+		CD0F479DEA75911AE627F003 /* Pods_Wellbeing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6CCE34156A9565E2C710C74 /* Pods_Wellbeing.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		002D56EF1EC2953E0094505F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Podfile; path = "../../../../college/riceapps/wellbeing-app/app/Podfile"; sourceTree = "<group>"; };
 		002E26191BDDAF8900635F95 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		003CE03E1BDC1621006A13F7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		003CE0421BDC1A01006A13F7 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +71,9 @@
 		0075136B1CC46EA50083A211 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersTableViewCell.swift; sourceTree = "<group>"; };
 		0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersDetailViewController.swift; sourceTree = "<group>"; };
+		17AB1B3034DB91604C73547D /* Pods-Wellbeing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wellbeing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wellbeing/Pods-Wellbeing.debug.xcconfig"; sourceTree = "<group>"; };
+		444F833EACC265B0A6259C99 /* Pods-Wellbeing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wellbeing.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wellbeing/Pods-Wellbeing.release.xcconfig"; sourceTree = "<group>"; };
+		D6CCE34156A9565E2C710C74 /* Pods_Wellbeing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wellbeing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD0F479DEA75911AE627F003 /* Pods_Wellbeing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,11 +105,14 @@
 		00577FC81BD478DC006579EB = {
 			isa = PBXGroup;
 			children = (
+				002D56EF1EC2953E0094505F /* Podfile */,
 				0075136B1CC46EA50083A211 /* MapKit.framework */,
 				00577FD31BD478DC006579EB /* Wellbeing */,
 				00577FEA1BD478DC006579EB /* WellbeingTests */,
 				00577FF51BD478DC006579EB /* WellbeingUITests */,
 				00577FD21BD478DC006579EB /* Products */,
+				3A8D8813FED50292306BC105 /* Pods */,
+				88528AB21088A5F26D880145 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,6 +167,23 @@
 			path = WellbeingUITests;
 			sourceTree = "<group>";
 		};
+		3A8D8813FED50292306BC105 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				17AB1B3034DB91604C73547D /* Pods-Wellbeing.debug.xcconfig */,
+				444F833EACC265B0A6259C99 /* Pods-Wellbeing.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		88528AB21088A5F26D880145 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6CCE34156A9565E2C710C74 /* Pods_Wellbeing.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,9 +191,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00577FFB1BD478DC006579EB /* Build configuration list for PBXNativeTarget "Wellbeing" */;
 			buildPhases = (
+				853CE5269C52799C5B71B574 /* [CP] Check Pods Manifest.lock */,
 				00577FCD1BD478DC006579EB /* Sources */,
 				00577FCE1BD478DC006579EB /* Frameworks */,
 				00577FCF1BD478DC006579EB /* Resources */,
+				7872A2C6F541BC77EAE80F48 /* [CP] Embed Pods Frameworks */,
+				24AF2BF5806D4F492D8436FC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -263,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				002D56F01EC2953E0094505F /* Podfile in Resources */,
 				00889AB11CBB46F700FB6A93 /* Images in Resources */,
 				00577FE11BD478DC006579EB /* LaunchScreen.storyboard in Resources */,
 				00577FDE1BD478DC006579EB /* Assets.xcassets in Resources */,
@@ -285,6 +316,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		24AF2BF5806D4F492D8436FC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wellbeing/Pods-Wellbeing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7872A2C6F541BC77EAE80F48 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wellbeing/Pods-Wellbeing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		853CE5269C52799C5B71B574 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		00577FCD1BD478DC006579EB /* Sources */ = {
@@ -439,6 +518,7 @@
 		};
 		00577FFC1BD478DC006579EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17AB1B3034DB91604C73547D /* Pods-Wellbeing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Wellbeing/Info.plist;
@@ -451,6 +531,7 @@
 		};
 		00577FFD1BD478DC006579EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 444F833EACC265B0A6259C99 /* Pods-Wellbeing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Wellbeing/Info.plist;
