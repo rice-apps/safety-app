@@ -68,7 +68,6 @@
 		005780081BD47BC1006579EB /* ReportingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportingViewController.swift; sourceTree = "<group>"; };
 		006DBE8E1C6828B800DD2E4D /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		007513691CC46A350083A211 /* BackendHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendHandler.swift; sourceTree = "<group>"; };
-		0075136B1CC46EA50083A211 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		007C199E1BDC1E1000308C43 /* NumbersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersTableViewCell.swift; sourceTree = "<group>"; };
 		0099D6ED1BDE720100D0617B /* NumbersDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersDetailViewController.swift; sourceTree = "<group>"; };
 		17AB1B3034DB91604C73547D /* Pods-Wellbeing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wellbeing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wellbeing/Pods-Wellbeing.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				002D56EF1EC2953E0094505F /* Podfile */,
-				0075136B1CC46EA50083A211 /* MapKit.framework */,
 				00577FD31BD478DC006579EB /* Wellbeing */,
 				00577FEA1BD478DC006579EB /* WellbeingTests */,
 				00577FF51BD478DC006579EB /* WellbeingUITests */,
@@ -254,6 +252,7 @@
 				TargetAttributes = {
 					00577FD01BD478DC006579EB = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = USLGL64478;
 						LastSwiftMigration = 0800;
 					};
 					00577FE61BD478DC006579EB = {
@@ -521,6 +520,7 @@
 			baseConfigurationReference = 17AB1B3034DB91604C73547D /* Pods-Wellbeing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = USLGL64478;
 				INFOPLIST_FILE = Wellbeing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.riceapps.Wellbeing;
@@ -534,6 +534,7 @@
 			baseConfigurationReference = 444F833EACC265B0A6259C99 /* Pods-Wellbeing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = USLGL64478;
 				INFOPLIST_FILE = Wellbeing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.riceapps.Wellbeing;
