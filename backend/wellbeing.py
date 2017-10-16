@@ -128,36 +128,10 @@ def get_case_id():
     cur.execute(insert_stmt, (case_id,))
     return result
 
-
-# @app.route("/test_push", methods=['POST', 'GET'])
-# def test_push():
-#     if request.method == 'GET':
-#         print ("hit /test_push with get")
-#         return render_template("rupd_portal.html")
-#     if request.method == 'POST':
-#         print ("hit /test_push with POST")
-#         f = request.form
-#         longitude = f["longitude"]
-#         latitude = f["latitude"]
-#         print ("lat: " + latitude, ", long: " + longitude)
-#         return jsonify({"lat": latitude, "long": longitude})
-
-
-# @app.route('/is_authorized', methods=['POST'])
-# def is_authorized():
-#     f = request.form
-#     if f["password"] == config.RUPD_PASSWORD:
-#         result = {"authorized": 1}
-#     else:
-#         result = {"authorized": 0}
-#     return jsonify(result)
-
-
 '''
 Rest API + Database Helpers
 
 '''
-
 
 # return information from one of the location tables
 def location_get(table_name):

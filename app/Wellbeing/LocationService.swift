@@ -19,11 +19,17 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     var currentLocation: CLLocation?
     var postLocation: Bool?
-    var caseId: Int?
+    var caseID: Int?
     
     let RICE_X = 29.719565
     let RICE_Y = -95.402233
     let RICE_RADIUS = 1000
+    
+    enum LocationResponse {
+        case Authorized
+        case OutOfRange
+        case NotAuthorized
+    }
     
     override fileprivate init() {
         super.init()
@@ -34,7 +40,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         self.postLocation = false
     }
     
-    // delegate-defined methods
+    // MARK: CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.authorizedAlways {
@@ -50,7 +56,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         
         if self.postLocation! {
             // format arguments
-            let caseID = "caseID=" + backendHandler.validateURLString(String(self.caseId!))
+            let caseID = "caseID=" + backendHandler.validateURLString(String(self.caseID!))
             let deviceID = "&deviceID=" + backendHandler.validateURLString(UIDevice.current.identifierForVendor!.uuidString)
             let latitude = "&latitude=" + backendHandler.validateURLString("\(location.coordinate.latitude)")
             let longitude = "&longitude=" + backendHandler.validateURLString("\(location.coordinate.longitude)")
@@ -74,7 +80,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     }
     
 
-    func startSendingLocation() -> Int {
+    func startSendingLocation() -> LocationResponse {
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
             
             if checkRiceRadius() {
@@ -82,13 +88,13 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                 self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
                 self.locationManager?.distanceFilter = 20
                 self.postLocation = true
-                return 0
+                return .Authorized
             }
             // out of range error
-            return -2
+            return .OutOfRange
         }
         // unauthorized error
-        return -1
+        return .NotAuthorized
     }
     
 
@@ -101,7 +107,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     
     
     func setCaseId(_ id: Int) {
-        self.caseId = id
+        self.caseID = id
     }
     
 
