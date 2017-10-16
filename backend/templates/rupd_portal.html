@@ -9,7 +9,25 @@
 </head>
 
 <body>
-    <h1>Rice University Police Department Web Portal</h1>
+
+    <div class="header">
+
+        <h1>RUPD Student Emergency Portal</h1>
+        
+        <nav>
+            <a href="#"> Get Log </a>
+            <a href="#"> File a Bug </a>
+            <a href="#"> Log Out </a>
+        </nav>
+
+    </div>
+
+    <div class="side-panel">
+
+        <!-- Timestamps and Cases -->
+
+    </div>
+
 
     <div id="map"></div>
 
@@ -31,6 +49,9 @@
                 center: {lat: 29.717860, lng: -95.403333},
                 zoom: 15
             });
+
+            // load data from db
+
         }
 
         function addMarker(coord) {

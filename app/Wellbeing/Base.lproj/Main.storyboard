@@ -21,17 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeS-US-mAa">
-                                <rect key="frame" x="92" y="490" width="163" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="CANCEL">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelEmergency:" destination="k4j-Xz-aUq" eventType="touchUpInside" id="i1b-fa-UcG"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nV-sF-aGl">
                                 <rect key="frame" x="33" y="181" width="280" height="236"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -49,7 +38,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Emergency" image="Emergency Icon" id="XIv-uD-2TZ"/>
                     <connections>
-                        <outlet property="cancel" destination="TeS-US-mAa" id="mdg-Yt-7Lq"/>
                         <outlet property="emergency" destination="5nV-sF-aGl" id="9YD-QY-YSt"/>
                     </connections>
                 </viewController>
@@ -206,9 +194,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Hs-aD-a56">
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Hs-aD-a56">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="BAC Calculator" id="msh-Ud-F58">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="z95-kO-RBw">
@@ -227,6 +214,9 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3Hs-aD-a56" firstAttribute="top" secondItem="X0T-2w-XUp" secondAttribute="bottom" constant="-20" id="3bn-ay-3C0"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="BAC" image="BAC Icon" id="Xzt-Ab-gdz"/>
                     <connections>
@@ -255,15 +245,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pxq-Q0-NMt">
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pxq-Q0-NMt">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Anonymous Report" id="joF-t9-n6G"/>
                                 </items>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Pxq-Q0-NMt" firstAttribute="top" secondItem="N6X-ji-pTa" secondAttribute="bottom" constant="-20" id="JPq-Z9-Vb4"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Reporting" image="Reporting Icon" id="Bks-Mx-6R2"/>
                 </viewController>

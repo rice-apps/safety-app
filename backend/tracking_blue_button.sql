@@ -15,7 +15,7 @@ CREATE TABLE case_id(
     id INT
 );
 
-INSERT INTO case_id(id) VALUES (0)
+-- INSERT INTO case_id(id) VALUES (0)
 
 --INSERT INTO tracking_blue_button(caseID, deviceID, longitude, latitude, resolved)
 --  VALUES (10, "phone1", -95.40332, 29.717869, 0);

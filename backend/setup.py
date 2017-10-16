@@ -21,6 +21,7 @@ def init_db():
         with app.open_resource('tracking_blue_button.sql', mode='r') as f:
             cur.executescript(f.read())
         insert_number()
+        init_case()
         con.commit()
 
 
@@ -33,6 +34,9 @@ def insert_number():
     with con:
         cur.executemany("""INSERT INTO important_numbers VALUES (?, ?, ?, ?, ?)""", data)
 
+
+def init_case():
+    cur.execute("INSERT INTO case_id(id) VALUES (0)")
 
 init_db()
 con.close()
