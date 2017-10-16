@@ -71,7 +71,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             
             print("LocationService: Lat \(location.coordinate.latitude), Long \(location.coordinate.longitude)")
             
-            backendHandler.postRequest(postString, "http://localhost:5000/api/blue_button_location")
+            backendHandler.postRequest(postString, .BlueButton)
         }
     }
     
@@ -79,6 +79,19 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         print("LocationService: Update Location Error : \(error.localizedDescription)")
     }
     
+    func checkLocation() -> LocationResponse {
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
+            
+            if checkRiceRadius() {
+                
+                return .Authorized
+            }
+            
+            return .OutOfRange
+        }
+        
+        return .NotAuthorized
+    }
 
     func startSendingLocation() -> LocationResponse {
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
@@ -88,12 +101,13 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                 self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
                 self.locationManager?.distanceFilter = 20
                 self.postLocation = true
+                
                 return .Authorized
             }
-            // out of range error
+            
             return .OutOfRange
         }
-        // unauthorized error
+        
         return .NotAuthorized
     }
     

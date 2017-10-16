@@ -13,13 +13,19 @@ class BackendHandler: NSObject {
     
     static let sharedInstance = BackendHandler()
     
+    enum ServerPath : String{
+        case CaseID = "http://0.0.0.0:5000/api/case_id"
+        case BlueButton = "http://localhost:5000/api/blue_button_location"
+        case Numbers = "http://0.0.0.0:5000/api/numbers"
+    }
+    
     enum BackendError: Error {
         case serverError
     }
     
-    func getRequest(_ path: String, completion: @escaping (Dictionary<String, Any>) -> ()) {
+    func getRequest(_ path: ServerPath, completion: @escaping (Dictionary<String, Any>) -> ()) {
         // format and create request
-        let url: URL = URL(string: path)!
+        let url: URL = URL(string: path.rawValue)!
         
         let task = URLSession.shared.dataTask(with: url, completionHandler: {
             (data, response, error) -> Void in
@@ -59,10 +65,10 @@ class BackendHandler: NSObject {
     }
     
     
-    func postRequest(_ postString: String, _ path: String) {
+    func postRequest(_ postString: String, _ path: ServerPath) {
         
         // format and create request
-        let url: URL = URL(string: path)!
+        let url: URL = URL(string: path.rawValue)!
         let cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalCacheData
         var request = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: 30.0)
         request.httpMethod = "POST"

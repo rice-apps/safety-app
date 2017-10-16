@@ -22,8 +22,6 @@ app.config.setdefault('CAS_ATTRIBUTES_SESSION_KEY', 'CAS_ATTRIBUTES')
 socketio = SocketIO(app)
 CAS(app)
 
-case_id = 0
-
 '''
 Database General Operations
 
@@ -112,6 +110,7 @@ def blue_button_location():
 
     # Add location into the database
     if request.method == 'POST':
+        print "Post hit"
         return location_post("tracking_blue_button")
 
     # Delete location according to case id
@@ -121,12 +120,14 @@ def blue_button_location():
 
 @app.route("/api/case_id", methods=['GET'])
 def get_case_id():
-    global case_id
+    cur.execute("SELECT MAX(id) FROM case_id")
+    case_id = cur.fetchone()['MAX(id)']
     result = {"result": case_id}
-    case_id += 1
-    insert_stmt = "INSERT INTO case_id + (id) VALUES (?)"
-    cur.execute(insert_stmt, (case_id,))
-    return result
+    insert_stmt = "INSERT INTO case_id (id) VALUES (?)"
+    next_case = case_id + 1
+    print next_case
+    cur.execute(insert_stmt, (next_case,))
+    return jsonify(result)
 
 '''
 Rest API + Database Helpers
@@ -158,7 +159,7 @@ def location_post(table_name):
     insert_stmt = "INSERT INTO " + table_name + "(caseID, deviceID, longitude, latitude, date, resolved) " \
                                                 "VALUES (?, ?, ?, ?, ?, ?)"
     form_values = (f["caseID"], f["deviceID"], f["longitude"],
-                   f["latitude"], f["date"], f["resolved"])
+                   f["latitude"], f["timestamp"], f["resolved"])
 
     # emit message if blue button
     if table_name == "tracking_blue_button":
@@ -180,15 +181,6 @@ def location_delete(table_name):
         return jsonify({"status": 200})
 
 
-def check_case_id():
-    global case_id
-
-    if case_id == 0:
-        cur.execute("SELECT MAX(id) FROM case_id")
-        case_id = cur.fetchall()
-
-
 if __name__ == "__main__":
-    check_case_id()
     socketio.run(app, "0.0.0.0", port=5000)
     # app.run(host="0.0.0.0", debug=True)

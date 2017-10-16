@@ -44,8 +44,7 @@ class NumbersTableViewController: UITableViewController{
     
     func getData() {
         
-        let path: String = "http://0.0.0.0:5000/api/numbers"
-        backendHandler.getRequest(path) {
+        backendHandler.getRequest(.Numbers) {
             jsonData in
             
             let loadedNumbers = jsonData["result"] as! NSArray
