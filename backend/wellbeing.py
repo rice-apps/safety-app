@@ -12,7 +12,7 @@ App Config
 
 
 app = Flask(__name__)
-app.config.from_object("config")
+# app.config.from_object("config")
 app.config['CAS_SERVER'] = 'https://netid.rice.edu'
 app.config['CAS_AFTER_LOGIN'] = 'load_portal'
 app.config.setdefault('CAS_USERNAME_SESSION_KEY', 'CAS_USERNAME')
@@ -197,6 +197,8 @@ def location_get(table_name):
     select_stmt = "SELECT * FROM " + table_name
     cur = db.execute(select_stmt)
     result = {"result": cur.fetchall()}
+    print result
+    print jsonify(result)
     return jsonify(result)
 
 

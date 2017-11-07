@@ -13,10 +13,11 @@ class BackendHandler: NSObject {
     
     static let sharedInstance = BackendHandler()
     
+    
     enum ServerPath : String{
-        case CaseID = "http://0.0.0.0:5000/api/case_id"
-        case BlueButton = "http://localhost:5000/api/blue_button_location"
-        case Numbers = "http://0.0.0.0:5000/api/numbers"
+        case CaseID = "https://rice-safety-app.herokuapp.com/api/bb_case"
+        case BlueButton = "https://rice-safety-app.herokuapp.com/api/bb_request"
+        case Numbers = "https://rice-safety-app.herokuapp.com/api/numbers"
     }
     
     enum BackendError: Error {

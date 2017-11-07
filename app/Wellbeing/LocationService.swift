@@ -36,6 +36,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         self.locationManager = CLLocationManager()
         self.locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
         self.locationManager?.distanceFilter = 200
+        self.locationManager?.allowsBackgroundLocationUpdates = true
         self.locationManager?.delegate = self
         self.postLocation = false
     }
@@ -56,8 +57,8 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         
         if self.postLocation! {
             // format arguments
-            let caseID = "caseID=" + backendHandler.validateURLString(String(self.caseID!))
-            let deviceID = "&deviceID=" + backendHandler.validateURLString(UIDevice.current.identifierForVendor!.uuidString)
+            let caseID = "case_id=" + backendHandler.validateURLString(String(self.caseID!))
+            let deviceID = "&device_id=" + backendHandler.validateURLString(UIDevice.current.identifierForVendor!.uuidString)
             let latitude = "&latitude=" + backendHandler.validateURLString("\(location.coordinate.latitude)")
             let longitude = "&longitude=" + backendHandler.validateURLString("\(location.coordinate.longitude)")
             
@@ -98,8 +99,8 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             
             if checkRiceRadius() {
                 print("LocationService: Starting Location Updates")
-                self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-                self.locationManager?.distanceFilter = 20
+                self.locationManager?.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+                self.locationManager?.distanceFilter = 5
                 self.postLocation = true
                 
                 return .Authorized
